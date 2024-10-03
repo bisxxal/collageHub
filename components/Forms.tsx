@@ -127,7 +127,7 @@ const Form = ({
       setOpen(false);
       router.refresh();
     }
-  }, [state, router]);
+  }, [state, router , setOpen, table]);
 
   return type === "delete" && id ? (
     <form
