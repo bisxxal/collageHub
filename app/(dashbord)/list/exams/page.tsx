@@ -1,12 +1,10 @@
 import Bar from "@/components/custom/Bar"; 
-import FormServer from "@/components/FormServer";
+import FormModal from "@/components/FormModal";
 import Pagination from "@/components/custom/Pagination";
-import Table from "@/components/custom/Table";
-import TableSearch from "@/components/custom/TableSearch";
+import Table from "@/components/custom/Table";  
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { Class, Exam, Prisma, Subject, Teacher } from "@prisma/client";
-import Image from "next/image";
+import { Class, Exam, Prisma, Subject, Teacher } from "@prisma/client"; 
 
 type ExamList = Exam & {
   lesson: {
@@ -74,8 +72,8 @@ const renderRow = (item: ExamList) => (
       <div className="flex items-center gap-2">
         {(role === "admin" || role === "teacher") && (
           <>
-            <FormServer table="exam" type="update" data={item} />
-            <FormServer table="exam" type="delete" id={item.id} />
+            <FormModal table="exam" type="update" data={item} />
+            <FormModal table="exam" type="delete" id={item.id} />
           </>
         )}
       </div>

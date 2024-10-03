@@ -6,7 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 import { Assignment, Class, Prisma, Subject, Teacher } from "@prisma/client";
   
 import Bar from "@/components/custom/Bar";
-import FormServer from "@/components/FormServer";
+import FormModal from "@/components/FormModal";
 
 type AssignmentList = Assignment & {
   lesson: {
@@ -72,8 +72,8 @@ const AssignmentListPage = async ({
         <div className="flex items-center gap-2">
           {(role === "admin" || role === "teacher") && (
             <>
-              <FormServer table="assignment" type="update" data={item} />
-              <FormServer table="assignment" type="delete" id={item.id} />
+              <FormModal table="assignment" type="update" data={item} />
+              <FormModal table="assignment" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -168,7 +168,7 @@ const AssignmentListPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#e633ad]">
                 <BsSortDown  className=" text-xl "/>
             </button>
-            {role === "admin" || role === "teacher" && <FormServer table="assignment" type="create" />}
+            {role === "admin" || role === "teacher" && <FormModal table="assignment" type="create" />}
           </div>
         </div>
       </div> */}

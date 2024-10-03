@@ -1,17 +1,14 @@
  
 import Pagination from "@/components/custom/Pagination";
-import Table from "@/components/custom/Table";
-import TableSearch from "@/components/custom/TableSearch"; 
-import Image from "next/image";
-import { CiFilter } from "react-icons/ci";
-import { ImSortAmountDesc } from "react-icons/im";
+import Table from "@/components/custom/Table"; 
+import Image from "next/image"; 
 import Link from "next/link";
 import { GrView } from "react-icons/gr";
 import { Class, Prisma, Subject, Teacher } from "@prisma/client";
 import prisma from "@/lib/prisma"; 
 import { auth } from "@clerk/nextjs/server";
 import Bar from "@/components/custom/Bar";
-import FormServer from "@/components/FormServer";
+import FormModal from "@/components/FormModal";
 type TeacherList = Teacher & {subjects:Subject[]} & {classes:Class[]} 
 
 const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|undefined};}) => {
@@ -51,8 +48,8 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
           </Link>
           {role === "admin" && (
        <>
-          {/* <FormServer table="class" type="update" data={item.id} /> */}
-            <FormServer table="teacher" type="delete" id={item.id}/>
+          {/* <FormModal table="class" type="update" data={item.id} /> */}
+            <FormModal table="teacher" type="delete" id={item.id}/>
        </>
           )}
         </div>

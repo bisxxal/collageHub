@@ -6,8 +6,7 @@ import { useFormState } from "react-dom";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { classSchema, ClassSchema } from "@/lib/FormValidation";
-// import { createClass, updateClass } from "@/actions/class.action";
+import { classSchema, ClassSchema } from "@/lib/FormValidation"; 
 import InputField from "../custom/InputField";
 import { allClasses } from "@/actions/form.actions";
 import { createClass, updateClass } from "@/actions/server.actions";
@@ -18,7 +17,7 @@ const ClassForm = ({
   setOpen,
   relatedData = {},
 }: {
-  type: "create" | "update";
+  type: "create" | "update"|"delete";
   data?: any;
   setOpen: Dispatch<SetStateAction<boolean>>;
   relatedData?: any;
@@ -60,12 +59,11 @@ const ClassForm = ({
       setClass(res);
     };
     fetchteachers();
-  }, []);
+  }, [relatedData]);
 
   const teachers = classs?.teachers;
   const grades = classs?.grades;
-
-  console.log(teachers, grades, "teachers, grades");
+ 
 
   return (
     <form
@@ -83,7 +81,7 @@ const ClassForm = ({
           defaultValue={data?.name}
           register={register}
           error={errors?.name}
-        />
+          />
         <InputField
           label="Capacity"
           name="capacity"

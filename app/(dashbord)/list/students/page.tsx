@@ -1,6 +1,5 @@
  
-import Bar from "@/components/custom/Bar";
-import FormServer from "@/components/FormServer";
+import Bar from "@/components/custom/Bar"; 
 import Pagination from "@/components/custom/Pagination";
 import Table from "@/components/custom/Table"
 import prisma from "@/lib/prisma";
@@ -10,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
  
 import { GrView } from "react-icons/gr";
+import FormModal from "@/components/FormModal";
 
 type StudentList = Student & {class:Class}
 
@@ -87,7 +87,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
             </Link>
             {role === "admin" && (
    
-              <FormServer table="student" type="delete" id={item.id}/>
+              <FormModal table="student" type="delete" id={item.id}/>
             )}
           </div>
         </td>
@@ -149,8 +149,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
- 
-              <FormServer table="student" type="create"/>
+  
             )}
           </div>
         </div>

@@ -1,16 +1,12 @@
  
-import { CgProfile } from "react-icons/cg";
 import Link from "next/link";
  import { GoHome } from "react-icons/go";
  import { FaChalkboardTeacher } from "react-icons/fa";
  import { PiStudent ,PiExam} from "react-icons/pi";
  import { SiGoogleclassroom } from "react-icons/si";
  import { MdOutlinePlayLesson ,MdOutlineAssignment } from "react-icons/md";  
- import { FaRegNewspaper  ,FaRegCalendar } from "react-icons/fa"; 
- import { FaRegMessage } from "react-icons/fa6";
- import { GrAnnounce } from "react-icons/gr";
- import { FiLogOut } from "react-icons/fi";
- import { IoIosSettings ,IoIosPeople } from "react-icons/io"; 
+ import { FaRegNewspaper  ,FaRegCalendar } from "react-icons/fa";  
+ import { IoIosPeople } from "react-icons/io"; 
  import { GiNotebook } from "react-icons/gi";
  import { currentUser } from "@clerk/nextjs/server";
 const menuItems = [
@@ -84,43 +80,10 @@ const menuItems = [
         href: "/list/events",
         visible: ["admin", "teacher", "student"],
       },
-      {
-        icon: <FaRegMessage />,
-        label: "Messages",
-        href: "/list/messages",
-        visible: ["admin", "teacher", "student"],
-      },
-      {
-        icon: <GrAnnounce />,
-        label: "Announcements",
-        href: "/list/announcements",
-        visible: ["admin", "teacher", "student"],
-      },
+     
     ],
   },
-  {
-    title: "OTHER",
-    items: [
-      {
-        icon: <CgProfile />,
-        label: "Profile",
-        href: "/profile",
-        visible: ["admin", "teacher", "student"],
-      },
-      {
-        icon: <IoIosSettings />,
-        label: "Settings",
-        href: "/settings",
-        visible: ["admin", "teacher", "student"],
-      },
-      {
-        icon:<FiLogOut />,
-        label: "Logout",
-        href: "/logout",
-        visible: ["admin", "teacher", "student"],
-      },
-    ],
-  },
+  
 ];
 
  

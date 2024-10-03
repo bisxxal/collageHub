@@ -60,3 +60,14 @@ export const allClasses = async () => {
     }); 
     return JSON.parse(JSON.stringify( { teachers: classTeachers, grades: classGrades }));
 }
+
+export const allevent = async ()=>{
+  try {
+    const events = await prisma.class.findMany({
+      select: { id: true, name: true },
+    }) 
+    return events;
+    
+  } catch (error) {  
+  }
+}

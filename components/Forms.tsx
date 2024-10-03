@@ -1,15 +1,11 @@
 "use client"; 
-import {
-  deleteClass,
-  deleteExam,
-  deleteStudent,
-  deleteSubject,
-  deleteTeacher,
-} from "@/actions/server.actions";
+import { deleteClass, deleteEvent, deleteExam, deleteStudent, deleteSubject, deleteTeacher} from "@/actions/server.actions";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { useFormState } from "react-dom";
+import LoadingCom from "./custom/LoadingCom";
+import { toast } from "react-toastify";
 
 const deleteActionMap: any = {
   subject: deleteSubject,
@@ -17,28 +13,31 @@ const deleteActionMap: any = {
   teacher: deleteTeacher,
   student: deleteStudent,
   exam: deleteExam,
-  // TODO: OTHER DELETE ACTIONS
+
   lesson: deleteSubject,
   assignment: deleteSubject,
   result: deleteSubject,
   attendance: deleteSubject,
-  event: deleteSubject,
+  event: deleteEvent,
 };
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
-  loading: () => <h1>Loading...</h1>,
+  loading: () => <LoadingCom /> ,
 });
 const SubjectForm = dynamic(() => import("./forms/SubjectForm"), {
-  loading: () => <h1>Loading...</h1>,
+  loading: () => <LoadingCom />,
 });
 const StudentForm = dynamic(() => import("./forms/StudentForm"), {
-  loading: () => <h1>Loading...</h1>,
+  loading: () => <LoadingCom />,
 });
 const ClassForm = dynamic(() => import("./forms/ClassForm"), {
-  loading: () => <h1>Loading...</h1>,
+  loading: () => <LoadingCom />,
 });
 const ExamForm = dynamic(() => import("./forms/ExamForm"), {
-  loading: () => <h1>Loading...</h1>,
+  loading: () => <LoadingCom />,
+});
+const EventForm = dynamic(() => import("./forms/EventForm"), {
+  loading: () => <LoadingCom />,
 });
 
 const Form = ({
@@ -59,7 +58,7 @@ const Form = ({
   const forms: {
     [key: string]: (
       setOpen: Dispatch<SetStateAction<boolean>>,
-      type: "create" | "update | delete",
+      type: "create" | "update" | "delete",
       data?: any,
       relatedData?: any
     ) => JSX.Element;
@@ -104,6 +103,14 @@ const Form = ({
         relatedData={relatedData}
       />
     ),
+    event: (setOpen, type, data, relatedData) => (
+      <EventForm
+        type={type}
+        data={data}
+        setOpen={setOpen}
+        relatedData={relatedData}
+      />
+    ),
   };
   // const data =
   const [state, formAction] = useFormState(
@@ -116,13 +123,11 @@ const Form = ({
   const router = useRouter();
   useEffect(() => {
     if (state.success) {
-      // toast(`${table} has been deleted!`);
+      toast(`${table} has been deleted!`);
       setOpen(false);
       router.refresh();
     }
   }, [state, router]);
-
-  // console.log("Data in SubjectForm:", data, relatedData, type, table, id);
 
   return type === "delete" && id ? (
     <form

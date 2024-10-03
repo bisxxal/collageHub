@@ -1,7 +1,6 @@
- 
-import BigCalendar from "@/components/custom/Bigcalender";
+
 import BigCalenderContainer from "@/components/custom/BigCalenderContainer";
-import FormServer from "@/components/FormServer";
+import FormModal from "@/components/FormModal";
 import Performance from "@/components/custom/Perfomance"; 
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
@@ -55,7 +54,7 @@ if (!teacher) {
                 {teacher.name + " " + teacher.surname}
               </h1>
               {role === "admin" && (
-                <FormServer table="teacher" type="update" data={teacher} />
+                <FormModal table="teacher" type="update" data={teacher} />
               )}
             </div>
             <p className="text-sm text-gray-500">

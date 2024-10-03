@@ -169,7 +169,7 @@ async function main() {
         description: `Description for Event ${i}`, 
         startTime: new Date(new Date().setHours(new Date().getHours() + 1)), 
         endTime: new Date(new Date().setHours(new Date().getHours() + 2)), 
-        classId: (i % 5) + 1, 
+        // class: (i % 5) + 1, 
       },
     });
   }

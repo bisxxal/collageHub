@@ -2,8 +2,7 @@
 import { BiMaleFemale } from "react-icons/bi";
 import {
   RadialBarChart,
-  RadialBar,
-  Legend,
+  RadialBar, 
   ResponsiveContainer,
 } from "recharts";
   

@@ -1,14 +1,11 @@
  
 import Bar from "@/components/custom/Bar";
-import FormServer from "@/components/FormServer";
-import Pagination, { ITEM_PER_PAGE } from "@/components/custom/Pagination";
-import Table from "@/components/custom/Table";
-import TableSearch from "@/components/custom/TableSearch"; 
+import FormModal from "@/components/FormModal";
+import Pagination  from "@/components/custom/Pagination";
+import Table from "@/components/custom/Table"; 
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { Prisma } from "@prisma/client";
-import Image from "next/image";
- 
+import { Prisma } from "@prisma/client"; 
 type ResultList = {
   id: number;
   title: string;
@@ -91,8 +88,8 @@ const renderRow = (item: ResultList) => (
       <div className="flex items-center gap-2">
         {(role === "admin" || role === "teacher") && (
           <>
-            <FormServer table="result" type="update" data={item} />
-            <FormServer table="result" type="delete" id={item.id} />
+            <FormModal table="result" type="update" data={item} />
+            <FormModal table="result" type="delete" id={item.id} />
           </>
         )}
       </div>
@@ -215,7 +212,7 @@ const renderRow = (item: ResultList) => (
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {(role === "admin" || role === "teacher") && (
-              <FormServer table="result" type="create" />
+              <FormModal table="result" type="create" />
             )}
           </div>
         </div>

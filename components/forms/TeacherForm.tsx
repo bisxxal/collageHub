@@ -20,7 +20,7 @@ const TeacherForm = ({
   setOpen,
   relatedData,
 }: {
-  type: "create" | "update";
+  type: "create" | "update" |"delete";
   data?: any;
   setOpen: Dispatch<SetStateAction<boolean>>;
   relatedData?: any;
@@ -35,21 +35,27 @@ const TeacherForm = ({
 
   const [imgs, setImg] = useState<any>();
 
-  const [state, formAction] = useFormState(
-    type === "create" ? createTeacher : updateTeacher,
+  const [state, formAction] = useFormState(  type === "create" ? createTeacher : updateTeacher,
     {
       success: false,
       error: false,
-    },
-    data
+    }
   );
 
   const onSubmit = handleSubmit((data) => {
     if (!imgs) {
       setImg(data.img);
     }
-    // console.log(data);
-    formAction({ ...data, img: imgs?.secure_url });
+    else{
+      setImg(imgs?.secure_url);
+    } 
+    if(type === "update"){
+      formAction({ ...data});
+
+    }
+    if(type === "create"){
+      formAction({ ...data, img: imgs });
+    }
   });
 
   const router = useRouter();
@@ -73,7 +79,7 @@ const TeacherForm = ({
   }, [relatedData]);
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={onSubmit}>
+    <form className="flex inshadow p-4 rounded-2xl frame flex-col gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new teacher" : "Update the teacher"}
       </h1>
@@ -129,13 +135,17 @@ const TeacherForm = ({
           register={register}
           error={errors.phone}
         />
-        <InputField
+       { data && 
+       <>
+       <InputField
           label="img"
           name="img"
           defaultValue={data?.img}
           register={register}
           error={errors.img}
         />
+       </>
+        }
 
         {data && (
           <InputField
@@ -215,10 +225,10 @@ const TeacherForm = ({
             width={700}
             height={728}
           />
-        ) : (
+        ) : ( data?.img &&
           <Image
             className=" w-20 h-20 rounded-full"
-            src={data.img}
+            src={data?.img}
             alt=""
             width={700}
             height={728}

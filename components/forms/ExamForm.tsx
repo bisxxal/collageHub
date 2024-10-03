@@ -3,14 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useFormState } from "react-dom";
-import { Dispatch, SetStateAction, use, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { examSchema, ExamSchema } from "@/lib/FormValidation";
 import { createExam, updateExam } from "@/actions/server.actions";
 import InputField from "../custom/InputField";
 import { allLessons } from "@/actions/form.actions";
-import { set } from "zod";
 
 const ExamForm = ({
   type,
@@ -18,7 +17,7 @@ const ExamForm = ({
   setOpen,
   relatedData,
 }: {
-  type: "create" | "update";
+  type: "create" | "update" | "delete";
   data?: any;
   setOpen: Dispatch<SetStateAction<boolean>>;
   relatedData?: any;
@@ -39,12 +38,19 @@ const ExamForm = ({
     }
   );
 
-  const onSubmit = handleSubmit((data) => {
-    console.log("on sumbied data", data);
+  const onSubmit = handleSubmit((data) => { 
     formAction(data);
   });
 
   const router = useRouter();
+
+    useEffect(() => {
+      if (state.success) {
+        toast(`Exam has been ${type === "create" ? "created" : "updated"}!`);
+        setOpen(false);
+        router.refresh();
+      }
+    }, [state, router, type, setOpen]);
 
   const [lessons, setLessons] = useState<any>([]);
 
@@ -53,17 +59,17 @@ const ExamForm = ({
       setLessons(relatedData.lessons);
     } else {
       const fetchLessons = async () => {
-        const res = await allLessons();
+        const res = await allLessons(); 
+        
         setLessons(res);
       };
       fetchLessons();
     }
   }, [relatedData]);
-
-  console.log(lessons);
+ 
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={onSubmit}>
+    <form className="flex inshadow frame p-2 rounded-xl flex-col gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new exam" : "Update the exam"}
       </h1>
@@ -109,7 +115,7 @@ const ExamForm = ({
             {...register("lessonId")}
             defaultValue={data?.teachers}
           >
-            {lessons.map((lesson: { id: number; name: string }) => (
+            {lessons && lessons.map((lesson: { id: number; name: string }) => (
               <option value={lesson.id} key={lesson.id}>
                 {lesson.name}
               </option>

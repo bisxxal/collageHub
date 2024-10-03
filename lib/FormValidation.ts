@@ -80,3 +80,13 @@ export const examSchema = z.object({
 });
 
 export type ExamSchema = z.infer<typeof examSchema>;
+
+export const eventSchema  =  z.object({
+  id: z.coerce.number().optional(),
+  name: z.string().min(1 ,{message:"subjectname must be 3 characters long!" }),
+  description: z.string().min(1 ,{message:"description must be 3 characters long!" }),
+  class:z.array(z.string()),
+  startTime: z.coerce.date({ message: "Start date is required!" }),
+  endTime: z.coerce.date({ message: "End date is required!" }),
+});
+export type EventSchema = z.infer<typeof eventSchema>;

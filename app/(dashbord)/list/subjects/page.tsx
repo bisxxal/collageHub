@@ -1,9 +1,8 @@
  
 import Bar from "@/components/custom/Bar"; 
-import FormServer from "@/components/FormServer";
+import FormModal from "@/components/FormModal";
 import Pagination from "@/components/custom/Pagination";
-import Table from "@/components/custom/Table";
-import TableSearch from "@/components/custom/TableSearch"; 
+import Table from "@/components/custom/Table"; 
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { Prisma, Subject, Teacher } from "@prisma/client"; 
@@ -48,8 +47,8 @@ const SubjectListPage = async ({
         <div className="flex items-center gap-2">
           {role === "admin" && (
             <>
-              <FormServer table="subject" type="update" data={item} />
-              <FormServer table="subject" type="delete" id={item.id} />
+              <FormModal table="subject" type="update" data={item} />
+              <FormModal table="subject" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -107,7 +106,7 @@ const SubjectListPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && <FormServer table="teacher" type="create" />}
+            {role === "admin" && <FormModal table="teacher" type="create" />}
           </div>
         </div>
       </div> */}

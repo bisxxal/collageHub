@@ -1,12 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
+import { useForm } from "react-hook-form"; 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
+import { FaCloudUploadAlt } from "react-icons/fa";
 import { useFormState } from "react-dom";
-
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { CldUploadWidget } from "next-cloudinary";
@@ -44,8 +42,21 @@ const StudentForm = ({
     }
   );
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit((data) => { 
+    if (!img) {
+      setImg(data.img);
+    }
+    else{
+      setImg(img?.secure_url);
+    } 
+    if(type === "update"){
+      formAction({ ...data});
+
+    }
+    if(type === "create"){
+      formAction({ ...data, img: img });
+    }
+
     formAction({ ...data, img: img?.secure_url });
   });
 
@@ -61,24 +72,18 @@ const StudentForm = ({
 
   useEffect(() => {
     const fetchteachers = async () => {
-      const res = await allStudents();
-      console.log(res);
-
+      const res = await allStudents();  
       setStudents(res);
     };
     fetchteachers();
   }, [relatedData]);
-
-  // const { grades={}, classes={} } = relatedData;
+ 
 
   const grades = students?.grades;
-  const classes = students?.classes;
-  //  console.log(grades, classes);
-
-  console.log(students);
-
+  const classes = students?.classes; 
+ 
   return (
-    <form className="flex inshadow frame flex-col gap-8" onSubmit={onSubmit}>
+    <form className="flex inshadow frame flex-col p-3 px-4 pb-6 rounded-lg gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new student" : "Update the student"}
       </h1>
@@ -117,15 +122,13 @@ const StudentForm = ({
         onSuccess={(result, { widget }) => {
           setImg(result.info);
           widget.close();
-        }}
-      >
+        }}>
         {({ open }) => {
           return (
             <div
-              className="text-xs text-gray-500 flex items-center gap-2 cursor-pointer"
-              onClick={() => open()}
-            >
-              <Image src="/upload.png" alt="" width={28} height={28} />
+              className="text-xs text-gray-500 border-[2px] border-[#ffffff45] p-2 rounded-lg flex items-center gap-2 cursor-pointer"
+              onClick={() => open()}>
+              <FaCloudUploadAlt  className=" text-xl"/>
               <span>Upload a photo</span>
             </div>
           );
@@ -167,12 +170,12 @@ const StudentForm = ({
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">gender</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-md text-sm w-full"
             {...register("gender")}
             defaultValue={data?.gender}
           >
-            <option value="MALE">Male</option>
-            <option value="FEMALE">Female</option>
+            <option className=" bg-[#000000a5] " value="MALE">Male</option>
+            <option className=" bg-[#000000a5] " value="FEMALE">Female</option>
           </select>
           {errors.gender?.message && (
             <p className="text-xs text-red-400">
@@ -183,12 +186,12 @@ const StudentForm = ({
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Grade</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
             {...register("gradeId")}
             defaultValue={data?.gradeId}
           >
             { grades && grades.map((grade: { id: number; level: number }) => (
-              <option value={grade.id} key={grade.id}>
+              <option className=" bg-[#000000a5] " value={grade.id} key={grade.id}>
                 {grade.level}
               </option>
             ))}
@@ -202,7 +205,7 @@ const StudentForm = ({
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Class</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
             {...register("classId")}
             defaultValue={data?.classId}
           >
@@ -213,7 +216,7 @@ const StudentForm = ({
                 capacity: number;
                 _count: { students: number };
               }) => (
-                <option value={classItem.id} key={classItem.id}>
+                <option className=" bg-[#000000a5] " value={classItem.id} key={classItem.id}>
                   ({classItem.name} -{" "}
                   {classItem._count.students + "/" + classItem.capacity}{" "}
                   Capacity)

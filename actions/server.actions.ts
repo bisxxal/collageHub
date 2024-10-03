@@ -1,11 +1,11 @@
 'use server'
 
-import { ClassSchema, ExamSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
+import { ClassSchema, EventSchema, ExamSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
 import { clerkClient } from "@clerk/nextjs/server"; 
 type CurrentState = { success: boolean; error: boolean };
 
-export const createSubject = async ( currentState:{success:boolean ; error:boolean} , data:SubjectSchema) => {
+export const createSubject = async ( currentState:CurrentState , data:SubjectSchema) => {
   try {
     
     await prisma.subject.create({
@@ -22,7 +22,7 @@ export const createSubject = async ( currentState:{success:boolean ; error:boole
     return {success:false , error:true}
   }
 }
-export const updateSubject = async ( currentState:{success:boolean ; error:boolean} , data:SubjectSchema) => {
+export const updateSubject = async ( currentState:CurrentState , data:SubjectSchema) => {
     try {
        
         await prisma.subject.update({
@@ -44,15 +44,14 @@ export const updateSubject = async ( currentState:{success:boolean ; error:boole
       return {success:false , error:true}
     }
   }
-export const deleteSubject = async ( currentState:{success:boolean ; error:boolean} , data:FormData) => {
+export const deleteSubject = async ( currentState:CurrentState , data:FormData) => {
     try {
       const id = data.get("id") as string;
       await prisma.subject.delete({
         where: {
           id: parseInt(id),
         },
-      });
-    console.log("Subject deleted",id);
+      }); 
     
         return {success:true , error:false}
     } catch (error) {
@@ -65,8 +64,7 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
     currentState: CurrentState,
     data: TeacherSchema
   ) => {
-
-    console.log(data);
+ 
     
     try { 
       const clerk = clerkClient();  
@@ -110,8 +108,7 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
   ) => {
     if (!data.id) {
       return { success: false, error: "Invalid user ID" };
-    }
-    console.log("Updating user with ID:", data.id);
+    } 
   
     try {
       const clerk = clerkClient();
@@ -148,6 +145,7 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
           },
         },
       });
+ 
       return { success: true, error: false };
     } catch (error) {
       console.error("Error fetching or updating user:", error);
@@ -178,10 +176,9 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
   export const createStudent = async (
     currentState: CurrentState,
     data: StudentSchema
-  ) => {
-    console.log(data);
+  ) => { 
     try { 
-
+      const clerk = clerkClient();  
       const classItem = await prisma.class.findUnique({
         where: { id: data.classId },
         include: { _count: { select: { students: true } } },
@@ -191,7 +188,7 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
         return { success: false, error: true };
       }
   
-      const user = await clerkClient.users.createUser({
+      const user = await clerk.users.createUser({
         username: data.username,
         password: data.password,
         firstName: data.name,
@@ -253,10 +250,10 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
           gradeId: data.gradeId,
           classId: data.classId, 
         },
-      }); 
+      });  
+      
       return { success: true, error: false };
-    } catch (err) {
-      console.log(err);
+    } catch (err) { 
       return { success: false, error: true };
     }
   };
@@ -276,8 +273,7 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
       });
    
       return { success: true, error: false };
-    } catch (err) {
-      console.log(err);
+    } catch (err) { 
       return { success: false, error: true };
     }
   };
@@ -294,9 +290,7 @@ export const deleteSubject = async ( currentState:{success:boolean ; error:boole
           endTime: data.endTime,
           lessonId: data.lessonId,
         },
-      });
-
-      console.log("Exam created" , exam);
+      }); 
       
       return { success: true, error: false };
     } catch (err) {
@@ -408,3 +402,70 @@ export const deleteClass = async (
     return { success: false, error: true };
   }
 };
+
+
+export const createEvent = async (
+  currentState: CurrentState,
+  data: EventSchema
+) => {
+  try {
+    const event = await prisma.event.create({
+      data: {
+        title: data.name,  
+        startTime: data.startTime,
+        endTime: data.endTime,
+       
+        class: {
+          connect: data.class.map((classId: string) => ({ id: parseInt(classId) }))  
+        },
+        description: data.description,
+      },
+    });
+ 
+
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+// Updating an event
+export const updateEvent = async (
+  currentState: CurrentState,
+  data: EventSchema
+) => {
+  try {
+    const event = await prisma.event.update({
+      where: { id: data.id },  
+      data: {
+        title: data.name,
+        startTime: data.startTime,
+        endTime: data.endTime, 
+        class: {
+          connect: data.class.map((classI: string) => ({ id: parseInt(classI) }))  
+        },
+        description: data.description,
+      },
+    }); 
+
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+export const deleteEvent = async ( currentState:CurrentState , data:FormData) => {
+  try {
+    const id = data.get("id") as string;
+    await prisma.event.delete({
+      where: {
+        id: parseInt(id),
+      },
+    }); 
+  
+  } catch (error) {
+    console.log("Error while deleteing event",error);
+    return {success:false , error:true}
+  }
+}

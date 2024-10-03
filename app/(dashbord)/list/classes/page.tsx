@@ -1,15 +1,11 @@
  
 import Bar from "@/components/custom/Bar";
-import FormServer from "@/components/FormServer";
+import FormModal from "@/components/FormModal";
 import Pagination from "@/components/custom/Pagination";
-import Table from "@/components/custom/Table";
-import TableSearch from "@/components/custom/TableSearch";
-// import { classesData, role } from "@/lib/data";
+import Table from "@/components/custom/Table"; 
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { Class, Prisma, Teacher } from "@prisma/client";
-import Image from "next/image";
-
+import { Class, Prisma, Teacher } from "@prisma/client"; 
 type ClassList = Class & { supervisor: Teacher };
 
 const ClassListPage =async ({
@@ -19,7 +15,7 @@ const ClassListPage =async ({
 }) => {
  
 
-  const { userId, sessionClaims } = auth( );
+  const { sessionClaims } = auth( );
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   
 
@@ -68,8 +64,8 @@ const renderRow = (item: ClassList) => (
       <div className="flex items-center gap-2">
         {role === "admin" && (
           <>
-            <FormServer table="class" type="update" data={item} />
-            <FormServer table="class" type="delete" id={item.id} />
+            <FormModal table="class" type="update" data={item} />
+            <FormModal table="class" type="delete" id={item.id} />
           </>
         )}
       </div>
@@ -128,7 +124,7 @@ const renderRow = (item: ClassList) => (
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && <FormServer table="class" type="create" />}
+            {role === "admin" && <FormModal table="class" type="create" />}
           </div>
         </div>
       </div>  */}

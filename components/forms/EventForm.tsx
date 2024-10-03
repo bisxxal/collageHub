@@ -5,12 +5,12 @@ import { useFormState } from "react-dom";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { subjectSchema, SubjectSchema } from "@/lib/FormValidation";
-import { createSubject, updateSubject } from "@/actions/server.actions";
+import { eventSchema, EventSchema  } from "@/lib/FormValidation";
+import { createEvent,  updateEvent } from "@/actions/server.actions";
 import InputField from "../custom/InputField";
-import { allSubjects } from "@/actions/form.actions";
+import { allevent } from "@/actions/form.actions";
 
-const SubjectForm = ({
+const EventForm = ({
   type,
   data,
   setOpen,
@@ -25,14 +25,14 @@ const SubjectForm = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SubjectSchema>({
-    resolver: zodResolver(subjectSchema),
+  } = useForm<EventSchema>({
+    resolver: zodResolver(eventSchema),
   });
 
   const [teachers, setTeachers] = useState<any>([]);
 
   const [state, formAction] = useFormState(
-    type === "create" ? createSubject : updateSubject,
+    type === "create" ? createEvent : updateEvent,
     {
       success: false,
       error: false,
@@ -55,7 +55,7 @@ const SubjectForm = ({
 
   useEffect(() => {
     const fetchteachers = async () => {
-      const res = await allSubjects();
+      const res = await allevent();
       setTeachers(res);
     };
     fetchteachers();
@@ -67,19 +67,41 @@ const SubjectForm = ({
       onSubmit={onSubmit}
     >
       <h1 className="text-xl font-semibold">
-        {type === "create" ? "Create a new subject" : "Update the subject"}
+        {type === "create" ? "Create a new Event" : "Update the event"}
       </h1>
 
       <div className="flex justify-between flex-wrap gap-4">
         <InputField
-          label="Subject name"
+          label="Event Title"
           name="name"
-          defaultValue={data?.name}
+          defaultValue={data?.title}
           register={register}
           error={errors?.name}
         />
+        <InputField
+          label="Event description"
+          name="description"
+          defaultValue={data?.description}
+          register={register}
+          error={errors?.description}
+        />
+           <InputField
+          label="Start Date"
+          name="startTime"
+          defaultValue={data?.startTime}
+          register={register}
+          error={errors?.startTime}
+          type="date"
+        />
+        <InputField
+          label="End Date"
+          name="endTime"
+          defaultValue={data?.endTime}
+          register={register}
+          error={errors?.endTime}
+          type="date"
+        />
 
-        
         {data && (
           <InputField
             label="Id"
@@ -91,28 +113,28 @@ const SubjectForm = ({
           />
         )}
         <div className="flex flex-col gap-2 w-full md:w-1/2  ">
-          <label className="text-xs text-gray-500">Teachers</label>
+          <label className="text-xs text-gray-500">Classes</label>
           <select
             multiple
             className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
-            {...register("teachers")}
-            defaultValue={data?.teachers}
+            {...register("class")}
+            defaultValue={data?.classId}
           >
             {teachers?.map(
-              (teacher: { id: string; name: string; surname: string }) => (
+              (teacher: { id: string; name: string;   }) => (
                 <option
                   className=" text-blac border-y-[.3px] border-zinc-600 "
                   value={teacher.id}
                   key={teacher.id}
                 >
-                  {teacher.name + " " + teacher.surname}
+                  {teacher.name }
                 </option>
               )
             )}
           </select>
-          {errors.teachers?.message && (
+          {errors.class?.message && (
             <p className="text-xs text-red-400">
-              {errors.teachers.message.toString()}
+              {errors.class.message.toString()}
             </p>
           )}
         </div>
@@ -127,4 +149,4 @@ const SubjectForm = ({
   );
 };
 
-export default SubjectForm;
+export default EventForm;

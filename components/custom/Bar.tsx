@@ -18,9 +18,14 @@ function Bar({ role, table, type, data }: any) {
           <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#e633ad]">
             <BsSortDown className=" text-xl " />
           </button>
-          {(role == "admin" || role === "teacher") && (
+          {(role == "admin"  ) && (
             <FormModal table={table} type={type} />
           )}
+
+        {( ( table==='exam' || table==='assignment') && role === "teacher") && (
+            <FormModal table={table} type={type} />
+          )}
+
         </div>
       </div>
     </div>
