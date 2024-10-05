@@ -11,9 +11,17 @@ body {
   --sb-thumb-color: #322e46;
   --sb-size: 10px;
 }
+select {
+  --db-track-color: #15141b;
+  --db-thumb-color: #322e46;
+  --db-size: 0px;
+}
 
 body::-webkit-scrollbar {
   width: var(--sb-size);
+}
+.option::-webkit-scrollbar {
+  width: var(--db-size);
 }
 
 body::-webkit-scrollbar-track {
@@ -141,3 +149,4 @@ body::-webkit-scrollbar-thumb {
 .cl-internal-1hp5nqm{
   display: none !important;
 }
+  

@@ -12,7 +12,7 @@ export const allLessons = async () => {
       ...(role === "teacher" ? { teacherId: currentUserId! } : {}),
     },
     select: { id: true, name: true },
-  });  
+  });
   return JSON.parse(JSON.stringify( examLessons));    
 }
 
@@ -93,3 +93,81 @@ export const allResults = async () => {
     }); 
     return JSON.parse(JSON.stringify( { teachers: classTeachers, grades: classGrades }));
 }
+ 
+
+export const updateAttendance = async (attendanceData: {
+  studentId: string;
+  lessonId: number;
+  date: Date;
+  present: boolean;
+}) => {
+  try { 
+    const existingAttendance = await prisma.attendance.findFirst({
+      where: {
+        studentId: attendanceData.studentId,
+        lessonId: attendanceData.lessonId,
+        date: attendanceData.date,
+      },
+    });
+
+    if (existingAttendance) { 
+      await prisma.attendance.update({
+        where: { id: existingAttendance.id },
+        data: { present: attendanceData.present },
+      });
+    } else { 
+      await prisma.attendance.create({
+        data: {
+          studentId: attendanceData.studentId,
+          lessonId: attendanceData.lessonId,
+          date: attendanceData.date,
+          present: attendanceData.present,
+        },
+      });
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating attendance:", error); 
+  }
+};
+
+export const allStudentsAttendence = async () => {
+
+  try {
+    const students = await prisma.student.findMany({
+      select: { id: true, name: true, surname: true },
+    });
+
+    const lesssons = await prisma.lesson.findMany({
+      select: { id: true, name: true },
+    });
+
+    return JSON.parse(JSON.stringify({students , lesssons}));
+  } catch (error) {
+    console.log(`Error fetching students: ${error}`);
+    
+  }
+
+} 
+export const getAttendanceForLesson = async (lessonId: number, year: number, month: number) => {
+  const startDate = new Date(year, month, 1);
+  const endDate = new Date(year, month + 1, 0);  
+
+  try {
+    const attendanceData = await prisma.attendance.findMany({
+      where: {
+        lessonId,
+        date: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+    });
+
+    return { success: true, data: attendanceData };
+  } catch (error) {
+    console.error("Error fetching attendance:", error);
+    return { success: false  };
+  }
+};

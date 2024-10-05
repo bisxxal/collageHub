@@ -94,7 +94,7 @@ const Menu = async() => {
   return (
     <>
       <MobileMenu role={role}/>
-    <div className="mt-4 fixed top-12 left-0 inshadow border-r-[2px] border-[#ffffff2f] w-[200px] h-screen  max-lg:hidden block text-sm">
+    <div className="mt-4 fixed top-12 backdrop-blur-lg left-0 inshadow border-r-[2px] border-[#ffffff2f] w-[200px] h-screen  max-lg:hidden block text-sm">
       {menuItems.map((i) => (
         <div className="flex flex-col gap-2 mt-6 pl-3 " key={i.title} >
           {i.items.map((item) => {

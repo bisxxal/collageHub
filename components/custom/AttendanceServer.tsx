@@ -27,7 +27,7 @@ async function AttendanceServer() {
     });
   } catch (error) {
     console.error("Error fetching attendance data:", error);
-    return <div>Error loading attendance data</div>; // Handle error gracefully
+    return <div>Error loading attendance data</div>; 
   }
 
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -38,7 +38,7 @@ async function AttendanceServer() {
     Wed: { present: 0, absent: 0 },
     Thu: { present: 0, absent: 0 },
     Fri: { present: 0, absent: 0 },
-    Sat: { present: 0, absent: 0 }, // Fixed typo here
+    Sat: { present: 0, absent: 0 }, 
   };
 
   resData.forEach((item) => {
