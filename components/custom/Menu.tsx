@@ -9,7 +9,8 @@ import Link from "next/link";
  import { IoIosPeople } from "react-icons/io"; 
  import { GiNotebook } from "react-icons/gi";
  import { currentUser } from "@clerk/nextjs/server";
-const menuItems = [
+import MobileMenu from "./MobileMenu";
+  const menuItems = [
   {
     title: "MENU",
     items: [
@@ -91,22 +92,17 @@ const Menu = async() => {
   const user = await currentUser();
   const role = user?.publicMetadata.role as string;
   return (
-    <div className="mt-4 text-sm">
+    <>
+      <MobileMenu role={role}/>
+    <div className="mt-4 fixed top-12 left-0 inshadow border-r-[2px] border-[#ffffff2f] w-[200px] h-screen  max-lg:hidden block text-sm">
       {menuItems.map((i) => (
-        <div className="flex flex-col gap-2" key={i.title}>
-          <span className="hidden lg:block text-gray-400 font-light my-4">
-            {i.title}
-          </span>
+        <div className="flex flex-col gap-2 mt-6 pl-3 " key={i.title} >
           {i.items.map((item) => {
             if (item.visible.includes(role)) {
               return (
-                <Link
-                  href={item.href}
-                  key={item.label}
-                  className="flex text-xl items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-[#31313b]"
-                >
+                <Link href={item.href} key={item.label} className="flex text-xl items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-[#31313b]" >
                   {item.icon}
-                  <span className="hidden text-sm lg:block">{item.label}</span>
+                  <span className="text-sm">{item.label}</span>
                 </Link>
               );
             }
@@ -114,6 +110,7 @@ const Menu = async() => {
         </div>
       ))}
     </div>
+    </>
   );
 }; 
 export default Menu;

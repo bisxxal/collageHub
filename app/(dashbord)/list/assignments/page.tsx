@@ -58,7 +58,7 @@ const AssignmentListPage = async ({
   const renderRow = (item: AssignmentList) => (
     <tr
       key={item.id}
-      className="border-b border-gray-200 "
+      className=" rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm "
     >
       <td className="flex items-center gap-4 p-4">{item.lesson.subject.name}</td>
       <td>{item.lesson.class.name}</td>
@@ -84,8 +84,7 @@ const AssignmentListPage = async ({
   const { page, ...queryParams } = searchParams;
 
   const p = page ? parseInt(page) : 1;
-
-  // URL PARAMS CONDITION
+ 
 
   const query: Prisma.AssignmentWhereInput = {};
 
@@ -112,8 +111,7 @@ const AssignmentListPage = async ({
       }
     }
   }
-
-  // ROLE CONDITIONS
+ 
 
   switch (role) {
     case "admin":
@@ -153,29 +151,10 @@ const AssignmentListPage = async ({
     prisma.assignment.count({ where: query }),
   ]);
   return (
-    <div className=" p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
-      {/* <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">
-          All Assignments
-        </h1>
-        <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-          <TableSearch />
-          <div className="flex items-center gap-4 self-end">
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#e633ad]">
-            <CiFilter  className=" text-xl "/>
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#e633ad]">
-                <BsSortDown  className=" text-xl "/>
-            </button>
-            {role === "admin" || role === "teacher" && <FormModal table="assignment" type="create" />}
-          </div>
-        </div>
-      </div> */}
+    <div className=" p-4 rounded-md flex-1 m-4 mt-0"> 
       <Bar role={role} table="assignment" type="create" data="All Assignments" />
-        {/* LIST */}
         <Table columns={columns} renderRow={renderRow} data={data} />
-      {/* PAGINATION */}
+ 
       <Pagination page={p} count={count} />
     </div>
   );

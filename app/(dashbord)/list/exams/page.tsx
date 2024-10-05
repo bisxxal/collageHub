@@ -58,7 +58,7 @@ const columns = [
 const renderRow = (item: ExamList) => (
   <tr
     key={item.id}
-    className="border-b border-gray-200  "
+    className=" rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm "
   >
     <td className="flex items-center gap-4 p-4">{item.lesson.subject.name}</td>
     <td>{item.lesson.class.name}</td>
@@ -84,9 +84,7 @@ const renderRow = (item: ExamList) => (
   const { page, ...queryParams } = searchParams;
 
   const p = page ? parseInt(page) : 1;
-
-  // URL PARAMS CONDITION
-
+ 
   const query: Prisma.ExamWhereInput = {};
 
   query.lesson = {};
@@ -111,9 +109,7 @@ const renderRow = (item: ExamList) => (
       }
     }
   }
-
-  // ROLE CONDITIONS
-
+ 
   switch (role) {
     case "admin":
       break;
@@ -156,10 +152,9 @@ const renderRow = (item: ExamList) => (
     <div className=" p-4 rounded-md flex-1 m-4 mt-0">
     
 <Bar role={role} table="exam" type="create" data="All Exams" />
-
-      {/* LIST */}
+ 
       <Table columns={columns} renderRow={renderRow} data={data} />
-      {/* PAGINATION */}
+ 
       <Pagination page={p} count={count} />
     </div>
   );

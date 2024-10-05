@@ -1,6 +1,4 @@
-// TEMPORARY DATA
-
-// export let role = "teacher";
+ 
 
 export const teachersData = [
   {
@@ -914,9 +912,7 @@ export const announcementsData = [
     date: "2025-01-01",
   },
 ];
-
-
-// YOU SHOULD CHANGE THE DATES OF THE EVENTS TO THE CURRENT DATE TO SEE THE EVENTS ON THE CALENDAR
+ 
 const today = new Date();
 const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 

@@ -71,3 +71,23 @@ export const allevent = async ()=>{
   } catch (error) {  
   }
 }
+export const allassignment = async ()=>{
+  try {
+    const events = await prisma.lesson.findMany({
+      select: { id: true, name: true },
+    }) 
+    return events;
+    
+  } catch (error) {  
+  }
+}
+export const allResults = async () => {
+
+  const classGrades = await prisma.exam.findMany({
+      select: { id: true, title: true },
+    });
+    const classTeachers = await prisma.student.findMany({
+      select: { id: true, name: true, surname: true },
+    }); 
+    return JSON.parse(JSON.stringify( { teachers: classTeachers, grades: classGrades }));
+}

@@ -38,11 +38,11 @@ const SingleStudentPage = async({
         <div className="flex flex-col lg:flex-row gap-4">
           <div className=" inshadow frame max-xl h-[250px] py-6 px-4 rounded-md flex-1 flex gap-4">
             <div className="w-1/3">
-              <Image src={student.img || "/noAvatar.png"} alt="" width={144} height={144} className="w-36 h-32 rounded-full object-cover" />
+              <Image src={student.img || "/avatar.jpg"} alt="" width={144} height={144} className="w-36 h-32 max-md:h-24  rounded-full object-cover" />
             </div>
             <div className="w-2/3 flex flex-col justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <h1 className="text-xl font-semibold">
+              <div className="flex items-center max-md:flex-col max-md:items-start gap-4">
+                <h1 className="text-xl max:md-text-base font-semibold">
                   {student.name + " " + student.surname}
                 </h1>
                 {role === "admin" && (
@@ -90,8 +90,7 @@ const SingleStudentPage = async({
                 </h1>
                 <span className="text-sm text-gray-400">Lessons</span>
               </div>
-            </div>
-            {/* CARD */}
+            </div> 
             <div className="inshadow frame p-4 rounded-md flex gap-4 w-[45%]">
           
               <div className="">
@@ -105,8 +104,7 @@ const SingleStudentPage = async({
           <h1>Student&apos;s Schedule</h1>
           <BigCalenderContainer type="classId" id={student.class.id} />
         </div>
-      </div>
-      {/* RIGHT */}
+      </div> 
       <div className="w-full xl:w-1/3 flex flex-col gap-4">
         <div className="inshadow frame p-4 rounded-md">
           <h1 className="text-xl font-semibold">Shortcuts</h1>

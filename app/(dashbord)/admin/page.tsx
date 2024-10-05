@@ -15,25 +15,21 @@ const AdminPage = ({searchParams}:{searchParams:{[key:string]:string | undefined
         </div>
         <div className="flex gap-4 flex-col lg:flex-row">
           <div className="w-full lg:w-1/3 h-[450px]">
-            {/* <CountChart /> */}
+ 
             <CountchatServer />
-          </div>
-          {/* ATTENDANCE CHART */}
+          </div> 
           <div className="w-full  lg:w-2/3 h-[450px]">
             <AttendanceServer />
           </div>
-        </div>
-        {/* BOTTOM CHART */}
+        </div> 
         <div className="w-full   h-[500px]">
           <FinanceChart />
         </div>
       </div>
 
-      
-      {/* RIGHT */}
+       
       <div className="w-full lg:w-1/3 flex flex-col gap-8">
-        <EventCalenderServer searchParams={searchParams} />
-        {/* <Announcements/> */}
+        <EventCalenderServer searchParams={searchParams} /> 
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 'use server'
 
-import { ClassSchema, EventSchema, ExamSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
+import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
 import { clerkClient } from "@clerk/nextjs/server"; 
 type CurrentState = { success: boolean; error: boolean };
@@ -17,8 +17,7 @@ export const createSubject = async ( currentState:CurrentState , data:SubjectSch
         }
     })
     return {success:true , error:false}
-  } catch (error) {
-    console.log("Error while creating subject",error);
+  } catch (error) { 
     return {success:false , error:true}
   }
 }
@@ -39,8 +38,7 @@ export const updateSubject = async ( currentState:CurrentState , data:SubjectSch
 
 
         return {success:true , error:false}
-    } catch (error) {
-      console.log("Error while updating subject",error);
+    } catch (error) { 
       return {success:false , error:true}
     }
   }
@@ -54,14 +52,13 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       }); 
     
         return {success:true , error:false}
-    } catch (error) {
-      console.log("Error while deleteing subject",error);
+    } catch (error) { 
       return {success:false , error:true}
     }
-  }
+  } 
  
   export const createTeacher = async (
-    currentState: CurrentState,
+    currentState: { success: boolean; error: boolean },
     data: TeacherSchema
   ) => {
  
@@ -96,26 +93,24 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
   
       return { success: true, error: false };
-    } catch (err) { 
-      console.error("Error creating teacher:", err);
+    } catch (err) {  
       return { success: false, error: true };
     }
   };
   
   export const updateTeacher = async (
-    currentState: CurrentState,
+    currentState: { success: boolean; error: boolean },
     data: TeacherSchema
   ) => {
-    if (!data.id) {
-      return { success: false, error: "Invalid user ID" };
+    if (!data.id) { 
+      return { success: false, error: true };
     } 
   
     try {
       const clerk = clerkClient();
       const user = await clerk.users.getUser(data.id);
-      if (!user) {
-        console.error("User not found:", data.id);
-        return { success: false, error: "User not found" };
+      if (!user) { 
+        return { success: false, error: false };
       }
   
       await clerk.users.updateUser(data.id, {
@@ -147,11 +142,11 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
  
       return { success: true, error: false };
-    } catch (error) {
-      console.error("Error fetching or updating user:", error);
+    } catch (error) { 
       return { success: false, error: true };
     }
   };
+
   export const deleteTeacher = async (
     currentState: CurrentState,
     data: FormData
@@ -167,8 +162,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
    
       return { success: true, error: false };
-    } catch (err) {
-      console.log(err);
+    } catch (err) { 
       return { success: false, error: true };
     }
   };
@@ -212,8 +206,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
    
       return { success: true, error: false };
-    } catch (err) {
-      console.log(err);
+    } catch (err) { 
       return { success: false, error: true };
     }
   };
@@ -293,8 +286,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       }); 
       
       return { success: true, error: false };
-    } catch (err) {
-      console.log(err);
+    } catch (err) { 
       return { success: false, error: true };
     }
   };
@@ -318,8 +310,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });
       return { success: true, error: false };
-    } catch (err) {
-      console.log(err);
+    } catch (err) { 
       return { success: false, error: true };
     }
   };
@@ -339,8 +330,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
    
       return { success: true, error: false };
-    } catch (err) {
-      console.log(err);
+    } catch (err) { 
       return { success: false, error: true };
     }
   };
@@ -355,10 +345,8 @@ export const createClass = async (
       data,
     });
 
-    // revalidatePath("/list/class");
     return { success: true, error: false };
-  } catch (err) {
-    console.log(err);
+  } catch (err) { 
     return { success: false, error: true };
   }
 };
@@ -375,10 +363,8 @@ export const updateClass = async (
       data,
     });
 
-    // revalidatePath("/list/class");
     return { success: true, error: false };
-  } catch (err) {
-    console.log(err);
+  } catch (err) { 
     return { success: false, error: true };
   }
 };
@@ -395,10 +381,8 @@ export const deleteClass = async (
       },
     });
 
-    // revalidatePath("/list/class");
     return { success: true, error: false };
-  } catch (err) {
-    console.log(err);
+  } catch (err) { 
     return { success: false, error: true };
   }
 };
@@ -425,18 +409,16 @@ export const createEvent = async (
 
     return { success: true, error: false };
   } catch (err) {
-    console.log(err);
     return { success: false, error: true };
   }
 };
-
-// Updating an event
+ 
 export const updateEvent = async (
   currentState: CurrentState,
   data: EventSchema
 ) => {
   try {
-    const event = await prisma.event.update({
+     await prisma.event.update({
       where: { id: data.id },  
       data: {
         title: data.name,
@@ -451,7 +433,6 @@ export const updateEvent = async (
 
     return { success: true, error: false };
   } catch (err) {
-    console.log(err);
     return { success: false, error: true };
   }
 };
@@ -465,7 +446,132 @@ export const deleteEvent = async ( currentState:CurrentState , data:FormData) =>
     }); 
   
   } catch (error) {
-    console.log("Error while deleteing event",error);
     return {success:false , error:true}
   }
 }
+
+export const createAssignment = async (currentState: CurrentState,data: AssignmentSchema) => {
+  try {
+    const event = await prisma.assignment.create({
+      data: {
+        title: data.title,  
+        startDate: data.startTime,
+        dueDate: data.endTime,
+        lessonId:  parseInt(data.lessonId) ,
+      },
+    }); 
+    return { success: true, error: false };
+  } catch (err) {
+    return { success: false, error: true };
+  }
+};
+
+export const updateAssignment = async ( currentState: CurrentState, data: AssignmentSchema) => {
+  try {
+    if (!data.id) {
+      return { success: false, error: true, };
+    }
+
+    const event = await prisma.assignment.update({
+      where: {
+        id: data.id ? data.id : undefined
+      },
+      data: {
+        title: data.title,
+        startDate: data.startTime,
+        dueDate: data.endTime,
+        lessonId: data.lessonId ? parseInt(data.lessonId) : undefined,
+      },
+    }); 
+   
+    return { success: true, error: false };
+  } catch (err) {
+    return { success: false, error: true  };
+  }
+};
+
+
+export const deleteAssingment = async ( currentState: CurrentState, data: AssignmentSchema) => {
+  try {
+    if (!data.id) {
+      return { success: false, error: true };
+    }
+    const id = data.id;
+    await prisma.event.delete({
+      where: {
+        id,
+      },
+    }); 
+  } catch (error) {
+    
+  }
+}
+
+
+
+export const createResults = async (currentState: CurrentState, data: ResultSchema) => {
+  try {
+    if (!data.score || !data.studentId) {
+      return { success: false, error: true  };
+    }
+    const result = await prisma.result.create({
+      data: {
+        score: parseInt(data.score), 
+        examId: data.studentId ? parseInt(data.studentId) : null, 
+        studentId: data.examId,
+      },
+    });
+    return { success: true, error: false }; 
+  } catch (err) {
+    return { success: false, error: true };  
+  }
+};
+
+
+export const updateResults = async ( currentState: CurrentState, data: ResultSchema) => {
+  try {
+    if (!data.id) {
+      return { success: false, error: true, };
+    }
+
+    const event = await prisma.result.update({
+      where: {
+        id: data.id ? data.id : undefined
+      },
+      data: {
+        score: parseInt(data.score), 
+        examId: data.studentId ? parseInt(data.studentId) : null, 
+        studentId: data.examId,
+      },
+    });   
+    return { success: true, error: false };
+  } catch (err) {
+    return { success: false, error: true  };
+  }
+};
+
+export const deleteResults = async (currentState: CurrentState, data: ResultSchema) => {
+  try {
+    let id;
+    if (data instanceof FormData) {
+      id = data.get("id");
+    }  
+    if (!id) {
+      return { success: false, error: true };
+    }
+    const parsedId = parseInt(id as string, 10);
+    if (isNaN(parsedId)) {
+      return { success: false, error: true};
+    }
+    await prisma.result.delete({
+      where: {
+        id: parsedId,  
+      },
+    });
+
+    return { success: true, error: false };
+  } catch (error) { 
+    return { success: false, error: true };
+  }
+};
+

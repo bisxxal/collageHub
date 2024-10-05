@@ -72,7 +72,7 @@ const columns = [
 const renderRow = (item: ResultList) => (
   <tr
     key={item.id}
-    className="border-b border-gray-200 "
+    className="rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm"
   >
     <td className="flex items-center gap-4 p-4">{item.title}</td>
     <td>{item.studentName + " " + item.studentName}</td>
@@ -100,8 +100,7 @@ const renderRow = (item: ResultList) => (
   const { page, ...queryParams } = searchParams;
 
   const p = page ? parseInt(page) : 1;
-
-  // URL PARAMS CONDITION
+ 
 
   const query: Prisma.ResultWhereInput = {};
 
@@ -124,9 +123,7 @@ const renderRow = (item: ResultList) => (
       }
     }
   }
-
-  // ROLE CONDITIONS
-
+ 
   switch (role) {
     case "admin":
       break;
@@ -199,28 +196,9 @@ const renderRow = (item: ResultList) => (
 
   return (
     <div className=" p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
-      {/* <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">All Results</h1>
-        <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-          <TableSearch />
-          <div className="flex items-center gap-4 self-end">
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/filter.png" alt="" width={14} height={14} />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/sort.png" alt="" width={14} height={14} />
-            </button>
-            {(role === "admin" || role === "teacher") && (
-              <FormModal table="result" type="create" />
-            )}
-          </div>
-        </div>
-      </div> */}
-      <Bar role={role} table="result" type="create"  />
-      {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={data} />
-      {/* PAGINATION */}
+  
+      <Bar role={role} table="result" type="create"  /> 
+      <Table columns={columns} renderRow={renderRow} data={data} /> 
       <Pagination page={p} count={count} />
     </div>
   );

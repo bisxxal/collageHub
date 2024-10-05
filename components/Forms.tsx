@@ -1,5 +1,5 @@
 "use client"; 
-import { deleteClass, deleteEvent, deleteExam, deleteStudent, deleteSubject, deleteTeacher} from "@/actions/server.actions";
+import { deleteAssingment, deleteClass, deleteEvent, deleteExam, deleteResults, deleteStudent, deleteSubject, deleteTeacher} from "@/actions/server.actions";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -15,8 +15,8 @@ const deleteActionMap: any = {
   exam: deleteExam,
 
   lesson: deleteSubject,
-  assignment: deleteSubject,
-  result: deleteSubject,
+  assignment: deleteAssingment,
+  result: deleteResults,
   attendance: deleteSubject,
   event: deleteEvent,
 };
@@ -37,6 +37,12 @@ const ExamForm = dynamic(() => import("./forms/ExamForm"), {
   loading: () => <LoadingCom />,
 });
 const EventForm = dynamic(() => import("./forms/EventForm"), {
+  loading: () => <LoadingCom />,
+});
+const AssignmentForm = dynamic(() => import("./forms/Assignments"), {
+  loading: () => <LoadingCom />,
+});
+const ResultsForm = dynamic(() => import("./forms/ResultsForm"), {
   loading: () => <LoadingCom />,
 });
 
@@ -111,8 +117,23 @@ const Form = ({
         relatedData={relatedData}
       />
     ),
-  };
-  // const data =
+    assignment: (setOpen, type, data, relatedData) => (
+      <AssignmentForm
+        type={type}
+        data={data}
+        setOpen={setOpen}
+        relatedData={relatedData}
+      />
+    ),
+    result: (setOpen, type, data, relatedData) => (
+      <ResultsForm
+        type={type}
+        data={data}
+        setOpen={setOpen}
+        relatedData={relatedData}
+      />
+    ),
+  }; 
   const [state, formAction] = useFormState(
     deleteActionMap[table as keyof typeof deleteActionMap],
     {
@@ -127,13 +148,12 @@ const Form = ({
       setOpen(false);
       router.refresh();
     }
-  }, [state, router , setOpen, table]);
+  }, [state, router , setOpen, table]); 
 
   return type === "delete" && id ? (
     <form
       action={formAction}
-      className="p-4 flex inshadow frame rounded-xl flex-col gap-4"
-    >
+      className="p-4 flex inshadow frame rounded-xl flex-col gap-4">
       <input type="text | number" name="id" value={id} hidden />
       <span className="text-center font-medium">
         All data will be lost. Are you sure you want to delete this {table}?

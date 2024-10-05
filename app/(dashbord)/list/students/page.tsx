@@ -59,11 +59,11 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
     const renderRow = (item: StudentList) => (
       <tr
         key={item.id}
-        className="border-b-[2px]  inshadow  rounded-xl border-gray-700 text-sm hover:bg-[#ffffff0b]"
+        className="rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm "
       >
         <td className="flex items-center gap-4 p-4">
           <Image
-            src={item.img || "/avatar.png"}
+            src={item.img || "/avatar.jpg"}
             alt=""
             width={40}
             height={40}
@@ -81,7 +81,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
         <td>
           <div className="flex items-center gap-2">
             <Link href={`/list/students/${item.id}`}>
-            <button className="w-7 h-7 text-xl flex items-center justify-center rounded-full bg-lamaSky">
+            <button className="w-7 h-7 text-xl flex items-center justify-center rounded-full bg-blue-500">
               <GrView />
               </button>
             </Link>
@@ -98,8 +98,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
 
   const p = page ?parseInt(page): 1;
 
-  const quary : Prisma.StudentWhereInput = {};
-// [[[[[[[[ 1 ]]]]]]]
+  const quary : Prisma.StudentWhereInput = {}; 
   if(quaryParmas){
     for (const [key,value] of Object.entries(quaryParmas)){
       if(value !== undefined){
@@ -124,8 +123,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
  const [data ,count] = await prisma.$transaction([
   prisma.student.findMany({
     where:quary,
-    include:{
-      // subjects:true,
+    include:{ 
       class:true
     },
     take:10,
@@ -135,26 +133,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
  ]);
 
   return (
-    <div className=" p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
-      {/* <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">All Students</h1>
-        <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-          <TableSearch/>
-          <div className="flex items-center gap-4 self-end">
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/filter.png" alt="" width={14} height={14} />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/sort.png" alt="" width={14} height={14} />
-            </button>
-            {role === "admin" && (
-  
-            )}
-          </div>
-        </div>
-      </div> */}
-
+    <div className=" p-4 rounded-md flex-1 m-4 mt-0"> 
       <Bar role={role} table="student" type="create" />
      
       <Table columns={columns} renderRow={renderRow} data={data} />

@@ -19,11 +19,11 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
   const renderRow = (item: TeacherList) => (
     <tr
       key={item.id}
-      className="border-b border-gray-700 even:bg-slate-90 rounded-xl frame inshadow text-sm hover:bg-[#05050b]"
+      className=" rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm "
     >
       <td className="flex items-center gap-4 p-4">
         <Image
-          src={item.img || "/avatar.png"}
+          src={item.img || "/avatar.jpg"}
           alt=""
           width={40}
           height={40}
@@ -37,18 +37,16 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
       <td className="hidden md:table-cell">{item.username}</td>
       <td className="hidden md:table-cell">{item.subjects.map(subj=>subj.name).join(",")}</td>
       <td className="hidden md:table-cell">{item.classes.map(cls=>cls.name).join(",")}</td>
-      <td className="hidden md:table-cell">{item.phone}</td>
-      {/* <td className="hidden md:table-cell">{item.address}</td> */}
+      <td className="hidden md:table-cell">{item.phone}</td> 
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
-            <button className="w-7 h-7 text-xl flex items-center justify-center rounded-full bg-[#090a15]">
+            <button className="w-7 h-7 text-xl flex items-center justify-center rounded-full bg-blue-500 ">
             <GrView />
             </button>
           </Link>
           {role === "admin" && (
-       <>
-          {/* <FormModal table="class" type="update" data={item.id} /> */}
+       <> 
             <FormModal table="teacher" type="delete" id={item.id}/>
        </>
           )}
@@ -133,30 +131,10 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
    }),
    prisma.teacher.count({where:quary})
  ]);
- 
- 
-  return (
-    <div className="bg-[#161621] p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
-      {/* <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">All Teachers</h1>
-        <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-          <TableSearch />
-          <div className="flex items-center gap-4 self-end">
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[red]">
-            <CiFilter />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[red]">
-            <ImSortAmountDesc />
-            </button>
-            {role === "admin" && (
-           
-              <FormModal table="teacher" type="create"/>
-            )}
-          </div>
-        </div>
-      </div>   */}
 
+  return (
+    <div className=" p-4 rounded-md flex-1 m-4 mt-0">
+    
     <Bar role={role} table="teacher" type="create" /> 
 
       <Table columns={columns} renderRow={renderRow} data={teachers} />

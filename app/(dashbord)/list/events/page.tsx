@@ -51,7 +51,7 @@ const EventListPage = async ({
   const renderRow = (item: EventList) => (
     <tr
       key={item.id}
-      className="border-b border-gray-200 "
+      className="rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm "
     >
       <td className="flex items-center gap-4 p-4">{item.title}</td>
     
@@ -81,9 +81,7 @@ const EventListPage = async ({
   const { page, ...queryParams } = searchParams;
 
   const p = page ? parseInt(page) : 1;
-
-  // URL PARAMS CONDITION
-
+  
   const query: Prisma.EventWhereInput = {};
 
   if (queryParams) {

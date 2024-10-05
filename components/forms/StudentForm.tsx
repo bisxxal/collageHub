@@ -50,14 +50,14 @@ const StudentForm = ({
       setImg(img?.secure_url);
     } 
     if(type === "update"){
-      formAction({ ...data});
-
+      formAction({ ...data}); 
+      
     }
     if(type === "create"){
       formAction({ ...data, img: img });
     }
 
-    formAction({ ...data, img: img?.secure_url });
+    // formAction({ ...data, img: img?.secure_url });
   });
 
   const router = useRouter();
@@ -114,6 +114,17 @@ const StudentForm = ({
           error={errors?.password}
         />
       </div>
+      { data && 
+       <>
+       <InputField
+          label="img"
+          name="img"
+          defaultValue={data?.img}
+          register={register}
+          error={errors.img}
+        />
+       </>
+        }
       <span className="text-xs text-gray-400 font-medium">
         Personal Information
       </span>

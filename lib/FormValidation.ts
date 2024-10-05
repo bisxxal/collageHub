@@ -90,3 +90,20 @@ export const eventSchema  =  z.object({
   endTime: z.coerce.date({ message: "End date is required!" }),
 });
 export type EventSchema = z.infer<typeof eventSchema>;
+
+export const assignmentSchema  =  z.object({
+  id: z.coerce.number().optional(),
+  title: z.string().min(1 ,{message:"assignment must be 3 characters long!" }),
+  lessonId:z.string({message:"must be required"}),
+  startTime: z.coerce.date({ message: "Start date is required!" }),
+  endTime: z.coerce.date({ message: "sumbit date is required!" }),
+});
+export type AssignmentSchema = z.infer<typeof assignmentSchema>;
+
+export const resultSchema  =  z.object({
+  id: z.coerce.number().optional(),
+  score: z.string({message:"assignment must be grater then equal to 0!" }),
+  examId:z.string({message:"must be required"}),
+  studentId:z.string({message:"must be required"}), 
+});
+export type ResultSchema = z.infer<typeof resultSchema>;

@@ -10,9 +10,9 @@ import { toast } from "react-toastify";
 import { CldUploadWidget } from "next-cloudinary";
 import { teacherSchema, TeacherSchema } from "@/lib/FormValidation";
 import { IoMdCloudUpload } from "react-icons/io";
-import InputField from "../custom/InputField";
+import InputField from "../custom/InputField"; 
+import { allteachers } from "@/actions/form.actions"; 
 import { createTeacher, updateTeacher } from "@/actions/server.actions";
-import { allteachers } from "@/actions/form.actions";
 
 const TeacherForm = ({
   type,
@@ -33,30 +33,33 @@ const TeacherForm = ({
     resolver: zodResolver(teacherSchema),
   });
 
-  const [imgs, setImg] = useState<any>();
+  const [img, setImg] = useState<any>();
 
-  const [state, formAction] = useFormState(  type === "create" ? createTeacher : updateTeacher,
+  const [state, formAction] = useFormState(
+    type === "create" ? createTeacher : updateTeacher,
     {
       success: false,
       error: false,
     }
   );
 
-  const onSubmit = handleSubmit((data) => {
-    if (!imgs) {
+  const onSubmit = handleSubmit((data) => { 
+    if (!img) {
       setImg(data.img);
     }
     else{
-      setImg(imgs?.secure_url);
+      setImg(img?.secure_url);
     } 
     if(type === "update"){
-      formAction({ ...data});
-
+      formAction({ ...data }); 
+      
     }
     if(type === "create"){
-      formAction({ ...data, img: imgs });
+      formAction({ ...data, img: img });
     }
+ 
   });
+  
 
   const router = useRouter();
 
@@ -217,10 +220,10 @@ const TeacherForm = ({
           }}
         </CldUploadWidget>
 
-        {imgs ? (
+        {img ? (
           <Image
             className=" w-24 h-24 rounded-full"
-            src={imgs}
+            src={img}
             alt=""
             width={700}
             height={728}

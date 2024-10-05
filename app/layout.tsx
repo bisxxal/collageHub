@@ -18,8 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en">
-      <body>
-       {/* <h1>Loading Tact</h1> */}
+      <body> 
         {children}
         <ToastContainer theme="dark"  />
       </body>
