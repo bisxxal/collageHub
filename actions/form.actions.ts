@@ -12,8 +12,8 @@ export const allLessons = async () => {
       ...(role === "teacher" ? { teacherId: currentUserId! } : {}),
     },
     select: { id: true, name: true },
-  }); 
-  return  examLessons;
+  });  
+  return JSON.parse(JSON.stringify( examLessons));    
 }
 
 export const allteachers = async () => {
@@ -21,7 +21,8 @@ export const allteachers = async () => {
     const teacherSubjects = await prisma.subject.findMany({
       select: { id: true, name: true },
     });
-    return teacherSubjects;
+    return JSON.parse(JSON.stringify(teacherSubjects ));    
+ 
   } catch (error) {
     
   }
@@ -45,7 +46,8 @@ export const allSubjects = async () => {
     const subjectTeachers = await prisma.teacher.findMany({
       select: { id: true, name: true, surname: true },
     });
-    return  subjectTeachers;
+    return JSON.parse(JSON.stringify(subjectTeachers ));    
+ 
   } catch (error) {
     
   }
@@ -66,7 +68,7 @@ export const allevent = async ()=>{
     const events = await prisma.class.findMany({
       select: { id: true, name: true },
     }) 
-    return events;
+    return JSON.parse(JSON.stringify(events));    
     
   } catch (error) {  
   }
@@ -76,8 +78,8 @@ export const allassignment = async ()=>{
     const events = await prisma.lesson.findMany({
       select: { id: true, name: true },
     }) 
-    return events;
-    
+
+    return JSON.parse(JSON.stringify(events));    
   } catch (error) {  
   }
 }

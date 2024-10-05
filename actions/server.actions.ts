@@ -16,9 +16,9 @@ export const createSubject = async ( currentState:CurrentState , data:SubjectSch
             }
         }
     })
-    return {success:true , error:false}
+    return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (error) { 
-    return {success:false , error:true}
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 }
 export const updateSubject = async ( currentState:CurrentState , data:SubjectSchema) => {
@@ -37,9 +37,9 @@ export const updateSubject = async ( currentState:CurrentState , data:SubjectSch
           });
 
 
-        return {success:true , error:false}
+          return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (error) { 
-      return {success:false , error:true}
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   }
 export const deleteSubject = async ( currentState:CurrentState , data:FormData) => {
@@ -51,9 +51,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       }); 
     
-        return {success:true , error:false}
+      return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (error) { 
-      return {success:false , error:true}
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   } 
  
@@ -92,9 +92,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });
   
-      return { success: true, error: false };
+      return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) {  
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
   
@@ -103,7 +103,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
     data: TeacherSchema
   ) => {
     if (!data.id) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     } 
   
     try {
@@ -141,9 +141,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });
  
-      return { success: true, error: false };
+      return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (error) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
 
@@ -161,9 +161,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });
    
-      return { success: true, error: false };
+      return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
   
@@ -179,7 +179,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
   
       if (classItem && classItem.capacity === classItem._count.students) {
-        return { success: false, error: true };
+        return JSON.parse(JSON.stringify({success: false, error: true}));  
       }
   
       const user = await clerk.users.createUser({
@@ -205,9 +205,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });
    
-      return { success: true, error: false };
+      return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
   
@@ -216,7 +216,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
     data: StudentSchema
   ) => {
     if (!data.id) {
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
     try {
       const clerk = clerkClient();
@@ -245,9 +245,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });  
       
-      return { success: true, error: false };
+      return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
   
@@ -265,9 +265,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });
    
-      return { success: true, error: false };
+      return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
   
@@ -285,9 +285,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       }); 
       
-      return { success: true, error: false };
+       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
   
@@ -309,9 +309,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           lessonId: data.lessonId,
         },
       });
-      return { success: true, error: false };
+       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
   
@@ -329,9 +329,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         },
       });
    
-      return { success: true, error: false };
+       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
 
@@ -345,9 +345,9 @@ export const createClass = async (
       data,
     });
 
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) { 
-    return { success: false, error: true };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
 
@@ -363,9 +363,9 @@ export const updateClass = async (
       data,
     });
 
-    return { success: true, error: false };
-  } catch (err) { 
-    return { success: false, error: true };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
+  } catch (err) {  
+    return JSON.parse(JSON.stringify({success: false, error: true}));   
   }
 };
 
@@ -381,9 +381,9 @@ export const deleteClass = async (
       },
     });
 
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) { 
-    return { success: false, error: true };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
 
@@ -407,9 +407,9 @@ export const createEvent = async (
     });
  
 
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    return { success: false, error: true };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
  
@@ -431,9 +431,9 @@ export const updateEvent = async (
       },
     }); 
 
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    return { success: false, error: true };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
 export const deleteEvent = async ( currentState:CurrentState , data:FormData) => {
@@ -444,9 +444,9 @@ export const deleteEvent = async ( currentState:CurrentState , data:FormData) =>
         id: parseInt(id),
       },
     }); 
-  
+    return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (error) {
-    return {success:false , error:true}
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 }
 
@@ -460,9 +460,9 @@ export const createAssignment = async (currentState: CurrentState,data: Assignme
         lessonId:  parseInt(data.lessonId) ,
       },
     }); 
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    return { success: false, error: true };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
 
@@ -484,9 +484,9 @@ export const updateAssignment = async ( currentState: CurrentState, data: Assign
       },
     }); 
    
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    return { success: false, error: true  };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
 
@@ -494,7 +494,7 @@ export const updateAssignment = async ( currentState: CurrentState, data: Assign
 export const deleteAssingment = async ( currentState: CurrentState, data: AssignmentSchema) => {
   try {
     if (!data.id) {
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
     const id = data.id;
     await prisma.event.delete({
@@ -502,8 +502,9 @@ export const deleteAssingment = async ( currentState: CurrentState, data: Assign
         id,
       },
     }); 
+    return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (error) {
-    
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 }
 
@@ -512,7 +513,7 @@ export const deleteAssingment = async ( currentState: CurrentState, data: Assign
 export const createResults = async (currentState: CurrentState, data: ResultSchema) => {
   try {
     if (!data.score || !data.studentId) {
-      return { success: false, error: true  };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
     const result = await prisma.result.create({
       data: {
@@ -521,9 +522,9 @@ export const createResults = async (currentState: CurrentState, data: ResultSche
         studentId: data.examId,
       },
     });
-    return { success: true, error: false }; 
+     return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (err) {
-    return { success: false, error: true };  
+    return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 };
 
@@ -544,9 +545,9 @@ export const updateResults = async ( currentState: CurrentState, data: ResultSch
         studentId: data.examId,
       },
     });   
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    return { success: false, error: true  };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
 
@@ -557,7 +558,7 @@ export const deleteResults = async (currentState: CurrentState, data: ResultSche
       id = data.get("id");
     }  
     if (!id) {
-      return { success: false, error: true };
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
     const parsedId = parseInt(id as string, 10);
     if (isNaN(parsedId)) {
@@ -569,9 +570,9 @@ export const deleteResults = async (currentState: CurrentState, data: ResultSche
       },
     });
 
-    return { success: true, error: false };
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (error) { 
-    return { success: false, error: true };
+    return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 };
 
