@@ -4,9 +4,7 @@ import { BarChart, Bar,  XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsiv
 
 const AttendanceChart = ({data}:{data:{name:string , present:number  , absent:number}[]}) => {
 
-
-  console.log(data);
-  
+ 
   return ( 
       <ResponsiveContainer width="100%" height="90%">
         <BarChart width={500} height={300} data={data} barSize={20}>

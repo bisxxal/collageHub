@@ -1,5 +1,3 @@
- 
-
 'use client'
 import { useEffect, useState } from "react";
 import { getAttendanceForLesson, updateAttendance } from "@/actions/form.actions";
@@ -11,7 +9,7 @@ interface Student {
   surname: string;
 }
 interface Lessons {
-  id: number;
+  id: number;   
   name: string;
 }
 
@@ -33,9 +31,7 @@ const getDaysInMonth = (month: number, year: number): Date[] => {
 const AttendanceForm: React.FC<AttendanceFormProps> = ({ students, lessons }) => {
   const [attendance, setAttendance] = useState<{ [key: string]: boolean }>({});
   const [lessonId, setLessonId] = useState<number>(lessons[0]?.id || 1);  
-
-  console.log(lessonId);
-  
+ 
   const month = new Date().getMonth();  
   const year = new Date().getFullYear(); 
   const daysInMonth = getDaysInMonth(month, year);
@@ -62,41 +58,50 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ students, lessons }) =>
     fetchAttendance();
   }, [lessonId, month, year]);
 
-  const handleCheckboxChange = async (studentId: string, date: Date, isChecked: boolean) => {
-    const dateString = date.toDateString();
-    if (dateString !== today) {
-      return;  
-    }
+ 
+function debounce<T extends (...args: any[]) => void>(func: T, delay: number) {
+  let timeoutId: NodeJS.Timeout | undefined;
 
-    setAttendance((prev) => ({
-      ...prev,
-      [`${studentId}-${dateString}`]: isChecked,
-    }));
-
-    const response = await updateAttendance({ studentId, lessonId, date, present: isChecked });
-    
-    if(response?.success){
-        toast.success('Attendance updated');
+  return (...args: Parameters<T>) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
   };
+}
+
+const handleCheckboxChange = debounce(async (studentId: string, date: Date, isChecked: boolean) => {
+  const dateString = date.toDateString();
+  
+  const today = new Date().toDateString(); 
+  
+  if (dateString !== today) {
+    return;  
+  }
+
+  setAttendance((prev) => ({
+    ...prev,
+    [`${studentId}-${dateString}`]: isChecked,
+  }));
+
+  const response = await updateAttendance({ studentId, lessonId, date, present: isChecked } );
+  
+  if (response?.success) {
+    toast.success('Attendance updated');
+  }
+}, 300);  
 
   return (
     <div className="w-full px-10">
-    
-    <div className=" w-full flex gap-5 items-center mb-2 justify-end pr-40 ">
-     
+    <div className=" w-full flex gap-5 items-center mb-2 justify-end pr-40 "> 
      <h1 className=" text text-zinc-500  ">Select lesson </h1>
-    <select
-        className="ring-[1.5px] bg-[#00000037] ring-[#ffffff23] p-1 rounded-md text-sm w-[200px]  "
-        value={lessonId}
-        onChange={(e) => setLessonId(parseInt(e.target.value))}  
-      >
+        <select className="ring-[1.5px] bg-[#00000037] ring-[#ffffff23] p-1 rounded-md text-sm w-[200px]  " value={lessonId}
+        onChange={(e) => setLessonId(parseInt(e.target.value))} >
         {lessons?.map((lesson) => (
           <option
-            className="bg-[#000000c0] option border-y-[.3px] border-zinc-600"
-            value={lesson.id}
-            key={lesson.id}
-          >
+            className="bg-[#000000c0] option border-y-[.3px] border-zinc-600" value={lesson.id} key={lesson.id}>
             {lesson.name}
           </option>
         ))}
@@ -111,12 +116,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ students, lessons }) =>
         <h1 className="w-[173px]">Student name</h1>
         <div className={`flex mb-5 text-sm gap-[5.5px] w-full justify-between mt-4 pr-[18px] `}>
           {daysInMonth.map((date) => (
-            <div
-              key={date.toDateString()}
-              className={`${
-                date.toDateString() === today ? 'bg-blue-600' : 'bg-[#6f16ff2c]'
-              } w-4 h-4 flex items-center justify-center rounded day-block`}
-            >
+            <div key={date.toDateString()} className={`${ date.toDateString() === today ? 'bg-blue-600' : 'bg-[#6f16ff2c]' } w-4 h-4 flex items-center justify-center rounded day-block`}>
               <span>{date.getDate()}</span>
             </div>
           ))}
@@ -132,9 +132,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ students, lessons }) =>
           <div className="flex gap-2">
             {daysInMonth.map((date) => (
               <div key={`${student.id}-${date.toDateString()}`} className="w-8 h-8 flex items-center justify-center">
-                <input
-                  type="checkbox"
-                  checked={attendance[`${student.id}-${date.toDateString()}`] || false}
+                <input type="checkbox" className=" disabled:accent-red-600 " checked={attendance[`${student.id}-${date.toDateString()}`] || false}
                   onChange={(e) => handleCheckboxChange(student.id, date, e.target.checked)}
                   disabled={date.toDateString() !== today}
                 />

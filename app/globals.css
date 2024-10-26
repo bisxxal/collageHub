@@ -35,7 +35,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .react-calendar{
-  @apply !rounded-lg !border-[2px] !border-[#ffffff1e] !overflow-hidden ;
+  @apply !rounded-lg !border-2 !border-[#ffffff1e] !bg-[#080312] !overflow-hidden ;
   box-shadow: inset 0 0 10px #ffffff1c !important;
 }
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus , .react-calendar__navigation__label:enabled:hover {

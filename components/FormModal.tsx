@@ -3,8 +3,8 @@ import { useState } from "react";
 import { MdEdit } from "react-icons/md"; 
 import { IoAdd } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
- 
 import Form from "./Forms";
+ 
 
 export type FormServerProps = {
   table: | "teacher" | "student" | "subject" | "class" | "lesson" | "exam" | "assignment" | "result" | "attendance" | "event" | "announcement";

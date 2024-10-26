@@ -188,7 +188,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         firstName: data.name,
         lastName: data.surname,
         publicMetadata:{role:"student"}
-      });
+      }); 
   
       await prisma.student.create({
         data: {
@@ -207,6 +207,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
    
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
+    
       return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };

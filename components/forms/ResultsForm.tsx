@@ -40,7 +40,6 @@ const ResultForm = ({
 
   const onSubmit = handleSubmit((data) => {
     formAction(data);
-    // console.log(data);
     
   });
 
@@ -58,7 +57,6 @@ const ResultForm = ({
   useEffect(() => {
     const fetchteachers = async () => {
       const res = await allResults();
-      console.log(res);
       
       setClass(res);
     };

@@ -1,7 +1,4 @@
- 
-
 "use client";
- 
 import { useRouter } from "next/navigation";
 
 export const ITEM_PER_PAGE = 10;
@@ -24,7 +21,7 @@ const Pagination = ({ page, count }: { page: number; count: number }) => {
         onClick={() => {
           changePage(page - 1);
         }}
-      >
+      >1
         Prev
       </button>
       <div className="flex items-center gap-2 text-sm">

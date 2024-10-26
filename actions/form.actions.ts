@@ -145,8 +145,7 @@ export const allStudentsAttendence = async () => {
 
     return JSON.parse(JSON.stringify({students , lesssons}));
   } catch (error) {
-    console.log(`Error fetching students: ${error}`);
-    
+   
   }
 
 } 
