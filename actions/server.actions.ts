@@ -173,7 +173,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
   ) => { 
     try { 
       const clerk = clerkClient();  
-      const classItem = await prisma.class.findUnique({
+      const classItem  = await prisma.class.findUnique({
         where: { id: data.classId },
         include: { _count: { select: { students: true } } },
       });
