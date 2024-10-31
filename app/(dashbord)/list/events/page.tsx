@@ -118,6 +118,7 @@ const EventListPage = async ({
           select: { name: true },
         
         },
+        
       },
       take: 10,
       skip: 10 * (p - 1),

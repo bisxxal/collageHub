@@ -11,7 +11,7 @@ async function Card({type}:{type:'admin'|'student'|'teacher'}) {
   const data = await modelMap[type].count()
  
   return (
-    <div className="rounded-2xl  inshadow frame odd:bg-lamaPurple even:bg-lamaYellow p-4 flex-1 min-w-[130px]">
+    <div className="rounded-2xl  inshadow frame2  p-4 flex-1 min-w-[130px]">
     <div className="flex justify-between items-center">
       <span className="text-[10px] bg-white px-2 py-1 rounded-full text-green-600">
         2024/25

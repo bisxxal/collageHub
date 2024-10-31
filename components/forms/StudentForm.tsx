@@ -213,6 +213,33 @@ const StudentForm = ({
             </p>
           )}
         </div>
+
+
+        {/* batch */}
+        <div className="flex flex-col gap-2 w-full md:w-1/4">
+          <label className="text-xs text-gray-500">Batch</label>
+          <select
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
+            {...register("batch")}
+            defaultValue={data?.batch}
+          > 
+          <option className=" bg-[#000000a5] " value="BCA">BCA</option>
+          <option className=" bg-[#000000a5] " value="MCA">MCA</option>
+          <option className=" bg-[#000000a5] " value="BBA">BBA</option>
+          <option className=" bg-[#000000a5] " value="MBA">MBA</option>
+          <option className=" bg-[#000000a5] " value="BAC">BAC</option>
+          <option className=" bg-[#000000a5] " value="MTECH">MTECH</option>
+          <option className=" bg-[#000000a5] " value="BTECH">BTECH</option>
+
+          </select>
+          {errors.batch?.message && (
+            <p className="text-xs text-red-400">
+              {errors.batch.message.toString()}
+            </p>
+          )}
+        </div>
+
+
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Class</label>
           <select

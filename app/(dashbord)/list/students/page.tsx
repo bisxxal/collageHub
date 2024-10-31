@@ -126,6 +126,9 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
     include:{ 
       class:true
     },
+    orderBy:{
+      createdAt:'desc'
+    },
     take:10,
     skip:10*(p-1)     
    }),

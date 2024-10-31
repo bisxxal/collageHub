@@ -10,6 +10,8 @@ import Link from "next/link";
  import { GiNotebook } from "react-icons/gi";
  import { currentUser } from "@clerk/nextjs/server";
 import MobileMenu from "./MobileMenu";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
+ 
   const menuItems = [
   {
     title: "MENU",
@@ -80,6 +82,12 @@ import MobileMenu from "./MobileMenu";
         label: "Events",
         href: "/list/events",
         visible: ["admin", "teacher", "student"],
+      },
+      {
+        icon:<FaRegMoneyBill1 />,
+        label: "fee",
+        href: "/list/fee",
+        visible: ["admin", "student"],
       },
      
     ],

@@ -1,92 +1,63 @@
-"use client";
  
-import { IoIosMore } from "react-icons/io";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+'use client';
 
-const data = [
-  {
-    name: "Jan",
-    income: 4000,
-    expense: 2400,
-  },
-  {
-    name: "Feb",
-    income: 3000,
-    expense: 1398,
-  },
-  {
-    name: "Mar",
-    income: 2000,
-    expense: 9800,
-  },
-  {
-    name: "Apr",
-    income: 2780,
-    expense: 3908,
-  },
-  {
-    name: "May",
-    income: 1890,
-    expense: 4800,
-  },
-  {
-    name: "Jun",
-    income: 2390,
-    expense: 3800,
-  },
-  {
-    name: "Jul",
-    income: 3490,
-    expense: 4300,
-  },
-  {
-    name: "Aug",
-    income: 3490,
-    expense: 4300,
-  },
-  {
-    name: "Sep",
-    income: 3490,
-    expense: 4300,
-  },
-  {
-    name: "Oct",
-    income: 3490,
-    expense: 4300,
-  },
-  {
-    name: "Nov",
-    income: 3490,
-    expense: 4300,
-  },
-  {
-    name: "Dec",
-    income: 3490,
-    expense: 4300,
-  },
-];
+import { getFin } from "@/actions/payemt.actions"; 
+import { useEffect, useState } from "react"; 
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts"; 
+
+interface FeeData {
+  name: string;  
+  income: number; 
+  
+}
 
 const FinanceChart = () => {
+  const [feeData, setFeeData] = useState<FeeData[]>([]);
+
+  useEffect(() => { 
+    const fetchFeeData = async () => {
+      try {
+        const fees = await getFin();
+
+        console.log(fees);
+ 
+        const formattedData: FeeData[] = Array.from({ length: 12 }, (_, i) => {
+          const monthName = new Date(0, i).toLocaleString("default", {
+            month: "short",
+          });
+
+          const monthFees = fees.filter(
+            (fee) => new Date(fee.createdAt).getMonth() === i
+          );
+
+          const totalIncome = monthFees.reduce(
+            (acc, curr) => acc + curr.amount,
+            0
+          );
+
+          return {
+            name: monthName,
+            income: totalIncome, 
+          };
+        });
+
+        setFeeData(formattedData);
+      } catch (error) { 
+      }
+    };
+
+    fetchFeeData();
+  }, []);
+
+  
   return (
-    <div className="bg-[#090a15  inshadow frame rounded-xl w-full h-full p-4">
+    <div className="bg-[#080312]  inshadow frame rounded-xl w-full h-full p-3">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold">Finance</h1>
-        <IoIosMore className=" text-2xl cursor-pointer" />
       </div>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="90%" height="90%">
         <LineChart
-          width={500}
-          height={300}
-          data={data}
+          data={feeData}
           margin={{
             top: 5,
             right: 30,
@@ -102,20 +73,20 @@ const FinanceChart = () => {
             tickLine={false}
             tickMargin={10}
           />
-          <YAxis axisLine={false} tick={{ fill: "#d1d5db" }} tickLine={false}  tickMargin={20}/>
+          <YAxis
+            axisLine={false}
+            tick={{ fill: "#d1d5db" }}
+            tickLine={false}
+            tickMargin={20}
+          />
           <Tooltip />
           <Legend
             align="center"
             verticalAlign="top"
             wrapperStyle={{ paddingTop: "10px", paddingBottom: "30px" }}
           />
-          <Line
-            type="monotone"
-            dataKey="income"
-            stroke="#C3EBFA"
-            strokeWidth={5}
-          />
-          <Line type="monotone" dataKey="expense" stroke="#CFCEFF" strokeWidth={5}/>
+        
+          <Line type="monotone" dataKey="income" stroke="#a277ff" strokeWidth={5}/>
         </LineChart>
       </ResponsiveContainer>
     </div>

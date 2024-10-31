@@ -1,5 +1,4 @@
 'use server'
-
 import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
 import { clerkClient } from "@clerk/nextjs/server"; 
@@ -201,13 +200,15 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           img: data.img || null, 
           gender: data.gender, 
           gradeId: data.gradeId,
-          classId: data.classId, 
+          classId: data.classId,
+          batch: data.batch  
         },
       });
    
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-    
+      console.log(err);
+      
       return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
@@ -365,7 +366,9 @@ export const updateClass = async (
     });
 
      return JSON.parse(JSON.stringify({success:true , error:false}));   
-  } catch (err) {  
+  } catch (err) {
+    console.log("error" , err);
+    
     return JSON.parse(JSON.stringify({success: false, error: true}));   
   }
 };

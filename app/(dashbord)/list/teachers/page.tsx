@@ -126,6 +126,9 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
       subjects:true,
       classes:true
     },
+    orderBy:{
+      createdAt:'desc'
+    },
     take:10,
     skip:10*(p-1)     
    }),

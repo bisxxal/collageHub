@@ -17,7 +17,7 @@ import React from 'react'
     <div className="flex flex-col gap-4">
     {data.map((event) => (
       <div
-        className="p-5 frame rounded-md border-2 border-[#ffffff31] border-t-4 odd:border-t-lamaSky even:border-t-lamaPurple"
+        className="p-5 frame rounded-md border-2 border-[#a277ff51] border-t-4 "
         key={event.id}
       >
         <div className="flex items-center justify-between">

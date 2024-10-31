@@ -66,9 +66,10 @@ export const studentSchema = z.object({
   img: z.string().optional(), 
   gender: z.enum(["MALE", "FEMALE"], { message: "gender is required!" }),
   gradeId: z.coerce.number().min(1, { message: "Grade is required!" }),
-  classId: z.coerce.number().min(1, { message: "Class is required!" }), 
+  classId: z.coerce.number().min(1, { message: "Class is required!" }),
+  batch: z.enum(["MCA", "BCA" ,"BBA" , 'BTECH' , "MTECH" , "BSC" , "MSC" ],{ message: "Batch is required!" }),
 });
-
+ 
 export type StudentSchema = z.infer<typeof studentSchema>;
 
 export const examSchema = z.object({
@@ -77,6 +78,7 @@ export const examSchema = z.object({
   startTime: z.coerce.date({ message: "Start time is required!" }),
   endTime: z.coerce.date({ message: "End time is required!" }),
   lessonId: z.coerce.number({ message: "Lesson is required!" }),
+  
 });
 
 export type ExamSchema = z.infer<typeof examSchema>;

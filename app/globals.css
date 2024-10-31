@@ -35,7 +35,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .react-calendar{
-  @apply !rounded-lg !border-2 !border-[#ffffff1e] !bg-[#080312] !overflow-hidden ;
+  @apply !rounded-lg !border-2 !border-[#ffffff1e]  !overflow-hidden ;
+  background: #101019 !important;
+  background: linear-gradient(360deg, #ffffff14 9%, #a277ff 167%) !important;
   box-shadow: inset 0 0 10px #ffffff1c !important;
 }
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus , .react-calendar__navigation__label:enabled:hover {
@@ -149,4 +151,8 @@ body::-webkit-scrollbar-thumb {
 .cl-internal-1hp5nqm{
   display: none !important;
 }
-  
+
+.frame2 {
+  background: #161621;
+  background: linear-gradient(360deg, #ffffff14 9%, #a277ff 167%);
+}

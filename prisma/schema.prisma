@@ -25,9 +25,10 @@ model Student {
   createdAt DateTime   @default(now())
   classId   Int
   gradeId   Int
-
+  batch Batch
   grade Grade @relation(fields: [gradeId], references: [id])
   class Class @relation(fields: [classId], references: [id])
+  fee  Fee[]
 
   results     Result[]
   attendances Attendance[]
@@ -152,11 +153,51 @@ enum Usergender {
   MALE
   FEMALE
 }
+ 
+//
+model Fee{
+  id Int @id @default(autoincrement())
+  amount Float
+  semesterName Sem
+  razorpay_payment_id String?
+  razorpay_order_id String?
+  studentId String
+  student Student @relation(fields: [studentId], references: [id])
+  createdAt DateTime @default(now())
+}
 
+model Semester{
+  id Int @id @default(autoincrement())
+  name String
+  startDate DateTime
+  endDate DateTime
+  
+  createdAt DateTime @default(now())
+} 
+enum Sem {
+ FIRST
+ SECOND
+ THIRD
+ FOURTH
+ FIFTH
+ SIXTH
+ SEVENTH
+ EIGHTH
+}
 enum Day {
   MONDAY
   TUESDAY
   WEDNESDAY
   THURSDAY
   FRIDAY
+}
+enum Batch {
+  BCA
+  MCA
+  BBA
+  BTECH
+  MTECH
+  BSC
+  MSC
+
 }

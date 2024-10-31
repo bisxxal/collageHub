@@ -14,7 +14,7 @@ export type FormServerProps = {
 };
 
 const FormModal = ({ table, type, data, id,  }: FormServerProps  ) => {
-  const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
+  const size = type === "create" ? " w-fit px-3 h-8 hover:bg-blue-600 transation-all" : "w-7 h-7";
   const bgColor = type === "create" ? "bg-blue-500" : type === "update" ? "bg-green-500" : "bg-red-500";
   const [open, setOpen] = useState(false);
  
@@ -23,7 +23,7 @@ const FormModal = ({ table, type, data, id,  }: FormServerProps  ) => {
     <> 
       <button className={`${size} flex !justify-center !items-center text-2xl h-10 w-10 rounded-full ${bgColor}`} onClick={() => setOpen(true)} >
         <h1>
-          {type === "create" ? (<IoAdd />) : type === "update" ? (<MdEdit className=" text-lg" />) : (<><MdDeleteOutline /></> )}
+          {type === "create" ? (<div className=" flex items-center text-sm  transition-all gap-2"> Add {table} <IoAdd className=" text-2xl" /></div>) : type === "update" ? (<MdEdit className=" text-lg" />) : (<><MdDeleteOutline /></> )}
         </h1>
       </button>
       {open && (
