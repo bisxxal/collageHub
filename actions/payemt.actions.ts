@@ -105,3 +105,20 @@ export async function getFinById(userId: string) {
     return [];
   }
 }
+
+export async function getFince() {
+  try {
+    const fees = await prisma.fee.findMany({
+      include: { 
+        student: {
+          select: {
+            batch: true,
+          },
+        }
+       },
+    });
+    return fees;
+  } catch (error) { 
+    return [];
+  }
+}

@@ -3,6 +3,7 @@ import Card from "@/components/custom/Card";
 import CountchatServer from "@/components/custom/CountchatServer";
 import EventCalenderServer from "@/components/custom/EventCalenderServer";
 import FinanceChart from "@/components/custom/FinanceChart";
+import PieChartComponent from "@/components/custom/PieChart";
 
 const AdminPage = ({searchParams}:{searchParams:{[key:string]:string | undefined}}) => {
   return (
@@ -28,8 +29,10 @@ const AdminPage = ({searchParams}:{searchParams:{[key:string]:string | undefined
       </div>
 
        
-      <div className="w-full lg:w-1/3 flex flex-col gap-8">
+      <div className="w-full lg:w-1/3 flex  flex-col gap-8">
+        
         <EventCalenderServer searchParams={searchParams} /> 
+
       </div>
     </div>
   );

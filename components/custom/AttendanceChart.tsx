@@ -1,12 +1,10 @@
 "use client"; 
 import { BarChart, Bar,  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
- 
-
 const AttendanceChart = ({data}:{data:{name:string , present:number  , absent:number}[]}) => {
-
- 
+  
   return ( 
-      <ResponsiveContainer width="100%" height="90%">
+     <div className=" w-full h-full"> 
+       <ResponsiveContainer width="100%" height="90%">
         <BarChart width={500} height={300} data={data} barSize={20}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ddd" />
           <XAxis dataKey="name" axisLine={false} tick={{ fill: "#d1d5db" }} tickLine={false} />
@@ -21,18 +19,19 @@ const AttendanceChart = ({data}:{data:{name:string , present:number  , absent:nu
           />
           <Bar
             dataKey="present"
-            fill="#FAE27C"
+            fill="#a277ff"
             legendType="circle"
             radius={[10, 10, 0, 0]}
           />
           <Bar
             dataKey="absent"
-            fill="#C3EBFA"
+            fill="#f45252"
             legendType="circle"
             radius={[10, 10, 0, 0]}
           />
         </BarChart>
-      </ResponsiveContainer> 
+      </ResponsiveContainer>
+     </div> 
   );
 };
 

@@ -1,5 +1,6 @@
 import { allStudentsAttendence } from '@/actions/form.actions';
 import AttendanceServer from '@/components/custom/AttendanceServer';
+import StudentAttendance from '@/components/custom/StudentAttendance'; 
 import AttendanceForm from '@/components/forms/AttendanceFoem'
 import { auth } from '@clerk/nextjs/server';
  
@@ -17,8 +18,8 @@ async function Attendencepage() {
       {
         role === "admin" || role === "teacher" ? <AttendanceForm students={students?.students} lessons={students?.lesssons} /> :
         <>
-        <div >
-          <h1>Only Admin and Teacher can access this page</h1>
+        <div  className=' w-full h-screen'> 
+          <StudentAttendance/>
         </div>
         </>
       }

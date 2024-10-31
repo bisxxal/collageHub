@@ -2,7 +2,7 @@
 'use client'; 
 import { useUser } from "@clerk/nextjs";  
 import { Capturepaymet, Createpaymet, getFinById, UPdatePayment, verifyPayment } from "@/actions/payemt.actions";
-import { Batch, Sem } from "@prisma/client";
+import { Batch, Fee, Sem } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -10,13 +10,16 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
   const { user } = useUser();
   const [paidSemesters, setPaidSemesters] = useState<Sem[]>([]);
   const [selectedSemester, setSelectedSemester] = useState<Sem | null>(null);
+  const [fees, setFees] = useState<Fee[]>([]);
   const router = useRouter()
 
+   
   useEffect(() => {
     const fetchUserData = async () => {
       if (userId) {
         try {
-          const fees = await getFinById(userId); 
+          const fees = await getFinById(userId);
+          setFees(fees);
           setPaidSemesters(fees.map((fee) => fee.semesterName));
         } catch (error) { 
         } 
@@ -117,9 +120,10 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
   };
 
   const semesters = getSemestersForBatch(batch);
-
+ 
   return (
-    <div className="h-screen w-full">
+    <div className= " min-h-screen w-full">
+
       <div className="flex flex-col p-4 h-full">
         <h1 className="text-4xl text-[#a277ff] font-bold">Fee Payment</h1>
         <select
@@ -148,6 +152,34 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
           Pay ₹{setFeeAmount(batch)}
         </button>
       </div>
+
+
+
+      <div className='w-[97%] max-md:w-[95%] mx-auto inshadow frame2 rounded-xl min-h-[60vh] max-md:min-h-[70vh]'>
+                <div className=' grid max-md:grid-cols-4 grid-cols-6 mb-3 border-b-2 border-[#ffffff47]  p-2 py-3 font-semibold'>
+                    <h3>Amount</h3> 
+                    <h3 >Semester</h3>
+                    <h3 className=' max-md:hidden '>Payment Id</h3>
+                    <h3 className=' max-md:hidden '>Order Id</h3>
+                    <h3 >Status</h3>
+                    <h3 className=' max-md: ml-8'>Date</h3>
+                </div>
+
+                <div>
+                    {fees && fees.map((f) => {
+                        return (
+                            <div key={f.razorpay_order_id} className='  grid items-center  max-md:grid-cols-4 grid-cols-6 inshadow py-2 mb-2 rounded-lg border-2 border-[#ffffff14] max-md:text-sm px-2'>
+                                <p>₹ {f.amount}</p>
+                                <p> {setSEM(f.semesterName)} Sem</p>
+                                <p className=' max-md:hidden ' > {f.razorpay_payment_id ? <p>{f.razorpay_payment_id}</p>: '-----------------------' } </p>
+                                <p className=' max-md:hidden '>{f.razorpay_order_id ? <p className=' max-md:hidden'>{f.razorpay_order_id}</p> :'-----------------------'} </p>
+                                <p className=" bg-[#00ff003f] text-[#7cff7c] rounded-xl px-2 py-1 w-fit ">Successfull</p>
+                                <p>{new Date(f.createdAt).toLocaleString()}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
     </div>
   );
 };

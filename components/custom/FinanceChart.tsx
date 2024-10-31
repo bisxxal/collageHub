@@ -49,11 +49,11 @@ const FinanceChart = () => {
 
   
   return (
-    <div className="bg-[#080312]  inshadow frame rounded-xl w-full h-full p-3">
+    <div className="bg-[#080312]  inshadow frame rounded-xl w-full h-full p-3 max-md:px-1">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold">Finance</h1>
       </div>
-      <ResponsiveContainer width="90%" height="90%">
+      <ResponsiveContainer width="100%" height="90%">
         <LineChart
           data={feeData}
           margin={{

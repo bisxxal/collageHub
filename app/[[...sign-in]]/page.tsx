@@ -20,16 +20,16 @@ const LoginPage = () => {
   }, [user, router]);
 
   return (
-    <div className="h-screen flex items-center justify-center bg-[#140e1a]">
+    <div className="h-screen flex items-center justify-center frame2 bg-[#140e1a]">
  
 <SignIn.Root>
         <SignIn.Step
           name="start"
-          className="w-full space-y-6 rounded-2xl inshadow frame !text-white px-4 py-10 shadow-md ring-1 ring-black/5 sm:w-96 sm:px-8"
+          className="w-[30%] space-y-6 rounded-2xl inshadow frame !text-white px-4 py-10 shadow-md ring-1 ring-black/5 max-md:w-96  sm:px-8"
         >
           <header className="text-center">
        
-            <h1 className="mt-4 text-xl font-medium tracking-tight ">
+            <h1 className="mt-4 max-md:text-3xl text-4xl text-[#a277ff] font-medium tracking-tight ">
               Sign in to Tact
             </h1>
           </header>
