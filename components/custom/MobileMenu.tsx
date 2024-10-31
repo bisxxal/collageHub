@@ -10,6 +10,7 @@ import { IoIosPeople } from "react-icons/io";
 import { GiNotebook } from "react-icons/gi";
 import { GoSidebarCollapse } from "react-icons/go";
 import { useState } from "react";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
 const menuItems = [
     {
       title: "Collage Hub",
@@ -80,6 +81,12 @@ const menuItems = [
           label: "Events",
           href: "/list/events",
           visible: ["admin", "teacher", "student"],
+        },
+        {
+          icon:<FaRegMoneyBill1 />,
+          label: "fee",
+          href: "/list/fee",
+          visible: ["admin", "student"],
         },
        
       ],

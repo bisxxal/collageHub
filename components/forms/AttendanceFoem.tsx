@@ -50,8 +50,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ students, lessons }) =>
         });
 
         setAttendance(newAttendanceState);
-      } else {
-        console.error("Error fetching attendance");
+      } else { 
       }
     };
 
@@ -94,9 +93,14 @@ const handleCheckboxChange = debounce(async (studentId: string, date: Date, isCh
 }, 300);  
 
   return (
-    <div className="w-full px-10">
-    <div className=" w-full flex gap-5 items-center mb-2 justify-end pr-40 "> 
-     <h1 className=" text text-zinc-500  ">Select lesson </h1>
+    <div className=" w-[1270px] overflow-x-auto  max-lg:px-2">
+
+       <h2 className="text-lg font-semibold text-gray-500">
+        Attendance for {new Date().toLocaleString("default", { month: "long" })}
+      </h2>
+
+    <div className=" w-full flex gap-5 items-center my-2  justify-end pr-40 "> 
+     <h1 className=" text text-zinc-500  whitespace-nowrap ">Select lesson </h1>
         <select className="ring-[1.5px] bg-[#00000037] ring-[#ffffff23] p-1 rounded-md text-sm w-[200px]  " value={lessonId}
         onChange={(e) => setLessonId(parseInt(e.target.value))} >
         {lessons?.map((lesson) => (
@@ -108,13 +112,10 @@ const handleCheckboxChange = debounce(async (studentId: string, date: Date, isCh
       </select>
     </div>
 
-      <h2 className="text-lg font-semibold text-gray-500">
-        Attendance for {new Date().toLocaleString("default", { month: "long" })}
-      </h2>
-
-      <div className="flex items-center">
+     
+      <div className="flex items-center w-full max-lg:w-[1270px] ">
         <h1 className="w-[173px]">Student name</h1>
-        <div className={`flex mb-5 text-sm gap-[5.5px] w-full justify-between mt-4 pr-[18px] `}>
+        <div className={`flex mb-5 text-sm gap-[5.5px] w-full justify-between mt-4 pr-5  `}>
           {daysInMonth.map((date) => (
             <div key={date.toDateString()} className={`${ date.toDateString() === today ? 'bg-blue-600' : 'bg-[#6f16ff2c]' } w-4 h-4 flex items-center justify-center rounded day-block`}>
               <span>{date.getDate()}</span>
@@ -124,12 +125,13 @@ const handleCheckboxChange = debounce(async (studentId: string, date: Date, isCh
       </div>
 
       {students.map((student) => (
-        <div key={student.id} className="mb-5 w-full inshadow px-3 rounded py-2 flex items-center">
-          <div className="text-sm w-[260px] flex items-center overflow-hidden">
-            {student.name} {student.surname}
+        <div key={student.id} className="mb-5  w-[1270px] inshadow px-3 rounded py-2 flex  items-center">
+          
+          <div className="text-sm  w-[133px] flex items-center  ">
+            {student.name} {student.surname} 
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-1 ">
             {daysInMonth.map((date) => (
               <div key={`${student.id}-${date.toDateString()}`} className="w-8 h-8 flex items-center justify-center">
                 <input type="checkbox" className=" disabled:accent-red-600 " checked={attendance[`${student.id}-${date.toDateString()}`] || false}

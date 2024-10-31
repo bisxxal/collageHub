@@ -25,8 +25,7 @@ async function AttendanceServer() {
         present: true,
       },
     });
-  } catch (error) {
-    console.error("Error fetching attendance data:", error);
+  } catch (error) { 
     return <div>Error loading attendance data</div>; 
   }
 

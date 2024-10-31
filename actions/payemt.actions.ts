@@ -18,8 +18,7 @@ export async function Createpaymet({ amount, currency }:any) {
    
       return JSON.parse(JSON.stringify(order)); 
 
-    } catch (error) {
-      console.error('Razorpay Order Creation Error:', error);
+    } catch (error) { 
       return JSON.parse(JSON.stringify({ error: 'Failed to create order' , status:500 } )); 
     }
   }
@@ -56,8 +55,7 @@ const isAuthentic = expectedSignature === razorpay_signature;
 } else {
   return JSON.parse(JSON.stringify({ message: 'unsuccess' }));   
 }
-} catch (error) {
-  console.log('Error in capturing payment:', error);
+} catch (error) { 
 }
  
 }
@@ -72,7 +70,7 @@ export async function Capturepaymet(studentId: string, semesterName: Sem , amoun
       },
     });
   } catch (error) {
-    console.log('Error in capturing payment:', error);
+    // console.log('Error in capturing payment:', error);
     
   }
 }
@@ -82,8 +80,7 @@ export async function UPdatePayment(userId: string) {
       where: { studentId: userId },
     });
     return updatedFees;
-  } catch (error) {
-    console.log('Error in capturing payment:', error);
+  } catch (error) { 
     
   }
 }

@@ -18,8 +18,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
         try {
           const fees = await getFinById(userId); 
           setPaidSemesters(fees.map((fee) => fee.semesterName));
-        } catch (error) {
-          console.error('Error fetching student data:', error);
+        } catch (error) { 
         } 
       }
     };
@@ -60,8 +59,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
 
       const rzp = new (window as any).Razorpay(options);
       rzp.open();
-    } else {
-      console.error('Order creation failed');
+    } else { 
     }
   };
 

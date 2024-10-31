@@ -18,8 +18,6 @@ const FinanceChart = () => {
     const fetchFeeData = async () => {
       try {
         const fees = await getFin();
-
-        console.log(fees);
  
         const formattedData: FeeData[] = Array.from({ length: 12 }, (_, i) => {
           const monthName = new Date(0, i).toLocaleString("default", {

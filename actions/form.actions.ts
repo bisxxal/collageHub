@@ -127,8 +127,7 @@ export const updateAttendance = async (attendanceData: {
     }
 
     return { success: true };
-  } catch (error) {
-    console.error("Error updating attendance:", error); 
+  } catch (error) { 
   }
 };
 
@@ -165,8 +164,7 @@ export const getAttendanceForLesson = async (lessonId: number, year: number, mon
     });
 
     return { success: true, data: attendanceData };
-  } catch (error) {
-    console.error("Error fetching attendance:", error);
+  } catch (error) { 
     return { success: false  };
   }
 };

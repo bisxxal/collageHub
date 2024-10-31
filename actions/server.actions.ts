@@ -207,7 +207,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
    
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
-      console.log(err);
+      // console.log(err);
       
       return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
@@ -367,7 +367,7 @@ export const updateClass = async (
 
      return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    console.log("error" , err);
+    // console.log("error" , err);
     
     return JSON.parse(JSON.stringify({success: false, error: true}));   
   }
