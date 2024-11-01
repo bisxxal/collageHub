@@ -10,7 +10,7 @@ async function Navbar() {
  
        <Link
           href="/"
-          className=" flex text-[#a277ff] max-md:text-2xl text-3xl items-center justify-center gap-2"
+          className=" flex text-[#a277ff logo max-md:text-2xl text-3xl items-center justify-center gap-2"
         >
         
           <span className="  font-bold">Collage Hub </span>

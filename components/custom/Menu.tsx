@@ -1,4 +1,4 @@
- 
+'use client'
 import Link from "next/link";
  import { GoHome } from "react-icons/go";
  import { FaChalkboardTeacher } from "react-icons/fa";
@@ -7,10 +7,11 @@ import Link from "next/link";
  import { MdOutlinePlayLesson ,MdOutlineAssignment } from "react-icons/md";  
  import { FaRegNewspaper  ,FaRegCalendar } from "react-icons/fa";  
  import { IoIosPeople } from "react-icons/io"; 
- import { GiNotebook } from "react-icons/gi";
- import { currentUser } from "@clerk/nextjs/server";
+ import { GiNotebook } from "react-icons/gi"; 
 import MobileMenu from "./MobileMenu";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { useUser } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
  
   const menuItems = [
   {
@@ -97,8 +98,12 @@ import { FaRegMoneyBill1 } from "react-icons/fa6";
 
  
 const Menu = async() => {
-  const user = await currentUser();
-  const role = user?.publicMetadata.role as string;
+  const {   user } = useUser();
+  const role = user?.publicMetadata?.role as string;
+  const pathname = usePathname()
+  const trimmedPathname = pathname.startsWith('/list/') ? pathname.slice(6) : pathname; 
+ 
+
   return (
     <>
       <MobileMenu role={role}/>
@@ -108,7 +113,7 @@ const Menu = async() => {
           {i.items.map((item) => {
             if (item.visible.includes(role)) {
               return (
-                <Link href={item.href} key={item.label} className="flex text-xl items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-[#31313b]" >
+                <Link href={item.href} key={item.label}   className={` ${trimmedPathname == (item.label.toLowerCase()) ? '  !text-[#a379fd] !font-semibold  ': '  '} flex text-xl w-full pl-3 items-center justify-start lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md `}>
                   {item.icon}
                   <span className="text-sm">{item.label}</span>
                 </Link>

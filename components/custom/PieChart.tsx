@@ -40,7 +40,7 @@ const PieChartComponent = ({feeData}:any) => {
     
     return (
         <>
-        <div className=' px-1   mt-3 w-full h-[400px]' > 
+        <div className=' !text-xs mx-auto mt-3 w-[90%] h-[400px]' > 
             <ResponsiveContainer>
                 <RechartsPieChart> 
                      <Pie 

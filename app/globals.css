@@ -156,3 +156,20 @@ body::-webkit-scrollbar-thumb {
   background: #161621;
   background: linear-gradient(360deg, #ffffff14 9%, #a277ff 167%);
 }
+
+
+.logo{
+  background: rgb(17,17,17);
+  background: linear-gradient(90deg, #ffffffb4 -26%, #a277ff 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bglogo{
+  background: rgb(17,17,17);
+  background:linear-gradient(179deg, #ffffff -22%, #000012 98%);
+  /* background:linear-gradient(179deg, #ffffff -22%, #000319 98%); */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

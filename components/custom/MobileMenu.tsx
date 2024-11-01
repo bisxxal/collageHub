@@ -11,6 +11,7 @@ import { GiNotebook } from "react-icons/gi";
 import { GoSidebarCollapse } from "react-icons/go";
 import { useState } from "react";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 const menuItems = [
     {
       title: "Collage Hub",
@@ -95,6 +96,11 @@ const menuItems = [
   ];
 function MobileMenu({role}:{role:string}) {
   const [width , setWidth ] = useState<boolean>(false)
+  const pathname = usePathname()
+  const trimmedPathname = pathname.startsWith('/list/') 
+  ? pathname.slice(6)  
+  : pathname; 
+ 
   return (
     <>
     <div  onClick={()=>setWidth(!width)} className=" hidden max-lg:block  max-lg:fixed top-4 hover:bg-[#ffffff38] rounded-full p-2 right-2 z-40 text-xl ">
@@ -111,7 +117,7 @@ function MobileMenu({role}:{role:string}) {
                     <Link
                     href={item.href}
                     key={item.label}
-                    className="flex text-xl w-full pl-3 items-center justify-start lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-[#31313b]"
+                    className={` ${trimmedPathname == (item.label.toLowerCase()) ? '  !text-[#a379fd] !font-semibold  ': '  '} flex text-xl w-full pl-3 items-center justify-start lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md `}
                     >
                     {item.icon}
                     <span className="  text-sm ">{item.label}</span>

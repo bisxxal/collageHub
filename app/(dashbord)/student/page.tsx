@@ -6,9 +6,9 @@ import { auth } from "@clerk/nextjs/server";
 const StudentPage = () => {
   const { userId } = auth();
   return (
-    <div className="p-4 bg-[#161621] flex gap-4 flex-col xl:flex-row">
+    <div className="p-4 bg-[#161621 flex gap-4 flex-col xl:flex-row">
       <div className="w-full xl:w-2/3">
-        <div className="h-full bg-[#161621] inshadow frame p-4 rounded-md ">
+        <div className="h-full bg-[#161621] inshadow frame2 p-4 rounded-md ">
           <h1 className="text-xl font-semibold">Schedule</h1>
           <BigCalenderContainer type="teacherId" id={userId!} />
         </div>
