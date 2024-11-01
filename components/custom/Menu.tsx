@@ -97,13 +97,12 @@ import { usePathname } from "next/navigation";
 ];
 
  
-const Menu = async() => {
+const Menu = () => {
   const {   user } = useUser();
   const role = user?.publicMetadata?.role as string;
   const pathname = usePathname()
   const trimmedPathname = pathname.startsWith('/list/') ? pathname.slice(6) : pathname; 
- 
-
+  
   return (
     <>
       <MobileMenu role={role}/>
@@ -115,7 +114,7 @@ const Menu = async() => {
               return (
                 <Link href={item.href} key={item.label}   className={` ${trimmedPathname == (item.label.toLowerCase()) ? '  !text-[#a379fd] !font-semibold  ': '  '} flex text-xl w-full pl-3 items-center justify-start lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md `}>
                   {item.icon}
-                  <span className="text-sm">{item.label}</span>
+                  <span className={` text-sm`}>{item.label}</span>
                 </Link>
               );
             }

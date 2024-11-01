@@ -17,6 +17,7 @@ export const createSubject = async ( currentState:CurrentState , data:SubjectSch
     })
     return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (error) { 
+    
     return JSON.parse(JSON.stringify({success: false, error: true}));  
   }
 }
@@ -93,6 +94,8 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
   
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) {  
+      console.log("error", err);
+    
       return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
   };
@@ -139,6 +142,8 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           },
         },
       });
+
+      
  
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (error) { 
@@ -246,6 +251,8 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           classId: data.classId, 
         },
       });  
+      console.log("data", data.img);
+      
       
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 

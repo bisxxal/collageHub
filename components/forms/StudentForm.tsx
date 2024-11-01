@@ -50,11 +50,11 @@ const StudentForm = ({
       setImg(img?.secure_url);
     } 
     if(type === "update"){
-      formAction({ ...data}); 
+      formAction({ ...data , img: img?.secure_url }); 
       
     }
     if(type === "create"){
-      formAction({ ...data, img: img });
+      formAction({ ...data, img: img?.secure_url });
     }
 
     // formAction({ ...data, img: img?.secure_url });
@@ -83,14 +83,14 @@ const StudentForm = ({
   const classes = students?.classes; 
  
   return (
-    <form className="flex inshadow frame flex-col p-3 px-4 pb-6 rounded-lg gap-8" onSubmit={onSubmit}>
+    <form className="flex inshadow frame flex-col p-3 px-4 pb-6 rounded-lg max-lg:gap-1 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new student" : "Update the student"}
       </h1>
       <span className="text-xs text-gray-400 font-medium">
         Authentication Information
       </span>
-      <div className="flex justify-between flex-wrap gap-4">
+      <div className="flex justify-between flex-wrap max-md:gap-1 gap-4">
         <InputField
           label="Username"
           name="username"

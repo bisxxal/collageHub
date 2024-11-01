@@ -22,13 +22,7 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
       className=" rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm "
     >
       <td className="flex items-center gap-4 p-4">
-        <Image
-          src={item.img || "/avatar.jpg"}
-          alt=""
-          width={40}
-          height={40}
-          className="md:hidden xl:block w-10 h-10 rounded-full object-cover"
-        />
+        <Image src={item.img || "/avatar.jpg"} alt="" width={140} height={140} className="md:hidden xl:block w-10 h-10 rounded-full object-cover" />
         <div className="flex flex-col">
           <h3 className="font-semibold">{item.name}</h3>
           <p className="text-xs text-gray-500">{item?.email}</p>

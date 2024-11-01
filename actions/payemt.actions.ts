@@ -79,7 +79,8 @@ export async function UPdatePayment(userId: string) {
     const updatedFees = await prisma.fee.findMany({
       where: { studentId: userId },
     });
-    return updatedFees;
+    return JSON.parse(JSON.stringify(updatedFees)); 
+    // return updatedFees;
   } catch (error) { 
     
   }
@@ -88,9 +89,11 @@ export async function UPdatePayment(userId: string) {
 export async function getFin() {
   try {
     const fees = await prisma.fee.findMany({});
-    return fees;
+    return JSON.parse(JSON.stringify(fees));
+
   } catch (error) { 
-    return [];
+    return JSON.parse(JSON.stringify([]));
+
   }
 }
 
@@ -100,9 +103,12 @@ export async function getFinById(userId: string) {
       where: { studentId: userId },
     }); 
     
-    return fees;
+    return JSON.parse(JSON.stringify(fees));
+    // return fees;
   } catch (error) {
-    return [];
+    return JSON.parse(JSON.stringify([]));
+
+    // return [];
   }
 }
 
@@ -117,8 +123,10 @@ export async function getFince() {
         }
        },
     });
-    return fees;
+    // return fees;
+    return JSON.parse(JSON.stringify(fees));
+
   } catch (error) { 
-    return [];
+    return JSON.parse(JSON.stringify([]));
   }
 }

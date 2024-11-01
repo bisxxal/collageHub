@@ -25,11 +25,11 @@ const FinanceChart = () => {
           });
 
           const monthFees = fees.filter(
-            (fee) => new Date(fee.createdAt).getMonth() === i
+            (fee:any) => new Date(fee.createdAt).getMonth() === i
           );
 
           const totalIncome = monthFees.reduce(
-            (acc, curr) => acc + curr.amount,
+            (acc: number, curr: { amount: number }) => acc + curr.amount,
             0
           );
 

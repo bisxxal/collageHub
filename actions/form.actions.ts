@@ -85,13 +85,17 @@ export const allassignment = async ()=>{
 }
 export const allResults = async () => {
 
-  const classGrades = await prisma.exam.findMany({
-      select: { id: true, title: true },
-    });
-    const classTeachers = await prisma.student.findMany({
-      select: { id: true, name: true, surname: true },
-    }); 
-    return JSON.parse(JSON.stringify( { teachers: classTeachers, grades: classGrades }));
+  try {
+    const classGrades = await prisma.exam.findMany({
+        select: { id: true, title: true },
+      });
+      const classTeachers = await prisma.student.findMany({
+        select: { id: true, name: true, surname: true },
+      }); 
+      return JSON.parse(JSON.stringify( { teachers: classTeachers, grades: classGrades }));
+  } catch (error) {
+    
+  }
 }
  
 
@@ -126,7 +130,8 @@ export const updateAttendance = async (attendanceData: {
       });
     }
 
-    return { success: true };
+    return JSON.parse(JSON.stringify({ success: true }));
+    // return { success: true };
   } catch (error) { 
   }
 };
@@ -163,8 +168,10 @@ export const getAttendanceForLesson = async (lessonId: number, year: number, mon
       },
     });
 
-    return { success: true, data: attendanceData };
+    return JSON.parse(JSON.stringify({success: true, data: attendanceData}));
+    // return { success: true, data: attendanceData };
   } catch (error) { 
-    return { success: false  };
+    return JSON.parse(JSON.stringify({ success: false }));
+    // return { success: false  };
   }
 };

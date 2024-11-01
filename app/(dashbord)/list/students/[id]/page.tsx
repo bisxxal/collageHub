@@ -38,7 +38,7 @@ const SingleStudentPage = async({
         <div className="flex flex-col lg:flex-row gap-4">
           <div className=" inshadow frame max-xl h-[250px] py-6 px-4 rounded-md flex-1 flex gap-4">
             <div className="w-1/3">
-              <Image src={student.img || "/avatar.jpg"} alt="" width={144} height={144} className="w-36 h-32 max-md:h-24  rounded-full object-cover" />
+              <Image src={student.img || "/avatar.jpg"} alt="" width={144} height={144} className="w-36 h-32 max-md:h-24 max-md:w-24  rounded-full object-cover" />
             </div>
             <div className="w-2/3 flex flex-col justify-between gap-4">
               <div className="flex items-center max-md:flex-col max-md:items-start gap-4">

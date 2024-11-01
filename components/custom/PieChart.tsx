@@ -1,6 +1,5 @@
  
-'use client';
-import { getFin, getFince } from '@/actions/payemt.actions';
+'use client'; 
 import React, { useEffect, useState } from 'react';
 import { ResponsiveContainer, PieChart as RechartsPieChart, Pie, Legend } from 'recharts';
 

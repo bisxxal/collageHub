@@ -20,7 +20,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
         try {
           const fees = await getFinById(userId);
           setFees(fees);
-          setPaidSemesters(fees.map((fee) => fee.semesterName));
+          setPaidSemesters(fees.map((fee:any) => fee.semesterName));
         } catch (error) { 
         } 
       }
@@ -49,7 +49,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
             const updatedFees = await UPdatePayment(userId);
 
             if (updatedFees) {
-              setPaidSemesters(updatedFees.map((fee) => fee.semesterName));
+              setPaidSemesters(updatedFees.map((fee:any) => fee.semesterName));
             }
           }
         },
@@ -103,6 +103,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
       else{
         router.push("/list/fee?payment=unsuccess")
       }
+      router.refresh()
   };
   
   const getSemestersForBatch = (batch: Batch): Sem[] => {
