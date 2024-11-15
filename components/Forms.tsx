@@ -14,7 +14,6 @@ const deleteActionMap: any = {
   student: deleteStudent,
   exam: deleteExam,
 
-  lesson: deleteSubject,
   assignment: deleteAssingment,
   result: deleteResults, 
   event: deleteEvent,

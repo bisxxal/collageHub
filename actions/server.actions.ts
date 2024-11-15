@@ -2,6 +2,7 @@
 import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
 import { clerkClient } from "@clerk/nextjs/server"; 
+import { NumberLiteralType } from "typescript";
 type CurrentState = { success: boolean; error: boolean };
 
 export const createSubject = async ( currentState:CurrentState , data:SubjectSchema) => {
@@ -587,3 +588,28 @@ export const deleteResults = async (currentState: CurrentState, data: ResultSche
   }
 };
 
+export async function getStudentsForLesson(lessonId: number) {
+   
+  try { 
+    const students = await prisma.student.findMany({
+      where: {
+       class:{
+        lessons:{
+          some:{
+            id:lessonId
+          }
+        }
+       }
+      },
+      select: {
+        id: true,
+        name: true,
+        surname: true,
+      },
+    }); 
+    return JSON.parse(JSON.stringify({ success: true, data: students }));
+  } catch (error) {
+    console.error("Error fetching students:", error);
+    return JSON.parse(JSON.stringify({ success: false, message: "Failed to fetch students" }));
+  }
+}

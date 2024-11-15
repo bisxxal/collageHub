@@ -156,7 +156,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
 
 
 
-      <div className='w-[97%] max-md:w-[95%] mx-auto inshadow frame2 rounded-xl min-h-[60vh] max-md:min-h-[70vh]'>
+      <div className='w-[97%] max-md:w-[95%] mx-auto inshadow frame rounded-xl min-h-[60vh] max-md:min-h-[70vh]'>
                 <div className=' grid max-md:grid-cols-4 grid-cols-6 mb-3 border-b-2 border-[#ffffff47]  p-2 py-3 font-semibold'>
                     <h3>Amount</h3> 
                     <h3 >Semester</h3>
@@ -166,7 +166,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
                     <h3 className=' max-md: ml-8'>Date</h3>
                 </div>
 
-                <div>
+                <div className=" px-4 max-md:px-2">
                     {fees && fees.map((f) => {
                         return (
                             <div key={f.razorpay_order_id} className='  grid items-center  max-md:grid-cols-4 grid-cols-6 inshadow py-2 mb-2 rounded-lg border-2 border-[#ffffff14] max-md:text-sm px-2'>
@@ -175,7 +175,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
                                 <p className=' max-md:hidden ' > {f.razorpay_payment_id ? <p>{f.razorpay_payment_id}</p>: '-----------------------' } </p>
                                 <p className=' max-md:hidden '>{f.razorpay_order_id ? <p className=' max-md:hidden'>{f.razorpay_order_id}</p> :'-----------------------'} </p>
                                 <p className=" bg-[#00ff003f] text-[#7cff7c] rounded-xl px-2 py-1 w-fit ">Successfull</p>
-                                <p>{new Date(f.createdAt).toLocaleString()}</p>
+                                <p>{new Date(f.createdAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
                             </div>
                         )
                     })}

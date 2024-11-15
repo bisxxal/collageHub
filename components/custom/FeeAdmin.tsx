@@ -59,7 +59,7 @@ async function FeeAdmin() {
                                 <p> {f.student.batch}/{setSEM(f.semesterName)} Sem</p>
                                 <p className=' max-md:hidden ' > {f.razorpay_payment_id ? <p>{f.razorpay_payment_id}</p>: '-----------------------' } </p>
                                 <p className=' max-md:hidden '>{f.razorpay_order_id ? <p className=' max-md:hidden'>{f.razorpay_order_id}</p> :'-----------------------'} </p>
-                                <p>{new Date(f.createdAt).toLocaleString()}</p>
+                                <p>{new Date(f.createdAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
                             </div>
                         )
                     })}
