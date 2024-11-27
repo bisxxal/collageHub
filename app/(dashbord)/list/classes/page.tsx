@@ -54,18 +54,18 @@ const renderRow = (item: ClassList) => (
     key={item.id}
     className="rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm"
   >
-    <td className="flex items-center gap-4 p-4">{item.name}</td>
-    <td className="hidden md:table-cell">{item.capacity}</td>
-    <td className="hidden md:table-cell">{item.name[0]}</td>
+    <td className="flex items-center gap-4 p-4">{item?.name}</td>
+    <td className="hidden md:table-cell">{item?.capacity}</td>
+    <td className="hidden md:table-cell">{item?.name[0]}</td>
     <td className="hidden md:table-cell">
-      {item.supervisor.name + " " + item.supervisor.surname}
+      {item?.supervisor?.name + " " + item?.supervisor?.surname}
     </td>
     <td>
       <div className="flex items-center gap-2">
         {role === "admin" && (
           <>
             <FormModal table="class" type="update" data={item} />
-            <FormModal table="class" type="delete" id={item.id} />
+            <FormModal table="class" type="delete" id={item?.id} />
           </>
         )}
       </div>
