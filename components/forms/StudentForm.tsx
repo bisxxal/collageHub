@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { CldUploadWidget } from "next-cloudinary";
 import { studentSchema, StudentSchema } from "@/lib/FormValidation";
 import InputField from "../custom/InputField";
@@ -272,7 +272,7 @@ const StudentForm = ({
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
       )}
-      <button type="submit" className="bg-blue-400 text-white p-2 rounded-md">
+      <button type="submit" className="buttonbg text-white p-2 rounded-md">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

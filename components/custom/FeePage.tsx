@@ -126,7 +126,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
     <div className= " min-h-screen w-full">
 
       <div className="flex flex-col p-4 h-full">
-        <h1 className="text-4xl text-[#a277ff] font-bold">Fee Payment</h1>
+        <h1 className="text-4xl text-[#3352cc] font-bold">Fee Payment</h1>
         <select
           className="mt-5 w-fit px-3 py-2 inshadow frame !rounded-xl border-2 border-[#ffffff70] !bg-transparent"
           name="semester"
@@ -146,7 +146,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
           ))}
         </select>
         <button
-          className="p-1 mt-5 px-5 bg-blue-500 rounded-lg w-fit disabled:opacity-15 disabled:cursor-not-allowed"
+          className="p-1 mt-5 px-5 buttonbg rounded-lg w-fit disabled:opacity-15 disabled:cursor-not-allowed"
           onClick={() => handlePayment(setFeeAmount(batch))}
           disabled={!selectedSemester || paidSemesters.includes(selectedSemester)}
         >

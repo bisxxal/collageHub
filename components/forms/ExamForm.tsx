@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useFormState } from "react-dom";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import { examSchema, ExamSchema } from "@/lib/FormValidation";
 import { createExam, updateExam } from "@/actions/server.actions";
@@ -131,7 +131,7 @@ const ExamForm = ({
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
       )}
-      <button className="bg-blue-400 text-white p-2 rounded-md">
+      <button className="buttonbg text-white p-2 rounded-md">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

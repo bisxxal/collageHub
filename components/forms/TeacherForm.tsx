@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { CldUploadWidget } from "next-cloudinary";
 import { teacherSchema, TeacherSchema } from "@/lib/FormValidation";
 import { IoMdCloudUpload } from "react-icons/io";
@@ -241,7 +241,7 @@ const TeacherForm = ({
       {state.error && (
         <span className="text-red-500">Username is taken !!</span>
       )}
-      <button className="bg-blue-400 text-white p-2   rounded-md">
+      <button className="buttonbg mt-2 text-white p-2   !rounded-md">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

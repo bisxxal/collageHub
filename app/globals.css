@@ -37,7 +37,7 @@ body::-webkit-scrollbar-thumb {
 .react-calendar{
   @apply !rounded-lg !border-2 !border-[#ffffff1e]  !overflow-hidden ;
   background: #101019 !important;
-  background: linear-gradient(360deg, #ffffff14 9%, #a277ff 167%) !important;
+  background: linear-gradient(360deg, #ffffff14 9%, #3352cc 167%) !important;
   box-shadow: inset 0 0 10px #ffffff1c !important;
 }
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus , .react-calendar__navigation__label:enabled:hover {
@@ -152,15 +152,18 @@ body::-webkit-scrollbar-thumb {
   display: none !important;
 }
 
+/* .frame2 {
+  background: #161621;
+  background: linear-gradient(360deg, #ffffff14 9%, #3352cc 167%);
+} */
 .frame2 {
   background: #161621;
-  background: linear-gradient(360deg, #ffffff14 9%, #a277ff 167%);
+  background: linear-gradient(360deg, #ffffff14 -38%, #3352cc 161%);
 }
-
 
 .logo{
   background: rgb(17,17,17);
-  background: linear-gradient(90deg, #ffffffb4 -26%, #a277ff 95%);
+  background: linear-gradient(0deg, #1C2D70 -26%, #3352cc 95%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -172,4 +175,16 @@ body::-webkit-scrollbar-thumb {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+.base{
+  background-color: #3352cc;
+}
+.textbase{
+  color: #3352cc;
+}
+.buttonbg{
+  @apply bg-gradient-to-br text-white   from-[#3352CC] font-medium to-[#1C2D70];
+}
+.recharts-layer{
+  color: white !important;
 }

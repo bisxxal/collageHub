@@ -35,7 +35,7 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
-            <button className="w-7 h-7 text-xl flex items-center justify-center rounded-full bg-blue-500 ">
+            <button className="w-7 h-7 text-xl flex items-center justify-center rounded-full buttonbg ">
             <GrView />
             </button>
           </Link>

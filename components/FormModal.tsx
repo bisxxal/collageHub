@@ -14,8 +14,8 @@ export type FormServerProps = {
 };
 
 const FormModal = ({ table, type, data, id,  }: FormServerProps  ) => {
-  const size = type === "create" ? " w-fit px-3 h-8 hover:bg-blue-600 transation-all" : "w-7 h-7";
-  const bgColor = type === "create" ? "bg-blue-500" : type === "update" ? "bg-green-500" : "bg-red-500";
+  const size = type === "create" ? " w-fit px-3 h-8 hover:buttonbg transation-all" : "w-7 h-7";
+  const bgColor = type === "create" ? "buttonbg" : type === "update" ? "bg-green-500" : "bg-red-500";
   const [open, setOpen] = useState(false);
  
   const relatedData:any =  {};

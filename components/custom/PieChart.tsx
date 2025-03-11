@@ -45,7 +45,7 @@ const PieChartComponent = ({feeData}:any) => {
                      <Pie 
                         dataKey="amount" 
                         data={chartData} 
-                        fill="#a277ff" 
+                        fill="#3352CC" 
                         label={(entry) => `${entry.batch}(₹ ${formatAmount(entry.amount)})`}  
                         />
                 </RechartsPieChart>

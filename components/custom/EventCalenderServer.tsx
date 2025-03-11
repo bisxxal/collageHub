@@ -11,7 +11,7 @@ async function EventCalenderServer({searchParams}:{searchParams:{[key:string]:st
   const data = await getFince();
   return (
     <>
-    <div className=" w-full frame2 rounded-lg">
+    <div className=" w-full frame2 inshadow rounded-lg">
     <h1 className=' pt-2 pl-4 font-semibold text-lg'>Revenue pie</h1>
      <PieChartComponent feeData={data}/>
     </div>
@@ -20,16 +20,11 @@ async function EventCalenderServer({searchParams}:{searchParams:{[key:string]:st
       <h1 className="text-xl font-semibold mb-4">Events</h1>
       <MdEventNote className=" text-3xl" />
     </div>
-
       <EventCalendar />
-
-
       <div className=" mt-3">
         <h1 className=" ">All Events</h1>
         <EventList dateParam={date}/>
-
       </div>
-     
     </div>
     </>
   )

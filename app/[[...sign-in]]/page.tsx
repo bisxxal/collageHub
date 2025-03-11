@@ -30,7 +30,7 @@ const LoginPage = () => {
         >
           <header className="text-center">
        
-            <h1 className="mt-4 max-md:text-2xl text-3xl text-[#a277ff] font-medium tracking-tight ">
+            <h1 className="mt-4 max-md:text-2xl text-3xl text-[#3352cc] font-medium tracking-tight ">
               Sign in to Collage-hub
             </h1>
           </header>

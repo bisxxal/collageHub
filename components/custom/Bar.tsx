@@ -1,8 +1,7 @@
 import React from "react";
 import TableSearch from "./TableSearch";
-import FormModal from "../FormModal";
-import { CiFilter } from "react-icons/ci";
-import { BsSortDown } from "react-icons/bs";
+import FormModal from "../FormModal"; 
+
 function Bar({ role, table, type, data }: any) {
   return (
     <div className="flex items-center justify-between w-full">

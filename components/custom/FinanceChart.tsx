@@ -84,7 +84,7 @@ const FinanceChart = () => {
             wrapperStyle={{ paddingTop: "10px", paddingBottom: "30px" }}
           />
         
-          <Line type="monotone" dataKey="income" stroke="#a277ff" strokeWidth={5}/>
+          <Line type="monotone" dataKey="income" stroke="#3352cc" strokeWidth={5}/>
         </LineChart>
       </ResponsiveContainer>
     </div>

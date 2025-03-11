@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { useFormState } from "react-dom";
 import LoadingCom from "./custom/LoadingCom";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 
 const deleteActionMap: any = {
   subject: deleteSubject,
