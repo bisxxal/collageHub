@@ -1,5 +1,4 @@
- 
-import prisma from '@/lib/prisma'
+ import prisma from '@/lib/prisma'
 import { auth } from '@clerk/nextjs/server';
 import React from 'react'
 
@@ -20,7 +19,7 @@ async function Card({ type  , bg , text }: { type: 'admin' | 'student' | 'teache
   })
 
   return (
-    <div className={`w-[300px] ${text} h-56 buttonhover inputbg relative rounded-3xl border-2 border-[#ffffff2c] flex flex-col items-center justify-center "`}>
+    <div className={`w-[300px] ${text} h-56 max-md:w-full max-md:h-52 buttonhover inputbg relative rounded-3xl border-2 border-[#ffffff2c] flex flex-col items-center justify-center "`}>
           <div className={` h-[85%] w-[75%] ${bg } blur-[25px] rounded-full absolute `}></div>
 
             <div className="flex justify-between items-center absolute left-4 top-4">

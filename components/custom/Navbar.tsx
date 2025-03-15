@@ -20,9 +20,9 @@ async function Navbar() {
 
         <div className=' flex gap-4 mr-10'>
 
-        { collage  && <div className=' flex relative group items-center gap-3 text-lg mr-10'>
+        { collage  && <div className=' flex relative group max-md:hidden items-center gap-3 text-lg mr-10'>
                 <IoSchool size={23}/>
-            <p> {clg?.fname} </p>
+            <p className=' text-base max-md:text-sm  max-md:'> {clg?.fname} </p>
 
             <div className=' -bottom-20  w-[200px] min-h-[50px] z-[10] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff27]  backdrop-blur-md p-3 px-4 rounded-md'>
            { clg?.link && <Link className=' flex items-center gap-2 ' href={clg?.link} ><CgWebsite size={21}/> Visit site </Link> }
@@ -40,8 +40,6 @@ async function Navbar() {
         </div>
           <UserButton /> 
         </div>
-
-
       </div>
      
   )

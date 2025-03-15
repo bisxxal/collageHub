@@ -210,3 +210,10 @@ body::-webkit-scrollbar-thumb {
 .recharts-layer{
   color: white !important;
 }
+
+input#navch:checked ~ .aside{
+  display: block;
+}
+/* input#prech:checked ~ .ipn{
+  display: flex;
+} */

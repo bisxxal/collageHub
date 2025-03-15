@@ -13,7 +13,7 @@ const SupperAdmin = async() => {
   return (
     <div className=' w-full min-h-screen p-6 '>
        <div className="flex gap-4 mt-2 justify-between flex-wrap">
-          <SuperCard type="admin"  text='text-[#fc2626]' bg='bg-[#ff00003e]' />
+          <SuperCard type="admin"  text='text-[#fcf2626]' bg='bg-[#ff00003e]' />
           <SuperCard type="student" text='text-[#f3fd29]' bg='bg-[#fff2003e]'/>
           <SuperCard type="teacher" text='text-[#26fc26]' bg='bg-[#0dff003e]' />
         </div>
