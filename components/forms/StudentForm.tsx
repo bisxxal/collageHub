@@ -13,22 +13,9 @@ import InputField from "../custom/InputField";
 import { createStudent, updateStudent } from "@/actions/server.actions";
 import { allStudents } from "@/actions/form.actions";
 
-const StudentForm = ({
-  type,
-  data,
-  setOpen,
-  relatedData,
-}: {
-  type: "create" | "update" | "delete";
-  data?: any;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-  relatedData?: any;
-}) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<StudentSchema>({
+const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update" | "delete";data?: any;setOpen: Dispatch<SetStateAction<boolean>>;relatedData?: any;}) => {
+  
+  const {register,  handleSubmit,formState: { errors },} = useForm<StudentSchema>({
     resolver: zodResolver(studentSchema),
   });
   const [students, setStudents] = useState<any>([]);
@@ -36,10 +23,7 @@ const StudentForm = ({
 
   const [state, formAction] = useFormState(
     type === "create" ? createStudent : updateStudent,
-    {
-      success: false,
-      error: false,
-    }
+    {success: false,error: false  , message: ""}
   );
 
   const onSubmit = handleSubmit((data) => { 
@@ -63,11 +47,12 @@ const StudentForm = ({
   const router = useRouter();
 
   useEffect(() => {
-    if (state.success) {
+    if (state?.success) {
       toast(`Student has been ${type === "create" ? "created" : "updated"}!`);
       setOpen(false);
       router.refresh();
     }
+   
   }, [state, router, type, setOpen]);
 
   useEffect(() => {
@@ -83,7 +68,7 @@ const StudentForm = ({
   const classes = students?.classes; 
  
   return (
-    <form className="flex inshadow frame flex-col p-3 px-4 pb-6 rounded-lg max-lg:gap-1 gap-8" onSubmit={onSubmit}>
+    <form className="flex  flex-col p-3 px-4 pb-6  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a]  max-lg:gap-1 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new student" : "Update the student"}
       </h1>
@@ -269,8 +254,8 @@ const StudentForm = ({
           )}
         </div>
       </div>
-      {state.error && (
-        <span className="text-red-500">Something went wrong!</span>
+      {state?.message && (
+        <span className="text-red-500"> {state?.message?.errors[0]?.message} </span>
       )}
       <button type="submit" className="buttonbg text-white p-2 rounded-md">
         {type === "create" ? "Create" : "Update"}
@@ -280,3 +265,4 @@ const StudentForm = ({
 };
 
 export default StudentForm;
+ 

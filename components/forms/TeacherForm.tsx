@@ -59,16 +59,15 @@ const TeacherForm = ({
     }
  
   });
-  
-
   const router = useRouter();
 
   useEffect(() => {
     if (state.success) {
-      toast(`Teacher has been ${type === "create" ? "created" : "updated"}!`);
+      toast.success(`Teacher has been ${type === "create" ? "created" : "updated"}!`);
       setOpen(false);
       router.refresh();
     }
+     
   }, [state, router, type, setOpen]);
 
   const [subjects, setTeachers] = useState<any>([]);
@@ -82,8 +81,8 @@ const TeacherForm = ({
   }, [relatedData]);
 
   return (
-    <form className="flex inshadow p-4 rounded-2xl frame flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>
-      <h1 className="text-xl font-semibold">
+    <form className="flex   p-4  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>
+      <h1 className="text-xl text-center font-semibold">
         {type === "create" ? "Create a new teacher" : "Update the teacher"}
       </h1>
       <span className="text-xs text-gray-400 font-medium">
@@ -238,8 +237,8 @@ const TeacherForm = ({
           />
         )}
       </div>
-      {state.error && (
-        <span className="text-red-500">Username is taken !!</span>
+      {state.message && (
+        <span className="text-red-500"> {state?.message?.errors[0]?.message} </span>
       )}
       <button className="buttonbg mt-2 text-white p-2   !rounded-md">
         {type === "create" ? "Create" : "Update"}

@@ -1,10 +1,16 @@
  
 import prisma from '@/lib/prisma'
+import { auth } from '@clerk/nextjs/server';
 import { Sem } from '@prisma/client';
 import React from 'react'
 
 async function FeeAdmin() {
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     const fee = await prisma.fee.findMany({
+        where:{
+            CollageName: collage
+        },
         select: {
             amount: true,
             semesterName: true,
@@ -63,6 +69,7 @@ async function FeeAdmin() {
                             </div>
                         )
                     })}
+                      {fee.length === 0 && <div className='text-center mt-10 text-lg'>No Payment Found</div>}
                 </div>
             </div>
         </div>        

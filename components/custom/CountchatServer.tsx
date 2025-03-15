@@ -2,10 +2,17 @@ import React from 'react'
 import { BiMaleFemale } from "react-icons/bi";
 import CountChart from './CountChart';
 import prisma from '@/lib/prisma';
+import { auth } from '@clerk/nextjs/server';
 
 async function CountchatServer() {
+   const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
    const data = await prisma.student.groupBy({
+    where:{
+      CollageName:collage
+    },
         by: ["gender"],
+
         _count:true
    })
 
@@ -14,7 +21,7 @@ const  girls = data?.find((item: { gender: string; _count: number }) => item.gen
 
    
     return (
-   <div className="bg-[#090a15]  inshadow frame rounded-xl w-full h-full p-4">
+   <div className="bg-[#090a15]  inshadow frame2 rounded-xl w-full h-full p-4">
         <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold">Students</h1>
         </div>

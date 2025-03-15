@@ -63,7 +63,7 @@ const SubjectForm = ({
 
   return (
     <form
-      className="flex inshadow p-4 rounded-2xl frame flex-col gap-8"
+      className="flex rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a]  p-4  frame flex-col gap-8"
       onSubmit={onSubmit}
     >
       <h1 className="text-xl font-semibold">

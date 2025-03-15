@@ -1,19 +1,19 @@
-
 'use client'; 
 import { useUser } from "@clerk/nextjs";  
 import { Capturepaymet, Createpaymet, getFinById, UPdatePayment, verifyPayment } from "@/actions/payemt.actions";
 import { Batch, Fee, Sem } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { fullname } from "@/lib/utils";
 
 const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone?: string | null }) => {
   const { user } = useUser();
+  const collage = user?.publicMetadata?.collage as string;
+  const clg = fullname.find((item) => item.collage === collage);
   const [paidSemesters, setPaidSemesters] = useState<Sem[]>([]);
   const [selectedSemester, setSelectedSemester] = useState<Sem | null>(null);
   const [fees, setFees] = useState<Fee[]>([]);
   const router = useRouter()
-
-   
   useEffect(() => {
     const fetchUserData = async () => {
       if (userId) {
@@ -35,7 +35,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
         amount: data.amount,
         currency: data.currency,
-        name: 'TACT',
+        name: clg?.fname,
         description: 'Semester Fee',
         order_id: data.id,
 
@@ -122,6 +122,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
 
   const semesters = getSemestersForBatch(batch);
  
+
   return (
     <div className= " min-h-screen w-full">
 
@@ -178,7 +179,7 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
                                 <p>{new Date(f.createdAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
                             </div>
                         )
-                    })}
+                    })}                   
                 </div>
             </div>
     </div>

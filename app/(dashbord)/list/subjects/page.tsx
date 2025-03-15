@@ -32,7 +32,7 @@ const SubjectListPage = async ({
 }) => {
   const { sessionClaims } = auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
-
+  const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
   
   const renderRow = (item: SubjectList) => (
     <tr
@@ -61,7 +61,7 @@ const SubjectListPage = async ({
   const p = page ? parseInt(page) : 1;
  
 
-  const query: Prisma.SubjectWhereInput = {};
+  const query: Prisma.SubjectWhereInput = { CollageName :"kiit"};
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
@@ -96,7 +96,7 @@ const SubjectListPage = async ({
      
     <Bar role={role} table="subject" type="create" data="All Subjects" />
       <Table columns={columns} renderRow={renderRow} data={data} />
-     
+      {data.length === 0 && <div className='text-center mt-10 text-lg '>No Subjects Found</div>}
       <Pagination page={p} count={count} />
     </div>
   );

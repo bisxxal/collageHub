@@ -18,7 +18,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
 
 
   const { sessionClaims } = auth();
-
+  const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
   
   const role = (sessionClaims?.metadata as { role?: string })?.role;
 
@@ -98,7 +98,8 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
 
   const p = page ?parseInt(page): 1;
 
-  const quary : Prisma.StudentWhereInput = {}; 
+  const quary : Prisma.StudentWhereInput = {CollageName :collage}; 
+
   if(quaryParmas){
     for (const [key,value] of Object.entries(quaryParmas)){
       if(value !== undefined){
@@ -140,7 +141,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
       <Bar role={role} table="student" type="create" />
      
       <Table columns={columns} renderRow={renderRow} data={data} />
-      
+      {data.length === 0 && <div className='text-center mt-10 text-lg '>No Students Found</div>}
       <Pagination page={p} count={count} />
     </div>
   );

@@ -12,6 +12,7 @@ import { GoSidebarCollapse } from "react-icons/go";
 import { useState } from "react";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
+import { RiAdminFill } from "react-icons/ri";
 const menuItems = [
     {
       title: "Collage Hub",
@@ -20,7 +21,13 @@ const menuItems = [
           icon:<GoHome />,
           label: "Home",
           href: "/",
-          visible: ["admin", "teacher", "student"],
+          visible: ["admin", "teacher", "student" , "super"],
+        },
+         {
+          icon:<RiAdminFill />,
+          label: "Admin",
+          href: "/super/admins",
+          visible: [ 'super'],
         },
         {
           icon: <FaChalkboardTeacher />,

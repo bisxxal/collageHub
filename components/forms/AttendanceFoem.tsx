@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
 import { getAttendanceForLesson, updateAttendance } from "@/actions/form.actions";
- 
 import toast from 'react-hot-toast';
 import { getStudentsForLesson } from "@/actions/server.actions";
 import { LuLoader } from "react-icons/lu";
@@ -19,6 +18,7 @@ interface Lessons {
 
 interface AttendanceFormProps {
   lessons: Lessons[];
+  collage: string ;  
 }
 
 const getDaysInMonth = (month: number, year: number): Date[] => {
@@ -31,10 +31,11 @@ const getDaysInMonth = (month: number, year: number): Date[] => {
   return days;
 };
 
-const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons }) => {
+const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons ,collage} ) => {
   const [attendance, setAttendance] = useState<{ [key: string]: boolean }>({});
   const [lessonId, setLessonId] = useState<number>(lessons[0]?.id || 1);
   const [students, setStudents] = useState<Student[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const month = new Date().getMonth();
   const year = new Date().getFullYear();
@@ -44,6 +45,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons }) => {
   // Fetch students and attendance data based on selected lesson
   useEffect(() => {
     const fetchStudentsAndAttendance = async () => {
+      setLoading(true);
       const studentsResponse = await getStudentsForLesson(lessonId);
       if (studentsResponse.success) {
         setStudents(studentsResponse.data);
@@ -60,6 +62,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons }) => {
         });
 
         setAttendance(newAttendanceState);
+        setLoading(false);
       }
     };
 
@@ -93,7 +96,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons }) => {
       [`${studentId}-${dateString}`]: isChecked,
     }));
 
-    const response = await updateAttendance({ studentId, lessonId, date, present: isChecked });
+    const response = await updateAttendance({ studentId, lessonId, date, present: isChecked  , collage});
 
     if (response?.success) {
       toast.success('Attendance updated');
@@ -143,9 +146,15 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons }) => {
       </div>
 
       <div className="min-h-[90vh]">
-      {students.length === 0  ? (
-       <h1 className=' text-center flex items-center justify-center h-full w-full animate-spin text-xl mt-5' >
-       <LuLoader />
+        {
+          loading &&  <h1 className=' text-center flex items-center justify-center h-full w-full animate-spin text-xl mt-5' >
+          <LuLoader />
+      </h1>
+        }
+      {students.length === 0  && loading === false ? (
+       <h1 className=' text-center flex items-center justify-center h-full w-full  text-xl mt-5' >
+       {/* <LuLoader /> */}
+       NO STUDENTS FOUND
    </h1>
       ) : (
         students.map((student) => (

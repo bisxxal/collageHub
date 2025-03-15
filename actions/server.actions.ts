@@ -1,14 +1,18 @@
 'use server'
 import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
-import { clerkClient } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
+
 type CurrentState = { success: boolean; error: boolean };
 
 export const createSubject = async ( currentState:CurrentState , data:SubjectSchema) => {
   try {
-    
+    const { sessionClaims } = auth();
+     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+   
     await prisma.subject.create({
         data:{
+            CollageName:collage,
             name:data.name,
             teachers:{
                 connect:data.teachers.map((teacherId) => ({id:teacherId}))            
@@ -62,7 +66,8 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
     data: TeacherSchema
   ) => {
  
-    
+     const { sessionClaims } = auth();
+     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     try { 
       const clerk = clerkClient();  
        
@@ -71,7 +76,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         password: data.password,
         firstName: data.name,
         lastName: data.surname,
-        publicMetadata: { role: "teacher" },  
+        publicMetadata: { role: "teacher" ,collage:collage},  
       });
    
       await prisma.teacher.create({
@@ -84,6 +89,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           phone: data.phone || null,
           img: data.img || null,
           gender: data.gender,
+          CollageName:collage,
           subjects: {
             connect: data.subjects?.map((subjectId: string) => ({
               id: parseInt(subjectId),
@@ -93,10 +99,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
   
       return JSON.parse(JSON.stringify({success:true , error:false}));   
-    } catch (err) {  
-      console.log("error", err);
-    
-      return JSON.parse(JSON.stringify({success: false, error: true}));  
+    } catch (err:any) {  
+  
+      return JSON.parse(JSON.stringify({success: false, error: true , message:err}));  
     }
   };
   
@@ -176,6 +181,9 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
     data: StudentSchema
   ) => { 
     try { 
+      const { sessionClaims } = auth();
+      const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+      
       const clerk = clerkClient();  
       const classItem  = await prisma.class.findUnique({
         where: { id: data.classId },
@@ -191,7 +199,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         password: data.password,
         firstName: data.name,
         lastName: data.surname,
-        publicMetadata:{role:"student"}
+        publicMetadata:{role:"student" ,collage:collage},
       }); 
   
       await prisma.student.create({
@@ -206,15 +214,15 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           gender: data.gender, 
           gradeId: data.gradeId,
           classId: data.classId,
-          batch: data.batch  
+          batch: data.batch,
+          CollageName:collage
         },
       });
    
       return JSON.parse(JSON.stringify({success:true , error:false}));   
-    } catch (err) { 
-      // console.log(err);
-      
-      return JSON.parse(JSON.stringify({success: false, error: true}));  
+    } catch (err) {
+
+      return JSON.parse(JSON.stringify({success: false, error: true, message:err}));  
     }
   };
   
@@ -251,8 +259,6 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           classId: data.classId, 
         },
       });  
-      console.log("data", data.img);
-      
       
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) { 
@@ -285,12 +291,16 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
     data: ExamSchema
   ) => {
     try {
+      const { sessionClaims } = auth();
+     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+   
      const exam = await prisma.exam.create({
         data: {
           title: data.title,
           startTime: data.startTime,
           endTime: data.endTime,
           lessonId: data.lessonId,
+          CollageName:collage
         },
       }); 
       
@@ -350,8 +360,18 @@ export const createClass = async (
   data: ClassSchema
 ) => {
   try {
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     await prisma.class.create({
-      data,
+      data:{
+        id:(data.id),
+        name:data.name,
+        gradeId:(data.gradeId),
+        CollageName:collage,
+        supervisorId:(data.supervisorId),
+        capacity:(data.capacity)
+      }
+
     });
 
      return JSON.parse(JSON.stringify({success:true , error:false}));   
@@ -374,8 +394,7 @@ export const updateClass = async (
 
      return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    // console.log("error" , err);
-    
+
     return JSON.parse(JSON.stringify({success: false, error: true}));   
   }
 };
@@ -404,6 +423,9 @@ export const createEvent = async (
   data: EventSchema
 ) => {
   try {
+    const { sessionClaims } = auth();
+     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+   
     const event = await prisma.event.create({
       data: {
         title: data.name,  
@@ -414,6 +436,7 @@ export const createEvent = async (
           connect: data.class.map((classId: string) => ({ id: parseInt(classId) }))  
         },
         description: data.description,
+        CollageName:collage
       },
     });
  
@@ -463,12 +486,16 @@ export const deleteEvent = async ( currentState:CurrentState , data:FormData) =>
 
 export const createAssignment = async (currentState: CurrentState,data: AssignmentSchema) => {
   try {
+    const { sessionClaims } = auth();
+     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+   
     const event = await prisma.assignment.create({
       data: {
         title: data.title,  
         startDate: data.startTime,
         dueDate: data.endTime,
         lessonId:  parseInt(data.lessonId) ,
+        CollageName:collage
       },
     }); 
      return JSON.parse(JSON.stringify({success:true , error:false}));   
@@ -590,8 +617,12 @@ export const deleteResults = async (currentState: CurrentState, data: ResultSche
 export async function getStudentsForLesson(lessonId: number) {
    
   try { 
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+
     const students = await prisma.student.findMany({
       where: {
+        CollageName:collage,
        class:{
         lessons:{
           some:{
@@ -608,7 +639,7 @@ export async function getStudentsForLesson(lessonId: number) {
     }); 
     return JSON.parse(JSON.stringify({ success: true, data: students }));
   } catch (error) {
-    console.error("Error fetching students:", error);
+
     return JSON.parse(JSON.stringify({ success: false, message: "Failed to fetch students" }));
   }
 }

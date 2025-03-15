@@ -10,6 +10,7 @@ datasource db {
 model Admin {
   id       String @id @default(cuid())
   userName String @unique
+  CollageName String @default("tact")
 }
 
 model Student {
@@ -28,8 +29,10 @@ model Student {
   batch Batch
   grade Grade @relation(fields: [gradeId], references: [id])
   class Class @relation(fields: [classId], references: [id])
-  fee  Fee[]
+  CollageName String @default("tact")
 
+  
+  fee  Fee[]
   results     Result[]
   attendances Attendance[]
 }
@@ -47,6 +50,8 @@ model Teacher {
   subjects  Subject[]
   lessons   Lesson[]
   classes   Class[]
+
+  CollageName String @default("tact")
 }
 
 model Grade {
@@ -68,6 +73,8 @@ model Class {
   gradeId      Int
   grade        Grade     @relation(fields: [gradeId], references: [id])
   events       Event[]
+
+  CollageName String @default("tact")
 }
 
 model Subject {
@@ -75,6 +82,7 @@ model Subject {
   name     String    @unique
   teachers Teacher[]
   lessons  Lesson[]
+  CollageName String @default("tact")
 }
 
 model Lesson {
@@ -93,6 +101,7 @@ model Lesson {
   exams       Exam[]
   assignments Assignment[]
   attendances Attendance[]
+  CollageName String @default("tact")
 }
 
 model Exam {
@@ -104,6 +113,7 @@ model Exam {
   lessonId Int
   lesson   Lesson   @relation(fields: [lessonId], references: [id])
   results  Result[]
+  CollageName String @default("tact")
 }
 
 model Assignment {
@@ -115,6 +125,7 @@ model Assignment {
   lessonId Int
   lesson   Lesson   @relation(fields: [lessonId], references: [id])
   results  Result[]
+    CollageName String @default("tact")
 }
 
 model Result {
@@ -137,6 +148,7 @@ model Attendance {
   student   Student @relation(fields: [studentId], references: [id])
   lessonId  Int
   lesson    Lesson  @relation(fields: [lessonId], references: [id])
+  CollageName String @default("tact")
 }
 
 model Event {
@@ -147,14 +159,13 @@ model Event {
   endTime     DateTime
 
   class   Class[]
+  CollageName String @default("tact")
 }
 
 enum Usergender {
   MALE
   FEMALE
 }
- 
-//
 model Fee{
   id Int @id @default(autoincrement())
   amount Float
@@ -164,6 +175,7 @@ model Fee{
   studentId String
   student Student @relation(fields: [studentId], references: [id])
   createdAt DateTime @default(now())
+  CollageName String @default("tact")
 }
 
 model Semester{
@@ -171,9 +183,11 @@ model Semester{
   name String
   startDate DateTime
   endDate DateTime
+    CollageName String @default("tact")
   
   createdAt DateTime @default(now())
 } 
+ 
 enum Sem {
  FIRST
  SECOND

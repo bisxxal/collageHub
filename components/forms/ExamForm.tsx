@@ -69,7 +69,7 @@ const ExamForm = ({
  
 
   return (
-    <form className="flex inshadow frame p-2 rounded-xl flex-col gap-8" onSubmit={onSubmit}>
+    <form className="flex rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a]  p-2 flex-col gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new exam" : "Update the exam"}
       </h1>

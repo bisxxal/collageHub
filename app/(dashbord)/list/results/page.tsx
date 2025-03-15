@@ -28,7 +28,7 @@ const ResultListPage = async ({
 const { userId, sessionClaims } = auth();
 const role = (sessionClaims?.metadata as { role?: string })?.role;
 const currentUserId = userId;
-
+const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
 const columns = [
   {
@@ -102,7 +102,7 @@ const renderRow = (item: ResultList) => (
   const p = page ? parseInt(page) : 1;
  
 
-  const query: Prisma.ResultWhereInput = {};
+  const query: Prisma.ResultWhereInput = { };
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {

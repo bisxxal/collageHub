@@ -20,7 +20,7 @@ const LessonListPage = async ({
 
 const { sessionClaims } = auth();
 const role = (sessionClaims?.metadata as { role?: string })?.role;
-
+const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
 const columns = [
   {
@@ -74,7 +74,7 @@ const renderRow = (item: LessonList) => (
   const p = page ? parseInt(page) : 1;
  
 
-  const query: Prisma.LessonWhereInput = {};
+  const query: Prisma.LessonWhereInput = {CollageName :collage};
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
@@ -118,6 +118,7 @@ const renderRow = (item: LessonList) => (
   
       <Bar role={role} table="lesson" type="create" /> 
         <Table columns={columns} renderRow={renderRow} data={data} /> 
+        {data.length === 0 && <div className='text-center mt-10 text-lg '>No Lesson Found</div>}
       <Pagination page={p} count={count} />
     </div>
   );

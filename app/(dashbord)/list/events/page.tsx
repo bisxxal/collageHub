@@ -17,6 +17,7 @@ const EventListPage = async ({
   const { userId, sessionClaims } = auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   const currentUserId = userId;
+  const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
   const columns = [
     {
@@ -82,7 +83,7 @@ const EventListPage = async ({
 
   const p = page ? parseInt(page) : 1;
   
-  const query: Prisma.EventWhereInput = {};
+  const query: Prisma.EventWhereInput = {CollageName:collage};
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
@@ -98,18 +99,6 @@ const EventListPage = async ({
     }
   }
  
-  // const roleConditions: { [key: string]: Prisma.ClassListRelationFilter } = {
-  //   teacher: { some: { lessons: { some: { teacherId: currentUserId! } } } },
-  //   student: { some: { students: { some: { id: currentUserId! } } } }, 
-  // };
-
-  // query.OR = [
-  //   { class: { none: {} } },
-  //   {
-  //     class: roleConditions[role as keyof typeof roleConditions] || {},
-  //   },
-  // ];
-
   const [data, count] = await prisma.$transaction([
     prisma.event.findMany({
       where: query,
@@ -132,6 +121,7 @@ const EventListPage = async ({
    
       <Bar role={role} table="event" type="create" data="" /> 
       <Table columns={columns} renderRow={renderRow} data={data} /> 
+      {data.length === 0 && <div className='text-center mt-10 text-lg '>No Event Found</div>}
       <Pagination page={p} count={count} />
     </div>
   );

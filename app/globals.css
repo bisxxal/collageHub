@@ -49,6 +49,31 @@ body::-webkit-scrollbar-thumb {
 .inshadow{
   box-shadow: inset 0 0 10px #ffffff1c;
 }
+
+/* .inshadow2 {
+  box-shadow: inset 1px 11px 116px 112px #3352cc2e;
+} */
+
+ 
+.inshadow2 {
+  box-shadow: inset 1px 0px 137px 8px #ffffff2e;
+  animation: blinkGlow 3s linear infinite alternate; 
+}
+
+@keyframes blinkGlow {
+  0% {
+    box-shadow: inset 1px 0px 139px 8px #ffffff2e;  
+  }
+  50% {
+    box-shadow: inset 1px 0px 100px 20px #b1b1b1a8;  
+  }
+  100% {
+    box-shadow: inset 1px 0px 139px 8px #ffffff2e;  
+  }
+}
+
+
+
 .frame{
   background: #161621;
   background: linear-gradient(179deg, #ffffff14 11%, #161621 99%)
@@ -151,14 +176,11 @@ body::-webkit-scrollbar-thumb {
 .cl-internal-1hp5nqm{
   display: none !important;
 }
-
-/* .frame2 {
-  background: #161621;
-  background: linear-gradient(360deg, #ffffff14 9%, #3352cc 167%);
-} */
+ 
 .frame2 {
-  background: #161621;
-  background: linear-gradient(360deg, #ffffff14 -38%, #3352cc 161%);
+
+    background: #161621;
+    background: linear-gradient(360deg, #ffffff00 -2%, #5f7fff8f 166%);
 }
 
 .logo{

@@ -1,25 +1,37 @@
+ 
 import prisma from '@/lib/prisma'
+import { auth } from '@clerk/nextjs/server';
 import React from 'react'
 
-async function Card({type}:{type:'admin'|'student'|'teacher'}) {
-  
-  const modelMap : Record<typeof type , any>= {
+async function Card({ type  , bg , text }: { type: 'admin' | 'student' | 'teacher' , bg?: string , text?: string }) {
+
+   const { sessionClaims } = auth();
+      const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+  const modelMap: Record<typeof type, any> = {
     admin: prisma.admin,
     student: prisma.student,
-    teacher: prisma.teacher
+    teacher: prisma.teacher,
   }
-  const data = await modelMap[type].count()
- 
+
+  const data = await modelMap[type].count({
+    where: {
+      CollageName: collage, 
+    }
+  })
+
   return (
-    <div className="rounded-2xl  inshadow frame2  p-4 flex-1 min-w-[130px]">
-    <div className="flex justify-between items-center">
-      <span className="text-[10px] bg-white px-2 py-1 rounded-full text-green-600">
-        2024/25
-      </span> 
-    </div>
-    <h1 className="text-2xl font-semibold my-4">{data}</h1>
-    <h2 className="capitalize text-sm font-medium text-gray-500">{type}s</h2>
-  </div>
+    <div className={`w-[300px] ${text} h-56 buttonhover inputbg relative rounded-3xl border-2 border-[#ffffff2c] flex flex-col items-center justify-center "`}>
+          <div className={` h-[85%] w-[75%] ${bg } blur-[25px] rounded-full absolute `}></div>
+
+            <div className="flex justify-between items-center absolute left-4 top-4">
+     <span className="text-[10px] bg-[#ffffff32] px-2 py-1 rounded-full text-green-600 ">
+           2024/25
+         </span>
+       </div>
+           
+          <p className=" font-medium">{type}s</p>
+          <p className="  text-6xl font-bold">{data}</p>
+        </div>
   )
 }
 

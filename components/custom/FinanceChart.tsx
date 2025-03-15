@@ -13,12 +13,10 @@ interface FeeData {
 
 const FinanceChart = () => {
   const [feeData, setFeeData] = useState<FeeData[]>([]);
-
   useEffect(() => { 
     const fetchFeeData = async () => {
       try {
         const fees = await getFin();
- 
         const formattedData: FeeData[] = Array.from({ length: 12 }, (_, i) => {
           const monthName = new Date(0, i).toLocaleString("default", {
             month: "short",
@@ -49,7 +47,7 @@ const FinanceChart = () => {
 
   
   return (
-    <div className="bg-[#080312]  inshadow frame rounded-xl w-full h-full p-3 max-md:px-1">
+    <div className="bg-[#080312]  inshadow frame2 rounded-xl w-full h-full p-3 max-md:px-1">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold">Finance</h1>
       </div>

@@ -104,20 +104,23 @@ export const updateAttendance = async (attendanceData: {
   lessonId: number;
   date: Date;
   present: boolean;
+  collage: string;
+
 }) => {
-  try { 
+  try {
     const existingAttendance = await prisma.attendance.findFirst({
       where: {
         studentId: attendanceData.studentId,
         lessonId: attendanceData.lessonId,
         date: attendanceData.date,
+        CollageName: attendanceData.collage,
       },
     });
 
     if (existingAttendance) { 
-      await prisma.attendance.update({
+      const res  = await prisma.attendance.update({
         where: { id: existingAttendance.id },
-        data: { present: attendanceData.present },
+        data: { present: attendanceData.present , CollageName: attendanceData.collage },
       });
     } else { 
       await prisma.attendance.create({
@@ -126,6 +129,7 @@ export const updateAttendance = async (attendanceData: {
           lessonId: attendanceData.lessonId,
           date: attendanceData.date,
           present: attendanceData.present,
+          CollageName: attendanceData.collage 
         },
       });
     }
@@ -144,9 +148,9 @@ export const allStudentsAttendence = async () => {
     });
 
     const lesssons = await prisma.lesson.findMany({
+      
       select: { id: true, name: true },
     });
-
     return JSON.parse(JSON.stringify({students , lesssons}));
   } catch (error) {
    

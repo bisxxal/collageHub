@@ -4,6 +4,7 @@ import { razorpayInstance } from "@/utils/razorpay";
 import { Sem } from "@prisma/client"; 
 import Razorpay from "razorpay"; 
 import crypto from "crypto"; 
+import { auth } from "@clerk/nextjs/server";
 
 
 export async function Createpaymet({ amount, currency }:any) { 
@@ -40,6 +41,8 @@ try {
 const isAuthentic = expectedSignature === razorpay_signature;
  
  if (isAuthentic) {
+  const { sessionClaims } = auth();
+  const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
   await prisma.fee.create({
     data: {
       amount,
@@ -47,6 +50,7 @@ const isAuthentic = expectedSignature === razorpay_signature;
       studentId,
       razorpay_order_id,
       razorpay_payment_id,
+      CollageName:collage,
     },
   }); 
    
@@ -70,7 +74,7 @@ export async function Capturepaymet(studentId: string, semesterName: Sem , amoun
       },
     });
   } catch (error) {
-    // console.log('Error in capturing payment:', error);
+    console.log('Error in capturing payment:', error);
     
   }
 }
@@ -88,9 +92,10 @@ export async function UPdatePayment(userId: string) {
 
 export async function getFin() {
   try {
-    const fees = await prisma.fee.findMany({});
+    const { sessionClaims } = auth();
+        const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+    const fees = await prisma.fee.findMany({ where:{CollageName:collage} });
     return JSON.parse(JSON.stringify(fees));
-
   } catch (error) { 
     return JSON.parse(JSON.stringify([]));
 
@@ -114,7 +119,12 @@ export async function getFinById(userId: string) {
 
 export async function getFince() {
   try {
+    const { sessionClaims } = auth();
+        const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     const fees = await prisma.fee.findMany({
+      where:{
+        CollageName:collage
+      },
       include: { 
         student: {
           select: {

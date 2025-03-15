@@ -15,6 +15,7 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
  
   const { sessionClaims } = auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
+  const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
   const renderRow = (item: TeacherList) => (
     <tr
@@ -89,13 +90,14 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
 
   const p = page ?parseInt(page): 1;
 
-  const quary : Prisma.TeacherWhereInput = {};
+  const quary : Prisma.TeacherWhereInput = {CollageName:collage };
 
   if(quaryParmas){
     for (const [key,value] of Object.entries(quaryParmas)){
       if(value !== undefined){
         switch(key){
           case "classid": 
+          quary.CollageName = "kiit";
           quary.lessons ={
             some:{
               classId:parseInt(value)
@@ -103,10 +105,8 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
           }
           break;
           case "search": quary.name = {contains:value , mode:"insensitive"};
-          
-            break; 
-
-
+          break;
+          default:break;
           }
        
         }
@@ -135,7 +135,7 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
     <Bar role={role} table="teacher" type="create" /> 
 
       <Table columns={columns} renderRow={renderRow} data={teachers} />
-      
+      {teachers.length === 0 && <div className='text-center mt-10 text-lg '>No Teachers Found</div>}
       <Pagination page={p} count={count} />
     </div>
   );

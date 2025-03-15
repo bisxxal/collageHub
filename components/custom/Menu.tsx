@@ -12,7 +12,9 @@ import MobileMenu from "./MobileMenu";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
- 
+import { RiAdminFill } from "react-icons/ri";
+<RiAdminFill />
+
   const menuItems = [
   {
     title: "MENU",
@@ -21,7 +23,13 @@ import { usePathname } from "next/navigation";
         icon:<GoHome />,
         label: "Home",
         href: "/",
-        visible: ["admin", "teacher", "student"],
+        visible: ["admin", "teacher", "student" , 'super'],
+      },
+      {
+        icon:<RiAdminFill />,
+        label: "Admin",
+        href: "/super/admins",
+        visible: [ 'super'],
       },
       {
         icon: <FaChalkboardTeacher />,

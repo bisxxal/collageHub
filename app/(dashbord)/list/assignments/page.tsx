@@ -25,6 +25,7 @@ const AssignmentListPage = async ({
   const { userId, sessionClaims } = auth();
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   const currentUserId = userId;
+  const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
   const columns = [
     {
@@ -86,7 +87,7 @@ const AssignmentListPage = async ({
   const p = page ? parseInt(page) : 1;
  
 
-  const query: Prisma.AssignmentWhereInput = {};
+  const query: Prisma.AssignmentWhereInput = {CollageName :collage};
 
   query.lesson = {};
 
@@ -154,7 +155,7 @@ const AssignmentListPage = async ({
     <div className=" p-4 rounded-md flex-1 m-4 mt-0"> 
       <Bar role={role} table="assignment" type="create" data="All Assignments" />
         <Table columns={columns} renderRow={renderRow} data={data} />
- 
+        {data.length === 0 && <div className='text-center mt-10 text-lg '>No Assignment Found</div>}
       <Pagination page={p} count={count} />
     </div>
   );

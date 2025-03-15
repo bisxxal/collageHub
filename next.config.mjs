@@ -9,12 +9,18 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: '**.res.cloudinary.com',  
+            },
+            {
+                protocol: 'https',
                 hostname: 'res.cloudinary.com',  
             },
-            
-            { hostname: "images.pexels.com" }, 
+            {
+                protocol: 'https',
+                hostname: '**.images.pexels.com',  
+            },
             
         ],
     },
 };
- 
+export default nextConfig;
