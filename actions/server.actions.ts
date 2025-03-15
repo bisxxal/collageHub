@@ -1,8 +1,7 @@
 'use server'
 import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
-import { clerkClient } from "@clerk/nextjs/server"; 
-import { NumberLiteralType } from "typescript";
+import { clerkClient } from "@clerk/nextjs/server";
 type CurrentState = { success: boolean; error: boolean };
 
 export const createSubject = async ( currentState:CurrentState , data:SubjectSchema) => {

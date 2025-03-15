@@ -1,5 +1,6 @@
 "use client";
 
+import ForgotPasswordPage from "@/components/forgot";
 import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
 import { useUser } from "@clerk/nextjs";    
@@ -70,6 +71,8 @@ const LoginPage = () => {
         <LuLoader />
     </h1></div>
       }
+
+      {/* <ForgotPasswordPage/> */}
     </div>
   );
 };
