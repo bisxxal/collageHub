@@ -9,6 +9,7 @@ import { getFince } from "@/actions/payemt.actions";
 async function EventCalenderServer({searchParams}:{searchParams:{[key:string]:string | undefined}}) {
   const {date} = searchParams;
   const data = await getFince();
+
   return (
     <>
     <div className=" w-full frame2 inshadow rounded-lg">
@@ -22,7 +23,7 @@ async function EventCalenderServer({searchParams}:{searchParams:{[key:string]:st
     </div>
       <EventCalendar />
       <div className=" mt-3">
-        <h1 className=" ">All Events</h1>
+        <h1 className=" text-center my-5 ">All Events</h1>
         <EventList dateParam={date}/>
       </div>
     </div>

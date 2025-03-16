@@ -7,6 +7,7 @@ type RouteAccessMap = {
     "/admin(.*)": ["admin"],
     "/super(.*)": ["super"],
     "/super/admins(.*)": ["super"],
+    "/super/collages(.*)": ["super"],
     "/admins(.*)": ["super"],
     "/student(.*)": ["student"],
     "/teacher(.*)": ["teacher"], 

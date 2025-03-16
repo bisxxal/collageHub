@@ -29,7 +29,7 @@ const onSumbit = async(formData:FormData) => {
   return (
     <div>
           <h1 className=' text-center text-3xl font-semibold mb-10'>Create Admin</h1>
-        <form className=' flex flex-col gap-4  mx-auto mt-10 w-1/2 bg-black rounded-2xl ' action={onSumbit}>
+        <form className=' flex flex-col gap-4  mx-auto mt-10 w-1/2 max-md:w-[80%] bg-black rounded-2xl ' action={onSumbit}>
           <div className='flex flex-col'>
             <label htmlFor="email">Email</label>
             <input className=' inputbg bg-transparent border border-[white] p-2 rounded-2xl' type="email" name='email' id='email'  required/>

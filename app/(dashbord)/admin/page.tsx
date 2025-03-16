@@ -9,12 +9,13 @@ const AdminPage = ({searchParams}:{searchParams:{[key:string]:string | undefined
   return (
     <div className="p-4 bg-[#090a15f2] flex gap-4 flex-col min-h-[100vh] md:flex-row ">
       <div className="w-full lg:w-2/3 flex flex-col gap-8">
-        <div className="flex gap-4 mt-2 justify-between flex-wrap">
-     
+
+        <div className="flex gap-4 max-md:gap-2 mt-2 justify-between flex-wrap">
           <Card type="admin"  text='text-[#fc2626]' bg='bg-[#ff00003e]' />
-          <Card type="student" text='text-[#f3fd29]' bg='bg-[#fff2003e]'/>
           <Card type="teacher" text='text-[#26fc26]' bg='bg-[#0dff003e]' />
+          <Card type="student" text='text-[#f3fd29]' bg='bg-[#fff2003e]'/>
         </div>
+
         <div className="flex gap-4 flex-col lg:flex-row">
           <div className="w-full lg:w-1/3 h-[450px]">
  

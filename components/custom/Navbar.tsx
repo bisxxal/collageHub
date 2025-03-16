@@ -18,15 +18,15 @@ async function Navbar() {
           <span className="  font-bold">Collage Hub </span>
         </Link>
 
-        <div className=' flex gap-4 mr-10'>
+        <div className=' flex gap-4 mr-10 max-md:mr-6 '>
 
-        { collage  && <div className=' flex relative group max-md:hidden items-center gap-3 text-lg mr-10'>
-                <IoSchool size={23}/>
-            <p className=' text-base max-md:text-sm  max-md:'> {clg?.fname} </p>
+        { collage  && <div className=' flex relative group  max-md:w-32 bg- -400 max-md:text-xs  txt-ellipsis items-center gap-3 text-lg mr-10 max-md:mr-3'>
+                <IoSchool className="text-2xl max-md:text-sm " />
+            <p className=' text-base max-md:text-sm truncate max-md:w-32 max-md:'> {clg?.fname} </p>
 
-            <div className=' -bottom-20  w-[200px] min-h-[50px] z-[10] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff27]  backdrop-blur-md p-3 px-4 rounded-md'>
-           { clg?.link && <Link className=' flex items-center gap-2 ' href={clg?.link} ><CgWebsite size={21}/> Visit site </Link> }
-            {clg?.gmap && <Link className=' flex items-center gap-2 ' href={clg.gmap} ><FaLocationArrow size={21}/> Visit Map </Link>}
+            <div className=' -bottom-20  w-[200px] max-md:w-[140px] max-md:text-xs min-h-[50px] z-[1] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff35]  backdrop-blur-md p-3 px-4 rounded-md'>
+           { clg?.link && <Link className=' flex items-center gap-2 ' href={clg?.link} ><CgWebsite  className=" text-lg max-md:text-sm " /> Visit site </Link> }
+            {clg?.gmap && <Link className=' flex items-center gap-2 ' href={clg.gmap} ><FaLocationArrow  className=" text-lg max-md:text-sm " /> Visit Map </Link>}
           </div>
         </div>}
 

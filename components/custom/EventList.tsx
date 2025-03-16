@@ -9,7 +9,6 @@ import React from 'react'
         where:{
             startTime:{
                 gte :new Date(date.setHours(0,0,0,0)),
-                lte :new Date(date.setHours(23,59,59,59)),
             }
         }
     })
@@ -23,16 +22,24 @@ import React from 'react'
         <div className="flex items-center justify-between">
           <h1 className="font-semibold text-gray-600">{event.title}</h1>
           <span className="text-gray-300 text-xs">
-            {event.startTime.toLocaleTimeString('en-In', { 
-              hour: '2-digit', 
-              minute: '2-digit',
-              hour12: false,
+          {event.startTime.toLocaleDateString('en-In', {
+              day: '2-digit',
+              month: 'short',
+              year: '2-digit',
+            })} - 
+            {event.endTime.toLocaleDateString('en-In', {
+              day: '2-digit',
+              month: 'short',
+              year: '2-digit',
             })}
           </span>
         </div>
         <p className="mt-2 text-gray-400 text-sm">{event.description}</p>
       </div>
     ))}
+    {
+      data.length === 0 && <p className='text-center text-gray-400'>No events </p>
+    }
   </div>
   )
 }

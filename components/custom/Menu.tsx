@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
  import { GoHome } from "react-icons/go";
- import { FaChalkboardTeacher } from "react-icons/fa";
+ import { FaChalkboardTeacher, FaSchool } from "react-icons/fa";
  import { PiStudent ,PiExam} from "react-icons/pi";
  import { SiGoogleclassroom } from "react-icons/si";
  import { MdOutlinePlayLesson ,MdOutlineAssignment } from "react-icons/md";  
@@ -29,6 +29,12 @@ import { RiAdminFill } from "react-icons/ri";
         icon:<RiAdminFill />,
         label: "Admin",
         href: "/super/admins",
+        visible: [ 'super'],
+      },
+      {
+        icon:<FaSchool />,
+        label: "Collages",
+        href: "/super/collages",
         visible: [ 'super'],
       },
       {

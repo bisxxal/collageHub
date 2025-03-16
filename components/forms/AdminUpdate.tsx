@@ -54,7 +54,8 @@ const ADupdatePages = ( ) => {
                 <LoaderIcon className=' text-xl' />
             </div>
         }
-    { adminData && !loader &&  <div className="w-1/2 mx-auto border-2 border-[#ffffff29] rounded-2xl">
+    { adminData && !loader &&  <div className="w-1/2 max-md:w-[90%] mx-auto border-2 border-[#ffffff29] rounded-2xl">
+
       {adminData.map((admin:{id:string , userName:string , collage:string}, index:number) => (
           <form
             key={admin.id}
@@ -63,8 +64,8 @@ const ADupdatePages = ( ) => {
               const formData = new FormData(e.target as HTMLFormElement);
               onSubmit(formData);
             }}
-            className="flex justify-between items-center py-7 border-b-2 border-[#ffffff16] p-5">
-            <input readOnly name="username" className="w- bg-transparent" value={admin.userName} />
+            className="flex justify-between items-center overflow-hidden py-7 border-b-2 border-[#ffffff16] p-5 max-md:p-4">
+            <input readOnly name="username" className="max-md:w-32   bg-transparent" value={admin.userName} />
 
             <select className="inputbg bg-transparent border border-[#ffffff3c] p-2 px-5 rounded-2xl" name="collage"
             //   value={admin.collage}  
@@ -75,17 +76,17 @@ const ADupdatePages = ( ) => {
               <option value="iter">Iter</option>
             </select>
 
-            <button type="submit" className="bg-green-500 text-white rounded-xl p-3 px-10">Update</button>
-            <button onClick={() => setShow(admin.id)} className="bg-red-500 text-white rounded-xl p-3 px-10"> Delete </button>
+            <button type="submit" className="bg-green-500 text-white rounded-xl p-3  max-md:px-5 px-10">Update</button>
+            <button onClick={() => setShow(admin.id)} className="bg-red-500 text-white rounded-xl p-3 max-md:px-5 px-10"> Delete </button>
           </form>
         ))}      
       </div>}
 
-     { show && <div className=' absolute  left-[20%]   p-4 w-[60%] top-[10%] flex items-center justify-center flex-col rounded-3xl text-xl backdrop-blur-xl bg-[#ffffff18] h-[40%] '>
-        <h1 className=' text-xl '>Are you sure delete the Admin ? </h1>
+     { show && <div className=' absolute  left-[20%] max-md:w-[80%]  max-md:left-[10%] max-md:h-[20%] p-4 w-[60%] top-[10%] flex items-center justify-center flex-col rounded-3xl text-xl backdrop-blur-xl bg-[#ffffff18] h-[40%] '>
+        <h1 className=' text-xl '>All data will be lost. Are you sure you want to delete Admin ? </h1>
         <div className=' flex gap-6 mt-4'>
-            <button onClick={() => onDelete(show)}   className="bg-red-500 text-white rounded-lg p-3 px-10"> Delete </button>
-            <button onClick={() => setShow('')}   className="bg-green-500 text-white rounded-lg p-3 px-10"> Cancel </button>
+            <button onClick={() => onDelete(show)}   className="bg-red-500 text-white rounded-lg p-3  px-10"> Delete </button>
+            <button onClick={() => setShow('')}   className="bg-green-500 text-white rounded-lg p-3  px-10"> Cancel </button>
         </div>
       </div>}
     </div>
