@@ -4,7 +4,7 @@ import { clerkClient } from "@clerk/nextjs/server";
 
 export const AddAdmin = async ( username:string ,firstName:string , lastName:string, email:string, password:string , collage:string) => {
   try {
-        const clerk = clerkClient();  
+      const clerk = clerkClient();  
       const user = await clerk.users.createUser({
         username:  username,
         password: password,
@@ -13,10 +13,15 @@ export const AddAdmin = async ( username:string ,firstName:string , lastName:str
         publicMetadata:{role:"admin" ,collage:collage},
       }); 
   
+      const usrid = user.id;
      const res = await prisma.admin.create({
         data: {
          userName: username,
-          CollageName:collage
+          CollageName:collage,
+          clerkId:usrid,
+          firstName:firstName,
+          lastName:lastName,
+          email:email,
         },
       });
    
@@ -31,9 +36,19 @@ export const AddAdmin = async ( username:string ,firstName:string , lastName:str
 }
 export const AllAdmins = async () => {
   try {
-   const admins = await prisma.admin.findMany();
+   const admins = await prisma.admin.findMany({
+    select:{
+      id:true,
+      userName:true,
+      CollageName:true,
+      firstName:true,
+      lastName:true,
+clerkId:true,
+    }
+   });
     return JSON.parse(JSON.stringify(admins));    
   } catch (error) { 
+    console.log(error)
     return JSON.parse(JSON.stringify(error));  
   }
 }
@@ -50,8 +65,15 @@ export const DeleteAdmin = async (id:string) => {
     return JSON.parse(JSON.stringify({success:false , error:true}));  
   }
 }
-export const UpdateAdmin = async (username:string, collage:string) => {
+export const UpdateAdmin = async (username:string, clerkId:string , collage:string) => {
   try {
+
+    const clerk = clerkClient();  
+    const user = await clerk.users.updateUserMetadata(clerkId, {
+      publicMetadata: {
+       collage:collage,
+      },
+    })
     const admin = await prisma.admin.update({
       where: {
        userName: username,
@@ -62,6 +84,7 @@ export const UpdateAdmin = async (username:string, collage:string) => {
     });
     return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (error) { 
+    console.log(error)
     return JSON.parse(JSON.stringify({success:false , error:true}));  
   }
 }

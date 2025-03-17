@@ -18,10 +18,10 @@ async function Navbar() {
           <span className="  font-bold">Collage Hub </span>
         </Link>
 
-        <div className=' flex gap-4 mr-10 max-md:mr-6 '>
+        <div className='max-md:gap-2 flex gap-4 mr-10 max-md:mr-6 '>
 
-        { collage  && <div className=' flex relative group  max-md:w-32 bg- -400 max-md:text-xs  txt-ellipsis items-center gap-3 text-lg mr-10 max-md:mr-3'>
-                <IoSchool className="text-2xl max-md:text-sm " />
+        { collage  && <div className=' flex relative group  max-md:w-32 max-md:text-xs  txt-ellipsis items-center gap-3 max-md:gap-1 text-lg mr-10 max-md:mr-0'>
+                <IoSchool className="text-2xl max-md:text-lg " />
             <p className=' text-base max-md:text-sm truncate max-md:w-32 max-md:'> {clg?.fname} </p>
 
             <div className=' -bottom-20  w-[200px] max-md:w-[140px] max-md:text-xs min-h-[50px] z-[1] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff35]  backdrop-blur-md p-3 px-4 rounded-md'>

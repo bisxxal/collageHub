@@ -11,6 +11,10 @@ model Admin {
   id       String @id @default(cuid())
   userName String @unique
   CollageName String @default("tact")
+  clerkId String  @default("1")
+  firstName String?
+  lastName String?
+  email String? 
 }
 
 model Student {
