@@ -217,3 +217,14 @@ input#navch:checked ~ .aside{
 /* input#prech:checked ~ .ipn{
   display: flex;
 } */
+
+ .pulseShimmer{
+  animation:   pulseShimmer 2.2s infinite linear; ;
+ }
+  @keyframes pulseShimmer {
+    0% {
+      background-position: -1000px;
+    }
+    100% {
+      background-position: 1000px;
+    } }

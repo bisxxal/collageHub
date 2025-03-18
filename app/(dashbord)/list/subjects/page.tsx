@@ -61,7 +61,7 @@ const SubjectListPage = async ({
   const p = page ? parseInt(page) : 1;
  
 
-  const query: Prisma.SubjectWhereInput = { CollageName :"kiit"};
+  const query: Prisma.SubjectWhereInput = { CollageName :collage};
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {

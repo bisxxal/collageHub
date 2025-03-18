@@ -1,5 +1,6 @@
 'use client'
 import { AddAdmin } from '@/actions/super.actions';
+import { fullname } from '@/lib/utils';
 import React from 'react'
 import toast from 'react-hot-toast';
 
@@ -53,11 +54,12 @@ const onSumbit = async(formData:FormData) => {
           <div className='flex flex-col'>
             <label>Collaege Name</label>
             <select className=' inputbg bg-transparent border border-[white] p-2 rounded-2xl' name="collage" required >
-              <option value="kiit">kiit</option>
-              <option value="tact">tact</option>
-              <option value="tat">tat</option>
-              <option value="iter">iter</option>
-              <option value="sillicon">sillicon</option>
+             
+              {
+                fullname.map((college:{collage:string , fname:string}) => (
+                  <option key={college.collage} value={college.collage}>{college.fname}</option>
+                ))
+              }
             </select>
           </div>
 

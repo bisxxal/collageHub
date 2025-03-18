@@ -97,7 +97,6 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
       if(value !== undefined){
         switch(key){
           case "classid": 
-          quary.CollageName = "kiit";
           quary.lessons ={
             some:{
               classId:parseInt(value)

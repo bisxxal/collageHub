@@ -17,11 +17,14 @@ const SupperAdmin = async() => {
           <SuperCard type="student" text='text-[#f3fd29]' bg='bg-[#fff2003e]'/>
           <SuperCard type="teacher" text='text-[#26fc26]' bg='bg-[#0dff003e]' />
         </div>
-        <div className="  max-md:w-[95%]  w-1/2 mt-10 text-xl h-[500px] mx-auto textbase  buttonhover inputbg relative rounded-3xl border-2 border-[#005eff] flex flex-col items-center justify-center ">
-          <p className=" font-medium">Total Collages</p>
-          <p className="  text-6xl font-bold">   {collages.length }</p>
- 
+         
+        <div className="w-[97%] mx-auto mt-20  text-[#005eff] h-80 buttonhover border-[#ffffff2c] inputbg relative rounded-3xl border-2 flex flex-col items-center justify-center ">
+          <div className=" h-[70%] w-[60%] bg-[#005eff3e] blur-[25px] rounded-full absolute"></div>
+          <p className="text-2xl font-medium">Total Collages </p>
+          <p className="  text-7xl font-bold"> {collages.length }</p>
         </div>
+
+
     </div>
   )
 }

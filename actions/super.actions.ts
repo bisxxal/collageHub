@@ -48,7 +48,7 @@ clerkId:true,
    });
     return JSON.parse(JSON.stringify(admins));    
   } catch (error) { 
-    console.log(error)
+
     return JSON.parse(JSON.stringify(error));  
   }
 }
@@ -84,7 +84,7 @@ export const UpdateAdmin = async (username:string, clerkId:string , collage:stri
     });
     return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (error) { 
-    console.log(error)
+    // console.log(error)
     return JSON.parse(JSON.stringify({success:false , error:true}));  
   }
 }

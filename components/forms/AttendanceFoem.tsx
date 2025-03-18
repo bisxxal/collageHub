@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getAttendanceForLesson, updateAttendance } from "@/actions/form.actions";
 import toast from 'react-hot-toast';
 import { getStudentsForLesson } from "@/actions/server.actions";
-import { LuLoader } from "react-icons/lu";
+import Secleton from "../Skeleton";
 
 interface Student {
   id: string;
@@ -146,18 +146,13 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons ,collage} ) => 
       </div>
 
       <div className="min-h-[90vh]">
-        {
-          loading &&  <h1 className=' text-center flex items-center justify-center h-full w-full animate-spin text-xl mt-5' >
-          <LuLoader />
-      </h1>
-        }
+        { loading && <Secleton boxes={6} width="w-[100%]"/>}
       {students.length === 0  && loading === false ? (
        <h1 className=' text-center flex items-center justify-center h-full w-full  text-xl mt-5' >
-       {/* <LuLoader /> */}
        NO STUDENTS FOUND
    </h1>
       ) : (
-        students.map((student) => (
+         !loading &&students && students.map((student) => (
           <div key={student.id} className="mb-5 w-[1270px] inshadow px-3 rounded py-2 flex items-center">
 
             <div className="text-sm w-[153px] flex items-center ">

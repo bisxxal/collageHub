@@ -1,13 +1,34 @@
  
 'use client'
 import { AllAdmins, DeleteAdmin, UpdateAdmin } from '@/actions/super.actions';
+import { fullname } from '@/lib/utils';
 import React, { useEffect, useState } from 'react'
-import toast, { LoaderIcon } from 'react-hot-toast';
+import toast from 'react-hot-toast';
+import Skeleton from '../Skeleton';
 
+interface adminDataProps{
+  id:string;
+  userName:string;
+  collage:string;
+  clerkId:string;
+  firstName:string;
+  lastName:string;
+}
 const ADupdatePages = ( ) => {
   const [adminData, setAdminData] = useState( [] as any); 
   const [show , setShow] = useState('')
   const [loader , setLoader] = useState(false)
+  
+  const onDelete = async (id: string) => {
+    const res = await DeleteAdmin(id);
+    if (res.success) {
+      toast.success('Admin Deleted successfully');
+    } else {
+      toast.error('Admin Delete failed');
+    }
+    setShow('')
+  }
+
   useEffect(() => {
     const fetchAdmins = async () => {
         setLoader(true)
@@ -17,9 +38,7 @@ const ADupdatePages = ( ) => {
     }
     fetchAdmins();
   }
-  , [ ]);
-
-  console.log(adminData)
+  , [   ]);
 
   const handleCollageChange = (index: number, value: string) => {
     const updatedAdmins = [...adminData];
@@ -37,30 +56,19 @@ const ADupdatePages = ( ) => {
     } else {
       toast.error('Admin Update failed');
     }
-    console.log(username, collage)
   };
 
-  const onDelete = async (id: string) => {
-    const res = await DeleteAdmin(id);
-    if (res.success) {
-      toast.success('Admin Deleted successfully');
-    } else {
-      toast.error('Admin Delete failed');
-    }
-    setShow('')
-  }
+  
 
   return (
     <div className=' w-full min-h-screen relative overflow-hidden'>
       <h1 className=' text-center text-3xl font-semibold mb-10'>Update Admin</h1>
       {
-            loader && <div className=' absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                <LoaderIcon className=' text-xl' />
-            </div>
-        }
-    { adminData && !loader &&  <div className="w-1/2 max-md:w-[90%] mx-auto border-2 border-[#ffffff29] rounded-2xl">
+        loader && <Skeleton boxes={5} width={'w-[90%]'} />  
+      }
+    { adminData && !loader &&  <div className="w-[90%] mx-auto border-2 border-[#ffffff29] rounded-2xl">
 
-      {adminData?.map((admin:{id:string , userName:string , collage:string , clerkId:string}, index:number) => (
+      {adminData?.map((admin:adminDataProps, index:number) => (
           <form
             key={admin.id}
             onSubmit={(e) => {
@@ -68,21 +76,27 @@ const ADupdatePages = ( ) => {
               const formData = new FormData(e.target as HTMLFormElement);
               onSubmit(formData);
             }}
-            className="flex justify-between items-center overflow-hidden py-7 border-b-2 border-[#ffffff16] p-5 max-md:p-4">
-            <input readOnly name="username" className="max-md:w-32   bg-transparent" value={admin.userName} />
-            <input readOnly name="cl" className="max-md:w-32  hidden  bg-transparent" value={admin?.clerkId} />
+            className="flex justify-between max-md:flex-col gap-4 items-center overflow-hidden py-7 border-b-2 border-[#ffffff16] p-5 max-md:p-4">
 
-            <select className="inputbg capitalize bg-transparent border border-[#ffffff3c] p-2 px-5 rounded-2xl" name="collage"
+              <div  className=' flex items-center gap-4 justify-center capitalize'>
+              <input readOnly name="username" className="  capitalize bg-transparent" value={admin.userName} />
+              <input readOnly name="cl" className=" hidden  bg-transparent" value={admin?.clerkId} />
+              <p className=' capitalize text-gray-400'> {admin.firstName} {admin.lastName}</p>
+              </div>
+
+            <select className=" capitalize bg-transparent border border-[#ffffff3c] max-md:text-xs max-md:px-1 max-md:rounded-lg p-2 px-5 rounded-2xl" name="collage"
             defaultValue={admin.collage} onChange={(e) => handleCollageChange(index, e.target.value)} >
-              <option value="tact">Tact</option>
-              <option value="silicon">Silicon</option>
-              <option value="tat">Tat</option>
-              <option value="iter">Iter</option>
-              <option value="kiit">Kiit</option>
+            {
+              fullname.map((college:{collage:string , fname:string}) => (
+                <option key={college.collage} value={college.collage}>{college.fname}</option>
+              ))
+            }
             </select>
 
-            <button type="submit" className="bg-green-500 text-white rounded-xl p-3  max-md:px-5 px-10">Update</button>
-            <button onClick={() => setShow(admin.id)} className="bg-red-500 text-white rounded-xl p-3 max-md:px-5 px-10"> Delete </button>
+          <div className=' flex items-center justify-center  gap-4'>
+          <button type="submit" className="bg-green-500 text-white rounded-xl p-3    px-10">Update</button>
+          <button onClick={() => setShow(admin.id)} className="bg-red-500 text-white rounded-xl p-3   px-10"> Delete </button>
+          </div>
           </form>
         ))}      
       </div>}
