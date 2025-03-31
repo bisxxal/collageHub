@@ -207,24 +207,28 @@ body::-webkit-scrollbar-thumb {
 .buttonbg{
   @apply bg-gradient-to-br text-white   from-[#3352CC] font-medium to-[#1C2D70];
 }
+.buttongreen{
+  @apply bg-gradient-to-br text-white   from-[#54ff51] font-medium to-[#036a06];
+}
+.buttonred{
+  @apply bg-gradient-to-br text-white   from-[#ff5a5a] font-medium to-[#6a0303];
+}
 .recharts-layer{
   color: white !important;
 }
 
 input#navch:checked ~ .aside{
   display: block;
-}
-/* input#prech:checked ~ .ipn{
-  display: flex;
-} */
+} 
 
- .pulseShimmer{
-  animation:   pulseShimmer 2.2s infinite linear; ;
+.pulseShimmer{
+  animation:   pulseShimmer 2.1s infinite linear; ;
  }
-  @keyframes pulseShimmer {
-    0% {
-      background-position: -1000px;
-    }
-    100% {
-      background-position: 1000px;
-    } }
+@keyframes pulseShimmer {
+  0% {
+    background-position: -500px;
+  }
+  100% {
+    background-position: 500px;
+  } 
+}

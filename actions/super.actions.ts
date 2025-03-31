@@ -53,14 +53,15 @@ clerkId:true,
   }
 }
  
-export const DeleteAdmin = async (id:string) => {
+export const DeleteAdmin = async (id:string ) => {
   try {
+    await clerkClient.users.deleteUser(id);
     const admin = await prisma.admin.delete({
       where: {
-        id: id,
+        clerkId: id,
       },
     });
-     return JSON.parse(JSON.stringify({success:true , error:false}));    
+    return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (error) { 
     return JSON.parse(JSON.stringify({success:false , error:true}));  
   }
@@ -84,7 +85,7 @@ export const UpdateAdmin = async (username:string, clerkId:string , collage:stri
     });
     return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (error) { 
-    // console.log(error)
+
     return JSON.parse(JSON.stringify({success:false , error:true}));  
   }
 }

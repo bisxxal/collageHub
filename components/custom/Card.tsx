@@ -12,7 +12,7 @@ async function Card({ type  , bg , text }: { type: 'admin' | 'student' | 'teache
     teacher: prisma.teacher,
   }
 
-  const data = await modelMap[type].count({
+  const data = await modelMap[type]?.count({
     where: {
       CollageName: collage, 
     }

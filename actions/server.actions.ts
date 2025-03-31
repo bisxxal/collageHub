@@ -1,7 +1,8 @@
 'use server'
 import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
+import { escape } from "querystring";
 
 type CurrentState = { success: boolean; error: boolean };
 
@@ -641,5 +642,32 @@ export async function getStudentsForLesson(lessonId: number) {
   } catch (error) {
 
     return JSON.parse(JSON.stringify({ success: false, message: "Failed to fetch students" }));
+  }
+}
+
+export const resultPie = async () => {
+  try {
+    const user = await currentUser()
+
+     const res = await prisma.result.findMany({
+      where: {studentId: user?.id},
+      select:{
+        score:true,
+        // include:{
+          exam:{
+            select:{
+              lesson:{ 
+                select:{
+                name:true
+              }}
+            }
+          // }
+        }
+      }
+      // select:{},
+      })
+      return JSON.parse(JSON.stringify(res));
+  } catch (error) {
+    
   }
 }

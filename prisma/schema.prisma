@@ -11,7 +11,7 @@ model Admin {
   id       String @id @default(cuid())
   userName String @unique
   CollageName String @default("tact")
-  clerkId String  @default("1")
+  clerkId String  @default("1") @unique
   firstName String?
   lastName String?
   email String? 
@@ -122,7 +122,7 @@ model Exam {
 
 model Assignment {
   id        Int      @id @default(autoincrement())
-  title     String   
+  title     String
   startDate DateTime
   dueDate   DateTime
 
@@ -187,7 +187,7 @@ model Semester{
   name String
   startDate DateTime
   endDate DateTime
-    CollageName String @default("tact")
+  CollageName String @default("tact")
   
   createdAt DateTime @default(now())
 } 

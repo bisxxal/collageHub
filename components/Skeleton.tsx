@@ -3,7 +3,7 @@ import React from 'react';
 
 const Skeleton = ({boxes ,width}:{boxes:number , width?:string}) => {
   return (
-    <div className={`  items-center justify-center flex flex-col px-3 gap-4 `}>
+    <div className={`   items-center justify-center flex flex-col px-3 gap-4 `}>
       {Array.from({ length: boxes }).map((_, index) => (
         <div
           key={index}
