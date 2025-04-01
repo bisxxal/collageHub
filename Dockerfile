@@ -14,7 +14,7 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy only the necessary files from the build stage
+
 COPY --from=build /app /app
 
 EXPOSE 3000

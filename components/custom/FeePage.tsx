@@ -5,8 +5,9 @@ import { Batch, Fee, Sem } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { fullname } from "@/lib/utils";
+import { sendEmailNode } from "@/lib/email";
 
-const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone?: string | null }) => {
+const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch; phone?: string | null ,email:string }) => {
   const { user } = useUser();
   const collage = user?.publicMetadata?.collage as string;
   const clg = fullname.find((item) => item.collage === collage);
@@ -98,7 +99,8 @@ const FeePage = ({ userId, batch, phone }: { userId: string; batch: Batch; phone
    const res =  await verifyPayment({ razorpay_order_id, razorpay_payment_id, razorpay_signature , studentId , semesterName , amount});
 
     if(res?.message =="success"){
-        router.push("/list/fee?payment=success")
+      router.push("/list/fee?payment=success")
+      await sendEmailNode({email:email ,message:` Fee for ${res.res.semesterName} sem has been paid Payment Id : ${res.res.razorpay_payment_id}  ` , subject:'Fee Payment Successfull'});  
       }
       else{
         router.push("/list/fee?payment=unsuccess")

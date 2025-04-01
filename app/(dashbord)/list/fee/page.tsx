@@ -20,7 +20,7 @@ const PaymentButton: React.FC = async () => {
 
   const student = await prisma.student.findUnique({
     where: { username: user.username! },
-    select: { id: true, batch: true, phone: true },
+    select: { id: true, batch: true, phone: true, email: true },
   });
 
   if (!student) {
@@ -29,7 +29,7 @@ const PaymentButton: React.FC = async () => {
 
   return (
     <div>
-      <FeePage userId={student.id} batch={student.batch} phone={student.phone} />
+      <FeePage userId={student.id} batch={student.batch} phone={student.phone} email={student.email as string}/>
     </div>
   );
 };

@@ -43,7 +43,8 @@ const isAuthentic = expectedSignature === razorpay_signature;
  if (isAuthentic) {
   const { sessionClaims } = auth();
   const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
-  await prisma.fee.create({
+  
+  const res = await prisma.fee.create({
     data: {
       amount,
       semesterName,
@@ -52,9 +53,15 @@ const isAuthentic = expectedSignature === razorpay_signature;
       razorpay_payment_id,
       CollageName:collage,
     },
+    select:{
+      amount:true,
+      semesterName:true,
+      studentId:true,
+      razorpay_payment_id:true,
+    }
   }); 
    
-  return JSON.parse(JSON.stringify({ message: 'success' }));   
+  return JSON.parse(JSON.stringify({ message: 'success'  , res}));   
   
 } else {
   return JSON.parse(JSON.stringify({ message: 'unsuccess' }));   

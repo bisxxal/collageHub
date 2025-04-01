@@ -1,32 +1,5 @@
-# name: collage
-
-# services:
-#   nextjs:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     container_name: nextjs
-#     ports:
-#       - "3000:3000"
-#     env_file:
-#       - .env
-#   # db:
-#   #   image: postgres:16
-#   #   ports:
-#   #     - "5432:5432"
-#   #   container_name: postgres
-#   #   environment:
-#   #     POSTGRES_USER: postgres
-#   #     POSTGRES_PASSWORD: postgres
-#   #     POSTGRES_DB: postgres
-#   #   volumes:
-#   #     - postgres_data:/var/lib/postgresql/data
-
-# # volumes:
-# #   postgres_data:
-  
+ 
 name : collage-hub
-
 version: '3.1'
 services:
   app:
@@ -43,7 +16,6 @@ services:
       - '3000:3000'
       - '5555:5555'
     volumes:
-      # - .:/app
       - /app/.next
       - /app/node_modules
     depends_on:
