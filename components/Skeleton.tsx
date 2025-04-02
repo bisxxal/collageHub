@@ -1,10 +1,10 @@
  
 import React from 'react';
 
-const Skeleton = ({boxes ,width}:{boxes:number , width?:string}) => {
+const Skeleton = ({boxes ,width}:{boxes?:number , width?:string}) => {
   return (
     <div className={`   items-center justify-center flex flex-col px-3 gap-4 `}>
-      {Array.from({ length: boxes }).map((_, index) => (
+      {Array.from({ length: boxes! }).map((_, index) => (
         <div
           key={index}
           className={`${width} h-14 rounded-xl bg-[#222233] relative overflow-hidden`}
