@@ -1,5 +1,5 @@
 'use client'
-import { resultPie } from '@/actions/server.actions';
+import { resultPie } from '@/server/server.actions';
 import React, { useEffect, useState } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
  

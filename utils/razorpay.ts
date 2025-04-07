@@ -1,4 +1,3 @@
-// utils/razorpay.ts
 import Razorpay from 'razorpay';
 
 export const razorpayInstance = new Razorpay({

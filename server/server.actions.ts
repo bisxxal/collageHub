@@ -100,7 +100,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
       });
   
       return JSON.parse(JSON.stringify({success:true , error:false}));   
-    } catch (err:any) {  
+    } catch (err) {  
   
       return JSON.parse(JSON.stringify({success: false, error: true , message:err}));  
     }

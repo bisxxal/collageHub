@@ -8,8 +8,9 @@ import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import {   resultSchema, ResultSchema } from "@/lib/FormValidation"; 
 import InputField from "../custom/InputField";
-import {  allResults } from "@/actions/form.actions";
-import { createClass, createResults, updateClass, updateResults } from "@/actions/server.actions";
+import {  allResults } from "@/server/form.actions";
+import { createResults, updateResults } from "@/server/server.actions";
+ 
 
 const ResultForm = ({
   type,
@@ -57,7 +58,6 @@ const ResultForm = ({
   useEffect(() => {
     const fetchteachers = async () => {
       const res = await allResults();
-      
       setClass(res);
     };
     fetchteachers();

@@ -12,8 +12,17 @@ const formatAmount = (amount:number) => {
     return amount.toString();  
 };
  
+interface FeeDataProps {
+    CollageName: string
+    amount:number
+    createdAt: Date
+    id:number
+    semesterName:string
+    student: {batch:string} 
+    studentId:number
+}
+const PieChartComponent = ({feeData}:{feeData:FeeDataProps[]}) => { 
 
-const PieChartComponent = ({feeData}:any) => { 
     const [chartData, setChartData] = useState<any[]>([]); 
     useEffect(() => {
         if (feeData.length > 0) {
@@ -39,7 +48,7 @@ const PieChartComponent = ({feeData}:any) => {
     
     return (
         <>
-        <div className=' !text-xs mx-auto mt-3 w-[90%] h-[400px]' > 
+        <div className=' !text-xs  mx-auto mt-3 w-[90%] h-[400px]' > 
            
             <ResponsiveContainer>
                 <RechartsPieChart> 

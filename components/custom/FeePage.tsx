@@ -1,6 +1,6 @@
 'use client'; 
 import { useUser } from "@clerk/nextjs";  
-import { Capturepaymet, Createpaymet, getFinById, UPdatePayment, verifyPayment } from "@/actions/payemt.actions";
+import { Capturepaymet, Createpaymet, getFinById, UPdatePayment, verifyPayment } from "@/server/payemt.actions";
 import { Batch, Fee, Sem } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
         try {
           const fees = await getFinById(userId);
           setFees(fees);
-          setPaidSemesters(fees.map((fee:any) => fee.semesterName));
+          setPaidSemesters(fees.map((fee:{semesterName:string}) => fee.semesterName));
         } catch (error) { 
         } 
       }
@@ -50,7 +50,7 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
             const updatedFees = await UPdatePayment(userId);
 
             if (updatedFees) {
-              setPaidSemesters(updatedFees.map((fee:any) => fee.semesterName));
+              setPaidSemesters(updatedFees.map((fee:{semesterName:string}) => fee.semesterName));
             }
           }
         },

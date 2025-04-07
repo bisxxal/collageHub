@@ -11,8 +11,8 @@ import { CldUploadWidget } from "next-cloudinary";
 import { teacherSchema, TeacherSchema } from "@/lib/FormValidation";
 import { IoMdCloudUpload } from "react-icons/io";
 import InputField from "../custom/InputField"; 
-import { allteachers } from "@/actions/form.actions"; 
-import { createTeacher, updateTeacher } from "@/actions/server.actions";
+import { allteachers } from "@/server/form.actions"; 
+import { createTeacher, updateTeacher } from "@/server/server.actions";
 
 const TeacherForm = ({
   type,

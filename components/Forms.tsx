@@ -1,5 +1,5 @@
 "use client"; 
-import { deleteAssingment, deleteClass, deleteEvent, deleteExam, deleteResults, deleteStudent, deleteSubject, deleteTeacher} from "@/actions/server.actions";
+import { deleteAssingment, deleteClass, deleteEvent, deleteExam, deleteResults, deleteStudent, deleteSubject, deleteTeacher} from "@/server/server.actions";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -13,7 +13,6 @@ const deleteActionMap: any = {
   teacher: deleteTeacher,
   student: deleteStudent,
   exam: deleteExam,
-
   assignment: deleteAssingment,
   result: deleteResults, 
   event: deleteEvent,
@@ -44,14 +43,7 @@ const ResultsForm = dynamic(() => import("./forms/ResultsForm"), {
   loading: () => <LoadingCom />,
 });
 
-const Form = ({
-  type,
-  data,
-  setOpen,
-  table,
-  relatedData,
-  id,
-}: {
+const Form = ({type,data,setOpen,table,relatedData,id,}: {
   type: "create" | "update" | "delete";
   data?: any;
   table: string;
@@ -156,7 +148,7 @@ const Form = ({
       <span className="text-center font-medium">
         All data will be lost. Are you sure you want to delete this {table}?
       </span>
-      <button className="bg-red-700  text- py-2 px-4 rounded-md border-none w-max self-center">
+      <button className="buttonred  text- py-2 px-4 rounded-md border-none w-max self-center">
         Delete
       </button>
     </form>

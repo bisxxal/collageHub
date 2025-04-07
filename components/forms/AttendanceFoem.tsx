@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useState } from "react";
-import { getAttendanceForLesson, updateAttendance } from "@/actions/form.actions";
+import { getAttendanceForLesson, updateAttendance } from "@/server/form.actions";
 import toast from 'react-hot-toast';
-import { getStudentsForLesson } from "@/actions/server.actions";
+import { getStudentsForLesson } from "@/server/server.actions";
 import Secleton from "../Skeleton";
 
 interface Student {
@@ -53,10 +53,10 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons ,collage} ) => 
 
       const attendanceResponse = await getAttendanceForLesson(lessonId, year, month);
       if (attendanceResponse.success) {
-        const fetchedAttendance: any = attendanceResponse.data;
+        const fetchedAttendance = attendanceResponse.data;
         const newAttendanceState: { [key: string]: boolean } = {};
 
-        fetchedAttendance.forEach((record: any) => {
+        fetchedAttendance.forEach((record:{date:Date , studentId:string , present:boolean , id:number , lessonId:number }) => {
           const key = `${record.studentId}-${new Date(record.date).toDateString()}`;
           newAttendanceState[key] = record.present;
         });

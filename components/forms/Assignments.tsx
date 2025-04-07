@@ -6,9 +6,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import { assignmentSchema, AssignmentSchema  } from "@/lib/FormValidation";
-import { createAssignment, createEvent,  updateAssignment,  updateEvent } from "@/actions/server.actions";
+import { createAssignment, createEvent,  updateAssignment,  updateEvent } from "@/server/server.actions";
 import InputField from "../custom/InputField";
-import { allassignment, allevent } from "@/actions/form.actions";
+import { allassignment, allevent } from "@/server/form.actions";
 
 const AssignmentForm = ({
   type,

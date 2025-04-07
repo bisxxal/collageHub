@@ -6,9 +6,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import { subjectSchema, SubjectSchema } from "@/lib/FormValidation";
-import { createSubject, updateSubject } from "@/actions/server.actions";
+import { createSubject, updateSubject } from "@/server/server.actions";
 import InputField from "../custom/InputField";
-import { allSubjects } from "@/actions/form.actions";
+import { allSubjects } from "@/server/form.actions";
 
 const SubjectForm = ({
   type,

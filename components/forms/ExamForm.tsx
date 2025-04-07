@@ -7,9 +7,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import { examSchema, ExamSchema } from "@/lib/FormValidation";
-import { createExam, updateExam } from "@/actions/server.actions";
+import { createExam, updateExam } from "@/server/server.actions";
 import InputField from "../custom/InputField";
-import { allLessons } from "@/actions/form.actions";
+import { allLessons } from "@/server/form.actions";
 
 const ExamForm = ({
   type,

@@ -10,8 +10,8 @@ import toast from 'react-hot-toast';
 import { CldUploadWidget } from "next-cloudinary";
 import { studentSchema, StudentSchema } from "@/lib/FormValidation";
 import InputField from "../custom/InputField";
-import { createStudent, updateStudent } from "@/actions/server.actions";
-import { allStudents } from "@/actions/form.actions";
+import { createStudent, updateStudent } from "@/server/server.actions";
+import { allStudents } from "@/server/form.actions";
 
 const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update" | "delete";data?: any;setOpen: Dispatch<SetStateAction<boolean>>;relatedData?: any;}) => {
   

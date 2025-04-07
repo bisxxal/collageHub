@@ -5,6 +5,7 @@ import { Sem } from "@prisma/client";
 import Razorpay from "razorpay"; 
 import crypto from "crypto"; 
 import { auth } from "@clerk/nextjs/server";
+import { fa } from "@faker-js/faker";
 
 
 export async function Createpaymet({ amount, currency }:any) { 
@@ -116,11 +117,8 @@ export async function getFinById(userId: string) {
     }); 
     
     return JSON.parse(JSON.stringify(fees));
-    // return fees;
   } catch (error) {
     return JSON.parse(JSON.stringify([]));
-
-    // return [];
   }
 }
 
@@ -132,15 +130,22 @@ export async function getFince() {
       where:{
         CollageName:collage
       },
-      include: { 
+     select:{
         student: {
           select: {
             batch: true,
           },
-        }
-       },
+        },
+      amount: true,
+      semesterName: true,
+      createdAt: true,
+      id: true,
+      studentId: true,
+      CollageName: true,
+      razorpay_order_id:false,
+      razorpay_payment_id:false,
+     }
     });
-    // return fees;
     return JSON.parse(JSON.stringify(fees));
 
   } catch (error) { 

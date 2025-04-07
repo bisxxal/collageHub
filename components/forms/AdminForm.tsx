@@ -1,5 +1,5 @@
 'use client'
-import { AddAdmin } from '@/actions/super.actions';
+import { AddAdmin } from '@/server/super.actions';
 import { fullname } from '@/lib/utils';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';

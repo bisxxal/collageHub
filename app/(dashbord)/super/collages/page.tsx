@@ -1,5 +1,5 @@
 'use client'
-import { AllStudAdminsAndTeacher, collageAdmins } from '@/actions/super.actions'
+import { AllStudAdminsAndTeacher, collageAdmins } from '@/server/super.actions'
 import { IoMdAdd } from "react-icons/io";
 import React, { useState, useEffect } from 'react'
 import { LoaderIcon } from 'react-hot-toast'

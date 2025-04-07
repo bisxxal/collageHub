@@ -19,7 +19,7 @@ const EventCalendar = () => {
   }, [value ,  router]);
 
   return (
-<Calendar onChange={onChange} value={value} />
+<Calendar className=' !w-[100%] ' onChange={onChange} value={value} />
   );
 };
 

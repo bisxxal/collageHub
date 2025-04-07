@@ -1,7 +1,7 @@
  
 'use client';
 
-import { getFin } from "@/actions/payemt.actions"; 
+import { getFin } from "@/server/payemt.actions"; 
 import { useEffect, useState } from "react"; 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts"; 
 
@@ -23,7 +23,7 @@ const FinanceChart = () => {
           });
 
           const monthFees = fees.filter(
-            (fee:any) => new Date(fee.createdAt).getMonth() === i
+            (fee:{createdAt:Date}) => new Date(fee.createdAt).getMonth() === i
           );
 
           const totalIncome = monthFees.reduce(

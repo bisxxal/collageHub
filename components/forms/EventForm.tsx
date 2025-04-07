@@ -6,9 +6,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import { eventSchema, EventSchema  } from "@/lib/FormValidation";
-import { createEvent,  updateEvent } from "@/actions/server.actions";
+import { createEvent,  updateEvent } from "@/server/server.actions";
 import InputField from "../custom/InputField";
-import { allevent } from "@/actions/form.actions";
+import { allevent } from "@/server/form.actions";
 
 const EventForm = ({
   type,

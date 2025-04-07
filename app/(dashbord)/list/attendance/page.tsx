@@ -1,5 +1,5 @@
 
-import { allStudentsAttendence } from '@/actions/form.actions'; 
+import { allStudentsAttendence } from '@/server/form.actions'; 
 import StudentAttendance from '@/components/custom/StudentAttendance'; 
 import AttendanceForm from '@/components/forms/AttendanceFoem'
 import { auth } from '@clerk/nextjs/server';

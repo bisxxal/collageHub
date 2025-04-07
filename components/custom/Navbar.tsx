@@ -6,7 +6,7 @@ import React from 'react'
 import { IoSchool } from "react-icons/io5";
 import { CgWebsite } from "react-icons/cg";
 import { FaLocationArrow } from "react-icons/fa";
- 
+
 async function Navbar() {
   const user = await currentUser(); 
   const collage =  user?.publicMetadata?.collage as string;
@@ -31,8 +31,8 @@ async function Navbar() {
         </div>}
 
         <div className="flex flex-col  ">
-          <span className="text-sm leading-3 font-medium">{user?.firstName} {user?.lastName}</span>
-          <span className="text-[12px] text-gray-500 text-right">
+          <span className="text-sm max-md:text-[10px] leading-3 font-medium">{user?.firstName} {user?.lastName}</span>
+          <span className="text-[12px] max-md:text-[10px] text-gray-500 text-right">
             {user?.publicMetadata?.role as string}
           </span>
 

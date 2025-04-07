@@ -15,10 +15,10 @@ export type FormServerProps = {
 
 const FormModal = ({ table, type, data, id,  }: FormServerProps  ) => {
   const size = type === "create" ? " w-fit px-3 h-8 hover:buttonbg transation-all" : "w-7 h-7";
-  const bgColor = type === "create" ? "buttonbg" : type === "update" ? "bg-green-500" : "bg-red-500";
+  const bgColor = type === "create" ? "buttonbg" : type === "update" ? "buttongreen" : "buttonred";
   const [open, setOpen] = useState(false);
  
-  const relatedData:any =  {};
+  const relatedData =  {};
   return (
     <> 
       <button className={`${size} flex !justify-center !items-center text-2xl h-10 w-10 rounded-full ${bgColor}`} onClick={() => setOpen(true)} >

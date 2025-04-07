@@ -8,8 +8,8 @@ import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import { classSchema, ClassSchema } from "@/lib/FormValidation"; 
 import InputField from "../custom/InputField";
-import { allClasses } from "@/actions/form.actions";
-import { createClass, updateClass } from "@/actions/server.actions";
+import { allClasses } from "@/server/form.actions";
+import { createClass, updateClass } from "@/server/server.actions";
 
 const ClassForm = ({
   type,

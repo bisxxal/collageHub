@@ -1,6 +1,6 @@
  
 'use client'
-import { AllAdmins, DeleteAdmin, UpdateAdmin } from '@/actions/super.actions';
+import { AllAdmins, DeleteAdmin, UpdateAdmin } from '@/server/super.actions';
 import { fullname } from '@/lib/utils';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
@@ -17,7 +17,7 @@ interface adminDataProps{
 }
 const ADupdatePages = ( ) => {
   const router = useRouter();
-  const [adminData, setAdminData] = useState( [] as any); 
+  const [adminData, setAdminData] = useState( [] as adminDataProps[] ); 
   const [show , setShow] = useState('')
   const [loader , setLoader] = useState(false)
   
@@ -94,7 +94,7 @@ const ADupdatePages = ( ) => {
             </select>
 
           <div className=' flex items-center justify-center  gap-4'>
-          <button type="submit" className="bg-green-500 buttongreen text-white rounded-xl p-3    px-10">Update</button>
+          <button type="submit" className=" buttongreen text-white rounded-xl p-3    px-10">Update</button>
           <button onClick={() => setShow(admin.clerkId)} className="buttonred text-white rounded-xl p-3   px-10"> Delete </button>
           </div>
           </form>
