@@ -137,26 +137,50 @@ export const updateAttendance = async (attendanceData: {
     return JSON.parse(JSON.stringify({ success: true }));
     // return { success: true };
   } catch (error) { 
+    
   }
 };
 
-export const allStudentsAttendence = async () => {
+export const allStudentsAttendence = async (role : 'admin'| 'teacher' , id:string) => {
 
   try {
-    const students = await prisma.student.findMany({
-      select: { id: true, name: true, surname: true },
-    });
-
-    const lesssons = await prisma.lesson.findMany({
-      
-      select: { id: true, name: true },
-    });
-    return JSON.parse(JSON.stringify({students , lesssons}));
-  } catch (error) {
    
-  }
+    if(role === "admin"){
+      const [students, lesssons] = await Promise.all([
+        prisma.student.findMany({
+          select: { id: true, name: true, surname: true },
+        }),
+        prisma.lesson.findMany({
+          select: { id: true, name: true },
+        }),
+      ]);
+      return JSON.parse(JSON.stringify({students , lesssons}));
+    }
 
+    if(role === "teacher"){
+      const [students, lesssons] = await Promise.all([
+        prisma.student.findMany({ 
+          select: { id: true, name: true, surname: true },
+        }),
+        prisma.teacher.findMany({
+          where: {
+            id:id,
+          },
+          select:{
+            lessons: {
+              select: { id: true, name: true },
+            },
+          }
+        }),
+      ]);
+
+      return JSON.parse(JSON.stringify({students , lesssons :lesssons[0].lessons}));
+    }
+  } catch (error) {
+  }
 } 
+ 
+ 
 export const getAttendanceForLesson = async (lessonId: number, year: number, month: number) => {
   const startDate = new Date(year, month, 1);
   const endDate = new Date(year, month + 1, 0);  
@@ -173,9 +197,51 @@ export const getAttendanceForLesson = async (lessonId: number, year: number, mon
     });
 
     return JSON.parse(JSON.stringify({success: true, data: attendanceData}));
-    // return { success: true, data: attendanceData };
+
   } catch (error) { 
     return JSON.parse(JSON.stringify({ success: false }));
     // return { success: false  };
+  }
+};
+
+
+interface AttendancePayload {
+  studentId: string;
+  lessonId: number;
+  date: Date;
+  present: boolean;
+  collage: string;
+}
+
+export const updateAllAttendance = async (data: AttendancePayload[]) => {
+  try {
+    const writePromises = data.map(async (record) => {
+      return prisma.attendance.upsert({
+        where: {
+          studentId_lessonId_date: {
+            studentId: record.studentId,
+            lessonId: record.lessonId,
+            date: new Date(record.date.toDateString()), // remove time
+          },
+        },
+        update: {
+          present: record.present,
+        },
+        create: {
+          studentId: record.studentId,
+          lessonId: record.lessonId,
+          date: new Date(record.date.toDateString()),
+          present: record.present,
+          // collage: record.collage,
+        },
+      });
+    });
+
+    await Promise.all(writePromises);
+
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update attendance:", error);
+    return { success: false, message: "Failed to update attendance." };
   }
 };

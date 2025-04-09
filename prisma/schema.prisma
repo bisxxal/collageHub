@@ -153,6 +153,8 @@ model Attendance {
   lessonId  Int
   lesson    Lesson  @relation(fields: [lessonId], references: [id])
   CollageName String @default("tact")
+
+   @@unique([studentId, lessonId, date]) // This enables the compound key
 }
 
 model Event {

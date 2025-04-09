@@ -13,7 +13,7 @@ const CountChart = ({boys , girls}:{boys:number , girls:number}) => {
     {
       name: "Girls",
       count: girls,
-      fill: "#f45252",
+      fill: "#fc2626",
     },
     {
       name: "Boys",

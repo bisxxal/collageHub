@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import React from 'react'
 
- async function EventList({dateParam}:{dateParam:string | undefined}) {
+ async function EventList({dateParam}:{dateParam?:string | undefined}) {
  
     const date =dateParam ? new Date(dateParam) : new Date();
     

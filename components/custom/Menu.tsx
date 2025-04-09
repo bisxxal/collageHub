@@ -120,7 +120,7 @@ const Menu = () => {
   return (
     <>
       <MobileMenu role={role}/>
-    <div className="mt-4 fixed top-12 backdrop-blur-lg left-0 inshadow border-r-[2px] border-[#ffffff2f] w-[200px] h-screen  max-lg:hidden block text-sm">
+    <div className="mt-4 fixed sidebarbg top-20  backdrop-blur-lg left-3.5 rounded-2xl  h-[90%] border border-[#ffffff17] w-[190px]   max-lg:hidden block text-sm">
       {menuItems.map((i) => (
         <div className="flex flex-col gap-2 mt-6 pl-3 " key={i.title} >
           {i.items.map((item) => {

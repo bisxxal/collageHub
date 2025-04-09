@@ -35,14 +35,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .react-calendar{
-  @apply !rounded-lg !border-2 !border-[#ffffff1e]  !overflow-hidden ;
-  /* background: #101019 !important;
-  background: linear-gradient(360deg, #ffffff14 9%, #3352cc 167%) !important; */
-
+  @apply !rounded-lg !border !border-[#ffffff00]  !overflow-hidden ;
   background: #161621 !important;
   background: linear-gradient(360deg, #ffffff00 -2%, #5f7fff8f 166%) !important;
-
-  box-shadow: inset 0 0 10px #ffffff1c !important;
+  /* box-shadow: inset 0 0 10px #ffffff1c !important; */
 }
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus , .react-calendar__navigation__label:enabled:hover {
   background-color: #090e1b !important;
@@ -52,25 +48,7 @@ body::-webkit-scrollbar-thumb {
 
 .inshadow{
   box-shadow: inset 0 0 10px #ffffff1c;
-} 
-.inshadow2 {
-  box-shadow: inset 1px 0px 137px 8px #ffffff2e;
-  animation: blinkGlow 3s linear infinite alternate; 
-}
-
-@keyframes blinkGlow {
-  0% {
-    box-shadow: inset 1px 0px 139px 8px #ffffff2e;  
-  }
-  50% {
-    box-shadow: inset 1px 0px 100px 20px #b1b1b1a8;  
-  }
-  100% {
-    box-shadow: inset 1px 0px 139px 8px #ffffff2e;  
-  }
-}
-
-
+}  
 
 .frame{
   background: #161621;
@@ -242,3 +220,20 @@ input#navch:checked ~ .aside{
   background: #161621;
   background: linear-gradient(179deg, #ffffff0a 11%, #090A15 80%);
 }
+
+@keyframes pulse {
+  50% {
+      opacity: .5;
+  }
+}
+
+.inputbg , select {
+  @apply bg-gradient-to-br  from-[#de262600] to-[#51515175] outline-none !border !border-[#5f5f5fa9];
+}
+.sidebarbg{
+  @apply bg-gradient-to-bl  from-[#de262600] to-[#51515139] ;
+}
+.sidebg{
+  @apply bg-gradient-to-br  from-[#de262600] to-[#1c2d70ab] !border font-bold !border-[#3352ccce] text-[#3352cc]
+}
+ 

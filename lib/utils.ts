@@ -40,6 +40,17 @@ export const adjustScheduleToCurrentWeek = (
     });
   };
 
+  
+export const formatAmount = (amount: number) => {
+  if (amount >= 1000000) {
+    return `${(amount / 1000000).toFixed(1)}M`;
+  } else if (amount >= 1000) {
+    return `${(amount / 1000).toFixed(1)}k`;
+  }
+  return amount.toString();
+};
+
+
 interface fullNameProps{
   collage: string,
   fname: string,
@@ -53,3 +64,4 @@ export   const fullname :fullNameProps[] =[
   {collage: 'kiit', fname:'Kalinga Institute of Industrial Technology'  , link:'https://kiit.ac.in/' , gmap:'https://www.google.com/maps/place/Kalinga+Institute+of+Industrial+Technology/@20.3555516,85.813526,17z/data=!3m1!4b1!4m6!3m5!1s0x3a19091813dab8d5:0xa033051ccddbbcbc!8m2!3d20.3555466!4d85.8161009!16zL20vMGdmaDVt?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D' }, 
   {collage: 'silicon', fname:'Silicon Institute of Technology'  , link:'https://silicon.ac.in/' , gmap:'https://www.google.com/maps/place/Silicon+University/@20.3506823,85.8037611,17z/data=!3m1!4b1!4m6!3m5!1s0x3a1908e064769e73:0x9288172f3a98c7a4!8m2!3d20.3506773!4d85.806336!16s%2Fm%2F03qkxqw?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D' }, 
 ]
+

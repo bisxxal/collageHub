@@ -118,7 +118,7 @@ function MobileMenu({role}:{role:string}) {
     <div  onClick={()=>setWidth(!width)} className=" hidden max-lg:block  max-lg:fixed top-4 hover:bg-[#ffffff38] rounded-full p-2 right-2 z-40 text-xl ">
 <GoSidebarCollapse className="   " />
     </div>
-    <div className={` ${ width === true ? ' w-[190px] left-0 top-0 ' : ' w-0 hidden -left-32  ' } fixed pl-2  top-0 hidden  overflow-hidden bg-[#090a1592] backdrop-blur-[20px] h-screen z-10 max-lg:block`}>
+    <div className={` ${ width === true ? ' w-[190px] left-0 top-0 ' : ' w-0 hidden -left-32  ' } fixed pl-2  top-0 hidden   overflow-hidden bg-[#090a1592] backdrop-blur-[20px] h-screen z-10 max-lg:block`}>
     <div className="mt-20   text-sm"> 
         {menuItems.map((i) => (
           <div className="flex flex-col gap-2" key={i.title}>

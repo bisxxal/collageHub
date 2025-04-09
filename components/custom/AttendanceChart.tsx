@@ -26,7 +26,7 @@ const AttendanceChart = ({data}:{data:{name:string , present:number  , absent:nu
           />
           <Bar
             dataKey="absent"
-            fill="#f45252"
+            fill="#fc2626"
             legendType="circle"
             radius={[10, 10, 0, 0]}
           />

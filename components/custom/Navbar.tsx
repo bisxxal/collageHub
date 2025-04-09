@@ -12,7 +12,7 @@ async function Navbar() {
   const collage =  user?.publicMetadata?.collage as string;
   const clg = fullname.find((item) => item.collage === collage);
   return (
-    <div className='flex items-center w-full fixed  backdrop-blur-md  top-0 left-0 z-30 bg-[#15141b93] justify-between p-4'>
+    <div className='flex items-center  w-full fixed  backdrop-blur-md  top-0 left-0 z-30 bg-[#15141b93] justify-between p-4'>
  
        <Link href="/" className=" flex   logo max-md:text-2xl text-3xl items-center justify-center gap-2">
           <span className="  font-bold">Collage Hub </span>
@@ -20,9 +20,10 @@ async function Navbar() {
 
         <div className='max-md:gap-2 flex gap-4 mr-10 max-md:mr-6 '>
 
-        { collage  && <div className=' flex relative group  max-md:w-32 max-md:text-xs  txt-ellipsis items-center gap-3 max-md:gap-1 text-lg mr-10 max-md:mr-0'>
-                <IoSchool className="text-2xl max-md:text-lg " />
-            <p className=' text-base max-md:text-sm truncate max-md:w-32 max-md:'> {clg?.fname} </p>
+        { collage  && <div className=' flex relative group   max-md:text-xs  txt-ellipsis items-center gap-3 max-md:gap-1 text-lg mr-10 max-md:mr-5'>
+                <IoSchool className="text-2xl max-md:text-lg text-zinc-300" />
+            <p className=' text-base max-md:hidden block truncate text-zinc-300 border-b border-[#ffffff22] caption-bottom'> {clg?.fname} </p>
+            <p className=' text-base max-md:block hidden truncate underline  text-zinc-400 capitalize'> {clg?.collage} </p>
 
             <div className=' -bottom-20  w-[200px] max-md:w-[140px] max-md:text-xs min-h-[50px] z-[1] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff35]  backdrop-blur-md p-3 px-4 rounded-md'>
            { clg?.link && <Link className=' flex items-center gap-2 ' href={clg?.link} ><CgWebsite  className=" text-lg max-md:text-sm " /> Visit site </Link> }
