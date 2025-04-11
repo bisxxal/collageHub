@@ -8,13 +8,7 @@ import { auth } from "@clerk/nextjs/server";
 import { Class, Prisma, Teacher } from "@prisma/client"; 
 type ClassList = Class & { supervisor: Teacher };
 
-const ClassListPage =async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) => {
- 
-
+const ClassListPage =async ({searchParams,}: {searchParams: { [key: string]: string | undefined };}) => {
   const { sessionClaims } = auth( );
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   const collage = (sessionClaims?.metadata as { collage?: string })?.collage;

@@ -6,6 +6,8 @@ import React from 'react'
 import { IoSchool } from "react-icons/io5";
 import { CgWebsite } from "react-icons/cg";
 import { FaLocationArrow } from "react-icons/fa";
+import { FaSchool } from "react-icons/fa";
+
 
 async function Navbar() {
   const user = await currentUser(); 
@@ -21,9 +23,9 @@ async function Navbar() {
         <div className='max-md:gap-2 flex gap-4 mr-10 max-md:mr-6 '>
 
         { collage  && <div className=' flex relative group   max-md:text-xs  txt-ellipsis items-center gap-3 max-md:gap-1 text-lg mr-10 max-md:mr-5'>
-                <IoSchool className="text-2xl max-md:text-lg text-zinc-300" />
+                <FaSchool className="text-2xl max-md:text-lg text-zinc-300" />
             <p className=' text-base max-md:hidden block truncate text-zinc-300 border-b border-[#ffffff22] caption-bottom'> {clg?.fname} </p>
-            <p className=' text-base max-md:block hidden truncate underline  text-zinc-400 capitalize'> {clg?.collage} </p>
+            <p className=' text-sm max-md:block  font-semibold font-mono hidden truncate underline  text-zinc-400 capitalize'> {clg?.collage} </p>
 
             <div className=' -bottom-20  w-[200px] max-md:w-[140px] max-md:text-xs min-h-[50px] z-[1] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff35]  backdrop-blur-md p-3 px-4 rounded-md'>
            { clg?.link && <Link className=' flex items-center gap-2 ' href={clg?.link} ><CgWebsite  className=" text-lg max-md:text-sm " /> Visit site </Link> }

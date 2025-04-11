@@ -73,7 +73,7 @@ const ResultForm = ({
       onSubmit={onSubmit}
     >
       <h1 className="text-xl font-semibold">
-        {type === "create" ? "Create a new class" : "Update the class"}
+        {type === "create" ? "Add new Result" : "Update the Result"}
       </h1>
 
       <div className="flex justify-between flex-wrap gap-4">

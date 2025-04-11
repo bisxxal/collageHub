@@ -102,7 +102,7 @@ const renderRow = (item: ResultList) => (
   const p = page ? parseInt(page) : 1;
  
 
-  const query: Prisma.ResultWhereInput = { };
+  const query: Prisma.ResultWhereInput = {  };
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {

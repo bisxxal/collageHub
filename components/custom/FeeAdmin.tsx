@@ -12,10 +12,10 @@ async function FeeAdmin() {
             CollageName: collage
         },
         select: {
+            id: true,
             amount: true,
             semesterName: true,
             razorpay_payment_id: true,
-            razorpay_order_id: true,
             createdAt: true,
             student: {
                 select: {
@@ -47,24 +47,23 @@ async function FeeAdmin() {
         <div className='w-full min-h-screen p-3'>
             <h1 className=' text-2xl font-semibold mb-4'>List of Payment</h1>
             <div className='w-full h-full'>
-                <div className=' grid max-md:grid-cols-4 grid-cols-6 mb-3  p-2 font-semibold'>
+                <div className=' grid max-md:grid-cols-4 grid-cols-5 mb-3  p-2 font-semibold'>
                     <h3>Student name</h3>
                     <h3>Amount</h3>
                     <h3 >Batch/Semester</h3>
                     <h3 className=' max-md:hidden '>Payment Id</h3>
-                    <h3 className=' max-md:hidden '>Order Id</h3>
                     <h3 className=' max-md: ml-8'>Date</h3>
                 </div>
 
                 <div>
                     {fee && fee.map((f) => {
                         return (
-                            <div key={f.razorpay_order_id} className='  grid  max-md:grid-cols-4 grid-cols-6 inshadow py-2 mb-2 rounded-lg border-2 border-[#ffffff14] max-md:text-sm px-2'>
+                            <div key={f.id} className='  grid  max-md:grid-cols-4 grid-cols-5 inshadow py-2 mb-2 rounded-lg border-2 border-[#ffffff14] max-md:text-sm px-2'>
                                 <p className=' capitalize'>{f.student.name} {f.student.surname}</p>
                                 <p>₹ {f.amount}</p>
                                 <p> {f.student.batch}/{setSEM(f.semesterName)} Sem</p>
                                 <p className=' max-md:hidden ' > {f.razorpay_payment_id ? <p>{f.razorpay_payment_id}</p>: '-----------------------' } </p>
-                                <p className=' max-md:hidden '>{f.razorpay_order_id ? <p className=' max-md:hidden'>{f.razorpay_order_id}</p> :'-----------------------'} </p>
+
                                 <p>{new Date(f.createdAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
                             </div>
                         )

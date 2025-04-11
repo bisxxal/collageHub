@@ -645,12 +645,12 @@ export async function getStudentsForLesson(lessonId: number) {
   }
 }
 
-export const resultPie = async () => {
+export const resultPie = async (id:string) => {
   try {
     const user = await currentUser()
 
      const res = await prisma.result.findMany({
-      where: {studentId: user?.id},
+      where: {studentId: id ? id : user?.id},
       select:{
         score:true,
         // include:{
@@ -668,6 +668,5 @@ export const resultPie = async () => {
       })
       return JSON.parse(JSON.stringify(res));
   } catch (error) {
-    
   }
 }

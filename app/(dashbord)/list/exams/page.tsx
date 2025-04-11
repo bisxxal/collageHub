@@ -15,16 +15,12 @@ type ExamList = Exam & {
   title?: string;
 };
 
-const ExamListPage = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) => {
+const ExamListPage = async ({searchParams,}: {searchParams: { [key: string]: string | undefined };}) => {
 
 const { userId, sessionClaims } = auth();
 const role = (sessionClaims?.metadata as { role?: string })?.role;
 const currentUserId = userId;
-
+const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
 const columns = [
   {
@@ -85,7 +81,7 @@ const renderRow = (item: ExamList) => (
 
   const p = page ? parseInt(page) : 1;
  
-  const query: Prisma.ExamWhereInput = {};
+  const query: Prisma.ExamWhereInput = { CollageName:collage};
 
   query.lesson = {};
   if (queryParams) {
