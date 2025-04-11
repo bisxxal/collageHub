@@ -6,9 +6,35 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell ,Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend } from "recharts";
 import { PieSectorDataItem } from "recharts/types/polar/Pie";
  
+
+const data1 =[
+  { subject: "Math", A: 90, fullMark: 100 },
+  { subject: "Dsa", A: 88, fullMark: 100 },
+   { subject: "English", A: 85, fullMark: 100 },
+]
+
+const data = [
+  {
+    subject: 'Math',
+    A: 90,
+    B: 100,
+    fullMark: 100,
+  },
+  {
+    subject: 'Chinese',
+    A: 80,
+    B: 100,
+    fullMark: 100,
+  },
+  {
+    subject: 'English',
+    A: 90,
+    B: 100,
+    fullMark: 100,
+  },
+  
+];
 const Performance = ({id}:{id:string}) => {
-
-
   const [cgpa, setCgpa] = useState(0);
   const width = 500;
   const [score, setScore] = useState([]);
@@ -21,7 +47,8 @@ const Performance = ({id}:{id:string}) => {
       const transformedData2 = res.map((item:{score:string ,exam:any}) => ({
         subject: item.exam?.lesson?.name, 
         A: item.score,      
-        fullMark: 100,    
+        fullMark: 100,  
+        B: item.assignment,  
       }));
       setScore(transformedData2);  
   
@@ -40,7 +67,7 @@ const Performance = ({id}:{id:string}) => {
     if(id){
       fetchData();
     }
-  }, []);
+  }, [id]);
 
   const segments = 10;
  
@@ -88,7 +115,7 @@ const colorData = [
             fill="#ffffff"
           />
         </g>
-        <text x={cx} y={cy! + 50} textAnchor="middle" dominantBaseline="middle"  fill="#ffffff"  fontSize={14}>
+        <text x={cx} y={cy! + 10} textAnchor="middle" dominantBaseline="middle"  fill="#ffffff"  fontSize={10}>
           CGPA: {cgpa}
         </text>
         <p> CGPA: {cgpa}</p>
@@ -99,22 +126,23 @@ const colorData = [
   const arrowData = [
     { value: cgpa },
     { value: 0 },
-    { value: 10 - cgpa }
+    { value: 11 - cgpa }
   ];
-  return (
-    <div className=" w-full pb-5 overflow-hidden">
 
-      <div className=' h-[450px]  '>
+  return (
+    <div className=" w-full pb-5 frame2 rounded-2xl overflow-hidden">
+
+      <div className=' h-[450px] w-full '>
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="80%" data={score}>
               <PolarGrid />
               <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis angle={30} domain={[0, 150]} />
+              <PolarRadiusAxis angle={30}  />
               <Radar name="Student" dataKey="A" stroke="#009966" fill="#99FE01" fillOpacity={0.6} />
+              <Radar name="assignment" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
             </RadarChart>
           </ResponsiveContainer>     
         </div>
-<h1 className=" text-center">Avg  CGPA: {cgpa}</h1>
     <PieChart width={500} height={300} >
       <text x={500 - 150} y={265}fill="#ffffff"textAnchor="middle" dominantBaseline="middle">
         10

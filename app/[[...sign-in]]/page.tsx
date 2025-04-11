@@ -21,13 +21,13 @@ const LoginPage = () => {
     <div className="h-screen flex items-center justify-center  overflow-hidden">
  
       { !user && 
+      <SignIn.Root>
      <div className=" w-full h-full flex items-center relative justify-around">
-      <h1 className=" w-full text-[200px] max-lg:text-[100px] max-md:text-[63px] max-md:top-[20%] slogo max-md:left-[10%] font-bold left-[17%] top-7  absolute">Collage Hub</h1>
+      <h1 className=" w-full text-[200px] max-lg:text-[100px] max-md:text-[50px] max-md:top-[20%] slogo max-md:left-[10%] font-bold left-[17%] top-7  absolute">Collage Hub</h1>
       <div className=" max-md:hidden block w-[30%] h-1/2 ">
         <Image width={500} height={500}  src="/bg3.svg" alt="logo" className="w-full h-full mb-5" />
       </div>
       <div className="w-[30%] h-[360px] max-md:h-[300px] max-lg:w-[60%] space-y-6 rounded-2xl sging !text-white px-4 py-10 shadow-md ring-1 ring-black/5 max-md:w-[90%]  sm:px-8 ">
-      <SignIn.Root>
         <SignIn.Step name="start">
           <header className="text-center">
        
@@ -40,13 +40,13 @@ const LoginPage = () => {
             <Clerk.Field name="identifier" className="space-y-2">
               <Clerk.Label className="text-sm font-medium ">Username</Clerk.Label>
               <Clerk.Input type="text" required
-                className="w-full rounded-md bg-transparent px-3.5 py-2 h-12  outline-none ring-1 ring-inset ring-zinc-300 hover:ring-zinc-400 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
+                className="w-full rounded-md bg-transparent px-3.5 inputbg py-2 h-12  outline-none ring-1 ring-inset ring-zinc-600 hover:ring-zinc-500 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
               <Clerk.FieldError className="block text-sm text-red-400" />
             </Clerk.Field>
             <Clerk.Field name="password" className="space-y-2">
               <Clerk.Label className="text-sm  font-medium ">Password</Clerk.Label>
               <Clerk.Input type="password" required
-                className="w-full rounded-md bg-transparent px-3.5 py-2 h-12 outline-none ring-1 ring-inset ring-zinc-300 hover:ring-zinc-400 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
+                className="w-full rounded-md bg-transparent px-3.5 inputbg py-2 h-12 outline-none ring-1 ring-inset ring-zinc-600 hover:ring-zinc-500 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
               <Clerk.FieldError className="block text-sm text-red-400" />
             </Clerk.Field>
           </div>
@@ -56,9 +56,9 @@ const LoginPage = () => {
           </SignIn.Action>
         
         </SignIn.Step>
-      </SignIn.Root>
       </div>
      </div>
+      </SignIn.Root>
       }
 
       {

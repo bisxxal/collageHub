@@ -129,7 +129,7 @@ model Assignment {
   lessonId Int
   lesson   Lesson   @relation(fields: [lessonId], references: [id])
   results  Result[]
-    CollageName String @default("tact")
+  CollageName String @default("tact")
 }
 
 model Result {

@@ -43,7 +43,7 @@ const SingleStudentPage = async({
             </div>
             <div className="w-2/3 flex flex-col justify-between gap-4">
               <div className=" flex items-center max-md:flex-col max-md:items-start gap-4">
-                <h1 className="text-xl max:md-text-base font-semibold">
+                <h1 className="text-xl max-md:text-base max:md-text-base font-semibold">
                   {student.name + " " + student.surname}
                 </h1>
                 {role === "admin" && (
@@ -53,14 +53,14 @@ const SingleStudentPage = async({
 
               <div className=" ">
                   <span className="text-sm text-gray-400">Username</span>
-                  <h1 className="text-xl font-semibold">{student.username}</h1>
+                  <h1 className="text-xl max-md:text-base font-semibold">{student.username}</h1>
                 <span className="text-sm text-gray-400">Batch</span>
-                <h1 className="text-xl font-semibold">{student.batch}</h1>
+                <h1 className="text-xl max-md:text-base font-semibold">{student.batch}</h1>
 
 
                 <div>
                 <span className="text-sm text-gray-400">Gender</span>
-                <h1 className="text-xl font-semibold">{student.gender}</h1>
+                <h1 className="text-xl max-md:text-base font-semibold">{student.gender}</h1>
                 </div>
               </div>
         
@@ -80,7 +80,7 @@ const SingleStudentPage = async({
           </div>
           <div className="flex-1 flex  h-[250px] gap-4 justify-between flex-wrap">
 
-            <div className="inshadow frame p-4 rounded-md flex gap-4  w-[45%] ">
+            <div className="inshadow   frame p-4 rounded-md flex gap-4  w-[45%] ">
               
               <Suspense fallback="loading...">
                 <StudentAttendanceCard id={student.id} />
@@ -90,7 +90,7 @@ const SingleStudentPage = async({
             <div className="inshadow frame p-4 rounded-md flex gap-4 w-[45%]">
             
               <div className="">
-                <h1 className="text-xl font-semibold">
+                <h1 className="text-xl max-md:text-base font-semibold">
                   {student.class.name.charAt(0)}th
                 </h1>
                 <span className="text-sm text-gray-400">Grade</span>
@@ -99,7 +99,7 @@ const SingleStudentPage = async({
             <div className="inshadow frame p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
               
               <div className="">
-                <h1 className="text-xl font-semibold">
+                <h1 className="text-xl max-md:text-base font-semibold">
                   {student.class._count.lessons}
                 </h1>
                 <span className="text-sm text-gray-400">Subjects</span>
@@ -108,20 +108,20 @@ const SingleStudentPage = async({
             <div className="inshadow frame p-4 rounded-md flex gap-4 w-[45%]">
           
               <div className="">
-                <h1 className="text-xl font-semibold">{student.class.name}</h1>
+                <h1 className="text-xl max-md:text-base font-semibold">{student.class.name}</h1>
                 <span className="text-sm text-gray-400">Class</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-4 inshadow frame rounded-md p-4 h-[800px]">
+        <div className="mt-4 inshadow frame rounded-md p-4 h-[]">
           <h1>Student&apos;s Schedule</h1>
           <BigCalenderContainer type="classId" id={student.class.id} />
         </div>
       </div> 
       <div className="w-full xl:w-1/3 flex flex-col gap-4">
         <div className="inshadow frame p-4 rounded-md">
-          <h1 className="text-xl font-semibold">Shortcuts</h1>
+          <h1 className="text-xl max-md:text-base font-semibold">Shortcuts</h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
             <Link
               className="p-3 rounded-md border border-[#ffffff1c] frame2  "

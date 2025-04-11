@@ -563,6 +563,7 @@ export const createResults = async (currentState: CurrentState, data: ResultSche
     });
      return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (err) {
+    console.log(err)
     return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 };
@@ -661,10 +662,13 @@ export const resultPie = async (id:string) => {
                 name:true
               }}
             }
-          // }
+        },
+        assignment:{
+          select:{
+            title:true,
+          }
         }
       }
-      // select:{},
       })
       return JSON.parse(JSON.stringify(res));
   } catch (error) {

@@ -48,7 +48,7 @@ const ResultForm = ({
 
   useEffect(() => {
     if (state.success) {
-      toast(`Result has been ${type === "create" ? "created" : "updated"}!`);
+      toast.success(`Result has been ${type === "create" ? "created" : "updated"}!`);
       setOpen(false);
       router.refresh();
     }

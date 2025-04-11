@@ -37,8 +37,8 @@ body::-webkit-scrollbar-thumb {
 .react-calendar{
   @apply !rounded-lg !border !border-[#ffffff00]  !overflow-hidden ;
   background: #161621 !important;
-  background: linear-gradient(360deg, #ffffff00 -2%, #5f7fff8f 166%) !important;
-  /* box-shadow: inset 0 0 10px #ffffff1c !important; */
+  /* background: linear-gradient(360deg, #ffffff00 -2%, #5f7fff8f 166%) !important; */
+  background: linear-gradient(180deg, #9480ff2e -2%, #16162100 166%) !important;
 }
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus , .react-calendar__navigation__label:enabled:hover {
   background-color: #090e1b !important;
@@ -50,10 +50,21 @@ body::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 10px #ffffff1c;
 }  
 
-.frame{
+/* .frame{
   background: #161621;
   background: linear-gradient(179deg, #ffffff14 11%, #161621 99%)
+} */
+
+.frame {
+  background: #161621;
+  background: linear-gradient(312deg, #9480ff2e 28%, #16162100 140%);
 }
+
+.frame2 {
+  background: #161621;
+  background: linear-gradient(180deg, #9480ff2e -2%, #16162100 166%);
+}
+
 
 .rbc-today{
   background-color: #090a157b !important;
@@ -153,11 +164,7 @@ body::-webkit-scrollbar-thumb {
   display: none !important;
 }
  
-.frame2 {
-  background: #161621;
-  background: linear-gradient(360deg, #ffffff00 -2%, #5f7fff8f 166%);
-}
-
+ 
 .logo{
   background: rgb(17,17,17);
   background: linear-gradient(0deg, #1C2D70 -26%, #3352cc 95%);

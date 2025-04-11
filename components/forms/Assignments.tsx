@@ -105,7 +105,7 @@ const AssignmentForm = ({
           />
         )}
         <div className="flex flex-col gap-2 w-full md:w-1/2  ">
-          <label className="text-xs text-gray-500">Classes</label>
+          <label className="text-xs text-gray-500">Subject</label>
           <select
             className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
             {...register("lessonId")}
