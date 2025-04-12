@@ -23,11 +23,7 @@ const columns = [
     accessor: "capacity",
     className: "hidden md:table-cell",
   },
-  {
-    header: "Grade",
-    accessor: "grade",
-    className: "hidden md:table-cell",
-  },
+  
   {
     header: "Supervisor",
     accessor: "supervisor",
@@ -50,7 +46,6 @@ const renderRow = (item: ClassList) => (
   >
     <td className="flex items-center gap-4 p-4">{item?.name}</td>
     <td className="hidden md:table-cell">{item?.capacity}</td>
-    <td className="hidden md:table-cell">{item?.name[0]}</td>
     <td className="hidden md:table-cell">
       {item?.supervisor?.name + " " + item?.supervisor?.surname}
     </td>
@@ -102,7 +97,7 @@ const renderRow = (item: ClassList) => (
   ]);
 
   return (
-    <div className=" p-4 rounded-md flex-1 m-4 mt-0">
+    <div className=" p-4 rounded-2xl flex-1 m-4 mt-0">
       
          <Bar role={role} table="class" type="create" data="All Classes" />
         <Table columns={columns} renderRow={renderRow} data={data} /> 

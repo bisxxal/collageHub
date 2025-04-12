@@ -6,23 +6,12 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Admin
-   
-
-  // Grade (create grades first)
-  for (let i = 1; i <= 6; i++) {
-    await prisma.grade.create({
-      data: {
-        level: i,
-      },
-    });
-  }
-
+    
   // Class (create classes after grades are created)
   for (let i = 1; i <= 6; i++) {
     await prisma.class.create({
       data: {
         name: `${i}A`,
-        gradeId: i, // Ensure this matches the gradeId created in the previous loop
         capacity: Math.floor(Math.random() * (20 - 15 + 1)) + 15,
       },
     });
@@ -102,7 +91,6 @@ async function main() {
         phone: faker.phone.number(),
         address: faker.address.streetAddress(),
         gender: i % 2 === 0 ? Usergender.MALE : Usergender.FEMALE,
-        gradeId: (i % 6) + 1,
         classId: (i % 6) + 1,
         batch: batch as Batch,
         fee: {

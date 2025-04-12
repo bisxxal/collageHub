@@ -29,9 +29,9 @@ model Student {
   gender    Usergender
   createdAt DateTime   @default(now())
   classId   Int
-  gradeId   Int
+  // gradeId   Int
   batch Batch
-  grade Grade @relation(fields: [gradeId], references: [id])
+  // grade Grade @relation(fields: [gradeId], references: [id])
   class Class @relation(fields: [classId], references: [id])
   CollageName String @default("tact")
 
@@ -58,12 +58,12 @@ model Teacher {
   CollageName String @default("tact")
 }
 
-model Grade {
-  id       Int       @id @default(autoincrement())
-  level    Int       @unique
-  students Student[]
-  classess Class[]
-}
+// model Grade {
+//   id       Int       @id @default(autoincrement())
+//   level    Int       @unique
+//   students Student[]
+//   classess Class[]
+// }
 
 model Class {
   id       Int    @id @default(autoincrement())
@@ -74,8 +74,8 @@ model Class {
   supervisor   Teacher?  @relation(fields: [supervisorId], references: [id])
   lessons      Lesson[]
   students     Student[]
-  gradeId      Int
-  grade        Grade     @relation(fields: [gradeId], references: [id])
+  // gradeId      Int
+  // grade        Grade     @relation(fields: [gradeId], references: [id])
   events       Event[]
 
   CollageName String @default("tact")

@@ -242,5 +242,8 @@ input#navch:checked ~ .aside{
 }
 .sidebg{
   @apply bg-gradient-to-br  from-[#de262600] to-[#1c2d70ab] !border font-bold !border-[#3352ccce] text-[#3352cc]
+} 
+
+.buttonhover{
+  @apply hover:scale-[1.1] !transition-all hover:-translate-y-0.5;
 }
- 

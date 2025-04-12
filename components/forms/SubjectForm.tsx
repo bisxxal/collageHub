@@ -94,7 +94,7 @@ const SubjectForm = ({
           <label className="text-xs text-gray-500">Teachers</label>
           <select
             multiple
-            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-2xl text-sm w-full"
             {...register("teachers")}
             defaultValue={data?.teachers}
           >
@@ -120,7 +120,7 @@ const SubjectForm = ({
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
       )}
-      <button className="buttonbg text-white p-2 rounded-md">
+      <button className="buttonbg text-white p-2 rounded-2xl">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

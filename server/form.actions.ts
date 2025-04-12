@@ -30,13 +30,13 @@ export const allteachers = async () => {
 
 export const allStudents = async () => {
   try {
-    const studentGrades = await prisma.grade.findMany({
-      select: { id: true, level: true },
-    });
+    // const studentGrades = await prisma.grade.findMany({
+    //   select: { id: true, level: true },
+    // });
     const studentClasses = await prisma.class.findMany({
       include: { _count: { select: { students: true } } },
     });
-    return JSON.parse(JSON.stringify({ classes: studentClasses, grades: studentGrades }));
+    return JSON.parse(JSON.stringify({ classes: studentClasses,   }));
   } catch (error) {
     
   }
@@ -54,13 +54,13 @@ export const allSubjects = async () => {
 }
 
 export const allClasses = async () => {
-  const classGrades = await prisma.grade.findMany({
-      select: { id: true, level: true },
-    });
+  // const classGrades = await prisma.grade.findMany({
+  //     select: { id: true, level: true },
+  //   });
     const classTeachers = await prisma.teacher.findMany({
       select: { id: true, name: true, surname: true },
     }); 
-    return JSON.parse(JSON.stringify( { teachers: classTeachers, grades: classGrades }));
+    return JSON.parse(JSON.stringify( { teachers: classTeachers,  }));
 }
 
 export const allevent = async ()=>{
@@ -92,7 +92,7 @@ export const allResults = async () => {
       const classTeachers = await prisma.student.findMany({
         select: { id: true, name: true, surname: true },
       }); 
-      return JSON.parse(JSON.stringify( { teachers: classTeachers, grades: classGrades }));
+      return JSON.parse(JSON.stringify( { teachers: classTeachers, exam: classGrades }));
   } catch (error) {
     
   }

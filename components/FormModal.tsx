@@ -28,7 +28,7 @@ const FormModal = ({ table, type, data, id,  }: FormServerProps  ) => {
       </button>
       {open && (
         <div className="w-full h-screen absolute left-0 top-0 bg-[#00000043] backdrop-blur-[10px] bg-opacity-60 z-50 flex items-center justify-center">
-          <div className="bg- p-4 rounded-md relative w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]">
+          <div className="bg- p-4 rounded-2xl relative w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]">
             <Form type={type} data={data} setOpen={setOpen} table={table} relatedData={relatedData} id={id}  />
             <div className="absolute top-8 right-12 text-lg font-bold cursor-pointer" onClick={() => setOpen(false)} >
               X

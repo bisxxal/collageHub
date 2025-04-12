@@ -38,7 +38,7 @@ async function SuperCard({ type  , bg , text }: { type: 'admin' | 'student' | 't
   const data = await modelMap[type].count({})
   return (
     
-    <div className={`min-w-[130px]  flex-1 ${text} h-44 buttonhover inputbg relative rounded-3xl border-2 border-[#ffffff2c] flex flex-col items-center justify-center "`}>
+    <div className={`min-w-[130px]  flex-1 ${text} h-44 buttonhover  inputbg relative rounded-3xl border-2 border-[#ffffff2c] flex flex-col items-center justify-center "`}>
           <div className={` h-[70%] w-[60%] ${bg } blur-[25px] rounded-full absolute `}></div>
 
             <div className="flex justify-between items-center absolute left-4 top-4">

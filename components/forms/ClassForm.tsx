@@ -46,7 +46,7 @@ const ClassForm = ({
 
   useEffect(() => {
     if (state.success) {
-      toast(`Subject has been ${type === "create" ? "created" : "updated"}!`);
+      toast.success(`Subject has been ${type === "create" ? "created" : "updated"}!`);
       setOpen(false);
       router.refresh();
     }
@@ -62,7 +62,7 @@ const ClassForm = ({
   }, [relatedData]);
 
   const teachers = classs?.teachers;
-  const grades = classs?.grades;
+  // const grades = classs?.grades;
  
 
   return (
@@ -100,9 +100,9 @@ const ClassForm = ({
           />
         )}
         <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500">Supervisor</label>
+          <label className="text-xs text-gray-500">Teacher</label>
           <select
-            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-2xl text-sm w-full"
             {...register("supervisorId")}
             defaultValue={data?.teachers}
           >
@@ -126,36 +126,12 @@ const ClassForm = ({
             </p>
           )}
         </div>
-        <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500">Grade</label>
-          <select
-            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-md text-sm w-full"
-            {...register("gradeId")}
-            defaultValue={data?.gradeId}
-          >
-            {grades &&
-              grades.map((grade: { id: number; level: number }) => (
-                <option
-                  value={grade.id}
-                  className=" text-black !bg-[#00000085] "
-                  key={grade.id}
-                  selected={data && grade.id === data.gradeId}
-                >
-                  {grade.level}
-                </option>
-              ))}
-          </select>
-          {errors.gradeId?.message && (
-            <p className="text-xs text-red-400">
-              {errors.gradeId.message.toString()}
-            </p>
-          )}
-        </div>
+         
       </div>
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
       )}
-      <button className="buttonbg text-white p-2 rounded-md">
+      <button className="buttonbg text-white p-2 rounded-2xl">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

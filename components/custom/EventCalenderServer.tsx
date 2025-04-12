@@ -16,7 +16,7 @@ async function EventCalenderServer({searchParams}:{searchParams:{[key:string]:st
 
      <PieChartComponent feeData={data}/>
     </div>
-    <div className="px-4 w-full rounded-md">
+    <div className="px-4 w-full rounded-2xl">
     <div className="flex w-full items-center justify-between">
       <h1 className="text-xl font-semibold mb-4">Events</h1>
       <MdEventNote className=" text-3xl" />

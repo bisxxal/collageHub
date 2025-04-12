@@ -2,7 +2,6 @@
 import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
 import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
-import { escape } from "querystring";
 
 type CurrentState = { success: boolean; error: boolean };
 
@@ -213,7 +212,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           phone: data.phone || null, 
           img: data.img || null, 
           gender: data.gender, 
-          gradeId: data.gradeId,
+          // gradeId: data.gradeId,
           classId: data.classId,
           batch: data.batch,
           CollageName:collage
@@ -256,7 +255,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           phone: data.phone || null, 
           img: data.img || null, 
           gender: data.gender, 
-          gradeId: data.gradeId,
+          // gradeId: data.gradeId,
           classId: data.classId, 
         },
       });  
@@ -367,7 +366,7 @@ export const createClass = async (
       data:{
         id:(data.id),
         name:data.name,
-        gradeId:(data.gradeId),
+        // gradeId:(data.gradeId),
         CollageName:collage,
         supervisorId:(data.supervisorId),
         capacity:(data.capacity)

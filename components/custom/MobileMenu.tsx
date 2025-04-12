@@ -129,7 +129,7 @@ function MobileMenu({role}:{role:string}) {
                     <Link
                     href={item.href}
                     key={item.label}
-                    className={` ${trimmedPathname == (item.label.toLowerCase()) ? '  !text-[#3352cc] !font-semibold  ': '  '} flex text-xl w-full pl-3 items-center justify-start lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md `}
+                    className={` ${trimmedPathname == (item.label.toLowerCase()) ? '  !text-[#3352cc] !font-semibold  ': '  '} flex text-xl w-full pl-3 items-center justify-start lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-2xl `}
                     >
                     {item.icon}
                     <span className="  text-sm ">{item.label}</span>

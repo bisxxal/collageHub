@@ -161,7 +161,7 @@ const TeacherForm = ({
         <div className="flex flex-col max-md:gap-1 gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">gender</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2 bg-transparent rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 p-2 bg-transparent rounded-2xl text-sm w-full"
             {...register("gender")}
             defaultValue={data?.gender}
           >
@@ -182,7 +182,7 @@ const TeacherForm = ({
           <label className="text-xs text-gray-500">Subjects</label>
           <select
             multiple
-            className="ring-[1.5px] ring-gray-300 p-2 bg-[#0000006e] rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 p-2 bg-[#0000006e] rounded-2xl text-sm w-full"
             {...register("subjects")}
             defaultValue={data?.subjects}
           >
@@ -239,7 +239,7 @@ const TeacherForm = ({
       {state.message && (
         <span className="text-red-500"> {state?.message?.errors[0]?.message} </span>
       )}
-      <button className="buttonbg mt-2 text-white p-2   !rounded-md">
+      <button className="buttonbg mt-2 text-white p-2   !rounded-2xl">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

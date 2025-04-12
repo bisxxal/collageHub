@@ -66,7 +66,7 @@ const ADupdatePages = ( ) => {
     <div className=' w-full min-h-screen relative overflow-hidden'>
       <h1 className=' text-center text-3xl font-semibold mb-10'>Update Admin</h1>
       {
-        loader && <Skeleton boxes={5} width={'w-[90%] max-md:h-80 h-32'} />  
+        loader && <Skeleton boxes={5} width={'w-[90%] max-md:h-40 h-32'} />  
       }
     { adminData && !loader && <div className="w-[90%] mx-auto border-2 border-[#ffffff29] rounded-2xl">
 

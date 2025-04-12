@@ -117,7 +117,7 @@ const EventListPage = async ({
  
   
   return (
-    <div className=" p-4 rounded-md flex-1 m-4 mt-0">
+    <div className=" p-4 rounded-2xl flex-1 m-4 mt-0">
    
       <Bar role={role} table="event" type="create" data="" /> 
       <Table columns={columns} renderRow={renderRow} data={data} /> 

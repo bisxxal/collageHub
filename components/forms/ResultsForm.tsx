@@ -64,7 +64,7 @@ const ResultForm = ({
   }, [relatedData]);
 
   const teachers = classs?.teachers;
-  const grades = classs?.grades;
+  const exam = classs?.exam;
  
 
   return (
@@ -99,7 +99,7 @@ const ResultForm = ({
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Student name</label>
           <select
-            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-2xl text-sm w-full"
             {...register("examId")}
             defaultValue={data?.teachers}
           >
@@ -126,12 +126,12 @@ const ResultForm = ({
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Exam Name</label>
           <select
-            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-2xl text-sm w-full"
             {...register("studentId")}
             defaultValue={data?.studentId}
           >
-            {grades &&
-              grades.map((grade: { id: number; title: number }) => (
+            {exam &&
+              exam.map((grade: { id: number; title: number }) => (
                 <option
                   value={grade.id}
                   className=" text-black !bg-[#00000085] "
@@ -152,7 +152,7 @@ const ResultForm = ({
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
       )}
-      <button className="buttonbg text-white p-2 rounded-md">
+      <button className="buttonbg text-white p-2 rounded-2xl">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

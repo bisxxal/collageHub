@@ -27,7 +27,7 @@ async function Navbar() {
             <p className=' text-base max-md:hidden block truncate text-zinc-300 border-b border-[#ffffff22] caption-bottom'> {clg?.fname} </p>
             <p className=' text-sm max-md:block  font-semibold font-mono hidden truncate underline  text-zinc-400 capitalize'> {clg?.collage} </p>
 
-            <div className=' -bottom-20  w-[200px] max-md:w-[140px] max-md:text-xs min-h-[50px] z-[1] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff35]  backdrop-blur-md p-3 px-4 rounded-md'>
+            <div className=' -bottom-20  w-[200px] max-md:w-[140px] max-md:text-xs min-h-[50px] z-[1] flex-col gap-3 -left-0 absolute hidden group-hover:flex bg-[#ffffff35]  backdrop-blur-md p-3 px-4 rounded-2xl'>
            { clg?.link && <Link className=' flex items-center gap-2 ' href={clg?.link} ><CgWebsite  className=" text-lg max-md:text-sm " /> Visit site </Link> }
             {clg?.gmap && <Link className=' flex items-center gap-2 ' href={clg.gmap} ><FaLocationArrow  className=" text-lg max-md:text-sm " /> Visit Map </Link>}
           </div>

@@ -116,7 +116,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons, collage }) => 
       <div className="w-full items-end flex gap-5 item s-center my-2 justify-end pr-40 max-md:pr-0">
         <h1 className="text text-zinc-500 whitespace-nowrap">Select subject</h1>
         <select
-          className="ring-[1.5px] bg-[#00000037]   ring-[#ffffff23] p-1 rounded-md text-sm w-[200px]"
+          className="ring-[1.5px] bg-[#00000037]   ring-[#ffffff23] p-1 rounded-2xl text-sm w-[200px]"
           value={lessonId} onChange={(e) => setLessonId(parseInt(e.target.value))}>
           {lessons.map((lesson) => (
             <option

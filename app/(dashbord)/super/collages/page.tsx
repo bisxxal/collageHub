@@ -68,7 +68,7 @@ const CollageSuperPage = () => {
   }
  
   return (
-    <div className='w-full min-h-screen'>
+    <div className='w-full min-h-screen mt-10'>
       <h1 className='text-center text-4xl my-10'>All Collages</h1>
 
       <form className=' w-full flex items-center gap-5 justify-center' onSubmit={handleSubmit} >
@@ -80,7 +80,7 @@ const CollageSuperPage = () => {
           ))}
           {collages.length === 0 && <option value="loading">Loading...</option>}        
         </select>
-        <button disabled={ collages.length === 0 } type="submit" className=" flex items-center justify-center disabled:bg-gray-600 buttonbg h-14 w-32 text-lg rounded-full ">
+        <button disabled={ collages.length === 0 } type="submit" className=" flex items-center justify-center disabled:bg-gray-600 buttonbg h-10 w-24 max-md:text-base text-lg rounded-full ">
            {loading ?  <LoaderIcon />  : 'search'}
          
         </button>
@@ -95,7 +95,7 @@ const CollageSuperPage = () => {
             <div >
             <h3 className=' text-center text-xl font-semibold'> {student.length} Students</h3>
             {student.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3  inshadow border-2 border-[#ffffff45] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 bg-gradient-to-br from-[#386eb0d4] to-[#0a0b17]'> 
+            return (<div key={index} className='rounded-2xl p-3  inshadow border-2 border-[#ffffff14] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 frame'> 
             <h1 className=' text-2xl font-semibold text-center mb-4 '>{item?.name} {item?.surname} </h1>
             <p>UserName : {item.username}</p>
             <p>Email : {item?.email}</p>
@@ -108,7 +108,7 @@ const CollageSuperPage = () => {
             <div>
             <h3 className=' text-center text-xl font-semibold'>{admin.length} Admins</h3>
             { admin.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3 text-clip  inshadow border-2 border-[#ffffff45] my-2 w- min-w-[340px] max-md:min-w-[130px] h-44 flex-1  bg-gradient-to-br from-[#386eb0d4] to-[#0a0b17]'>
+            return (<div key={index} className='rounded-2xl p-3 text-clip  inshadow border-2 border-[#ffffff14] my-2 w- min-w-[340px] max-md:min-w-[130px] h-44 flex-1  frame'>
             <h1 className=' text-2xl mb-4 font-semibold text-center '>UserName{item?.userName}  </h1>
             <p className=' text-'>Id:{item.id}</p>
             </div>)
@@ -126,7 +126,7 @@ const CollageSuperPage = () => {
             <h3 className=' text-center text-xl font-semibold'>{teacher.length} Teachers</h3>
 
           { teacher.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3  inshadow border-2 border-[#ffffff45] my-2 min-w-[340px] max-md:min-w-[130px] flex-1  bg-gradient-to-br from-[#386eb0d4] to-[#0a0b17]'>
+            return (<div key={index} className='rounded-2xl p-3  inshadow border-2 border-[#ffffff14] my-2 min-w-[340px] max-md:min-w-[130px] flex-1  frame'>
             <h1 className=' text-2xl  font-semibold text-center mb-4'>{item?.name} {item?.surname} </h1>
             <p>UserName : {item.username}</p>
             <p>Email : {item?.email}</p>

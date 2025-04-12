@@ -92,7 +92,7 @@ const SubjectListPage = async ({
 
 
   return (
-    <div className="bg- p-4 rounded-md flex-1 m-4 mt-0">
+    <div className="bg- p-4 rounded-2xl flex-1 m-4 mt-0">
      
     <Bar role={role} table="subject" type="create" data="All Subjects" />
       <Table columns={columns} renderRow={renderRow} data={data} />

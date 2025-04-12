@@ -1,23 +1,17 @@
 import BigCalenderContainer from "@/components/custom/BigCalenderContainer";
 import EventCalendar from "@/components/custom/EventCalendar";
 import EventList from "@/components/custom/EventList";
-import GaugeChart from "@/components/custom/GaugeChart";
-import prisma from "@/lib/prisma";
+import GaugeChart2 from "@/components/custom/GaugeChart";
 import { auth } from "@clerk/nextjs/server";
 
  
 const StudentPage = async( {searchParams}:{searchParams:{[key:string]:string | undefined}}) => {
   const { userId } = auth();
   const {date} = searchParams;
-  // const classItem = await prisma.class.findMany({
-  //   where: {
-  //     students: { some: { id: userId! } },
-  //   },
-  // }); 
   return (
     <div className="p-4 bg-[#161621 flex gap-4 flex-col xl:flex-row">
       <div className="w-full xl:w-2/3">
-        <div className="h-full bg-[#161621] inshadow frame2 p-4 rounded-md ">
+        <div className="h-full bg-[#161621] inshadow frame2 p-4 rounded-2xl ">
           <h1 className="text-xl font-semibold">Schedule</h1>
           <BigCalenderContainer type="teacherId" id={userId!} />
           
@@ -27,7 +21,7 @@ const StudentPage = async( {searchParams}:{searchParams:{[key:string]:string | u
 
       <div className=" rounded-2xl frame2">
         <h1 className=" text-xl font-semibold  text-center mt-5">Academic score</h1>
-        <GaugeChart />
+        <GaugeChart2 />
       </div>
         <EventCalendar />
         <div className=" mt-3">

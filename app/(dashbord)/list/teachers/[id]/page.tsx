@@ -35,7 +35,7 @@ if (!teacher) {
     <div className="flex-1 p-4 flex flex-col gap-4 xl:flex-row"> 
     <div className="w-full xl:w-2/3"> 
       <div className="flex flex-col lg:flex-row gap-4"> 
-        <div className=" inshadow  py-6 px-4 rounded-md flex-1 flex gap-4">
+        <div className=" inshadow  py-6 px-4 rounded-2xl flex-1 flex gap-4">
           <div className="w-1/3">
             <Image
               src={teacher.img || "/avatar.jpg"}
@@ -71,7 +71,7 @@ if (!teacher) {
         </div> 
         <div className="flex-1 flex gap-4 justify-between flex-wrap">
        
-          <div className="bg- inshadow frame p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
+          <div className="bg- inshadow frame p-4 rounded-2xl flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
         
             <div className="">
               <h1 className="text-xl font-semibold">
@@ -80,7 +80,7 @@ if (!teacher) {
               <span className="text-sm text-gray-400">Branches</span>
             </div>
           </div> 
-          <div className="bg- inshadow frame p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
+          <div className="bg- inshadow frame p-4 rounded-2xl flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
           
             <div className="">
               <h1 className="text-xl font-semibold">
@@ -89,7 +89,7 @@ if (!teacher) {
               <span className="text-sm text-gray-400">Lessons</span>
             </div>
           </div> 
-          <div className="bg- inshadow frame p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
+          <div className="bg- inshadow frame p-4 rounded-2xl flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
           
             <div className="">
               <h1 className="text-xl font-semibold">
@@ -100,41 +100,41 @@ if (!teacher) {
           </div>
         </div>
       </div> 
-      <div className="mt-4 bg- inshadow frame rounded-md p-4">
+      <div className="mt-4 bg- inshadow frame rounded-2xl p-4">
         <h1>Teacher&apos;s Schedule</h1>
         <BigCalenderContainer type="teacherId" id={teacher.id} />
       </div>
     </div> 
     <div className="w-full xl:w-1/3 flex flex-col gap-4">
-      <div className="bg- inshadow frame p-4 rounded-md">
+      <div className="bg- inshadow frame p-4 rounded-2xl">
         <h1 className="text-xl font-semibold">Shortcuts</h1>
         <div className="mt-4 flex gap-4 flex-wrap text-xs text- gray-500">
          <Link
-            className="p-3 rounded-md  border border-[#ffffff1c] frame2"
+            className="p-3 rounded-2xl  border border-[#ffffff1c] frame2"
             href={`/list/classes?supervisorId=${teacher.id}`}
           >
             Teacher&apos;s Classes
           </Link>
           <Link
-            className="p-3 rounded-md border border-[#ffffff1c] frame2 "
+            className="p-3 rounded-2xl border border-[#ffffff1c] frame2 "
             href={`/list/students?teacherId=${teacher.id}`}
           >
             Teacher&apos;s Students
           </Link>
           <Link
-            className="p-3 rounded-md border border-[#ffffff1c] frame2 "
+            className="p-3 rounded-2xl border border-[#ffffff1c] frame2 "
             href={`/list/lessons?teacherId=${teacher.id}`}
           >
             Teacher&apos;s Lessons
           </Link>
           <Link
-            className="p-3 rounded-md bg-pink-50 border border-[#ffffff1c] frame2"
+            className="p-3 rounded-2xl bg-pink-50 border border-[#ffffff1c] frame2"
             href={`/list/exams?teacherId=${teacher.id}`}
           >
             Teacher&apos;s Exams
           </Link>
           <Link
-            className="p-3 rounded-md border border-[#ffffff1c] frame2 "
+            className="p-3 rounded-2xl border border-[#ffffff1c] frame2 "
             href={`/list/assignments?teacherId=${teacher.id}`}
           >
             Teacher&apos;s Assignments

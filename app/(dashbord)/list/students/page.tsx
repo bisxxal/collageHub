@@ -16,7 +16,6 @@ type StudentList = Student & {class:Class}
  
 const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|undefined};}) => {
 
-
   const { sessionClaims } = auth();
   const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
   
@@ -33,8 +32,8 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
       className: "hidden md:table-cell",
     },
     {
-      header: "Grade",
-      accessor: "grade",
+      header: "Class",
+      accessor: "class",
       className: "hidden md:table-cell",
     },
     {
@@ -75,7 +74,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
           </div>
         </td>
         <td className="hidden md:table-cell">{item.username}</td>
-        <td className="hidden md:table-cell">{item.class.name[0]}</td>
+        <td className="hidden md:table-cell">{item.class.name}</td>
         <td className="hidden md:table-cell">{item.phone}</td>
         <td className="hidden md:table-cell">{item.address}</td>
         <td>
@@ -137,7 +136,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
  ]);
 
   return (
-    <div className=" p-4 rounded-md flex-1 m-4 mt-0"> 
+    <div className=" p-4 rounded-2xl flex-1 m-4 mt-0"> 
       <Bar role={role} table="student" type="create" />
      
       <Table columns={columns} renderRow={renderRow} data={data} />

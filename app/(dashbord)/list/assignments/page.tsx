@@ -152,7 +152,7 @@ const AssignmentListPage = async ({
     prisma.assignment.count({ where: query }),
   ]);
   return (
-    <div className=" p-4 rounded-md flex-1 m-4 mt-0"> 
+    <div className=" p-4 rounded-2xl flex-1 m-4 mt-0"> 
       <Bar role={role} table="assignment" type="create" data="All Assignments" />
         <Table columns={columns} renderRow={renderRow} data={data} />
         {data.length === 0 && <div className='text-center mt-10 text-lg '>No Assignment Found</div>}

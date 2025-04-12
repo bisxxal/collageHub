@@ -111,7 +111,7 @@ console.log(lessons)
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Lesson</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2  bg-transparent rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 p-2  bg-transparent rounded-2xl text-sm w-full"
             {...register("lessonId")}
             defaultValue={data?.teachers}
           >
@@ -131,7 +131,7 @@ console.log(lessons)
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
       )}
-      <button className="buttonbg text-white p-2 rounded-md">
+      <button className="buttonbg text-white p-2 rounded-2xl">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

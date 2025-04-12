@@ -116,7 +116,7 @@ const EventForm = ({
           <label className="text-xs text-gray-500">Classes</label>
           <select
             multiple
-            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-2xl text-sm w-full"
             {...register("class")}
             defaultValue={data?.classId}
           >
@@ -142,7 +142,7 @@ const EventForm = ({
       {state.error && (
         <span className="text-red-500">Something went wrong!</span>
       )}
-      <button className="buttonbg text-white p-2 rounded-md">
+      <button className="buttonbg text-white p-2 rounded-2xl">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

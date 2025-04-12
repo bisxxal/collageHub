@@ -63,10 +63,9 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
     fetchteachers();
   }, [relatedData]);
  
-
-  const grades = students?.grades;
   const classes = students?.classes; 
  
+  console.dir(errors)
   return (
     <form className="flex  flex-col p-3 px-4 pb-6  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a]  max-lg:gap-1 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
@@ -166,7 +165,7 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">gender</label>
           <select
-            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 bg-transparent p-2 rounded-2xl text-sm w-full"
             {...register("gender")}
             defaultValue={data?.gender}
           >
@@ -179,10 +178,10 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
             </p>
           )}
         </div>
-        <div className="flex flex-col gap-2 w-full md:w-1/4">
+        {/* <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Grade</label>
           <select
-            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-2xl text-sm w-full"
             {...register("gradeId")}
             defaultValue={data?.gradeId}
           >
@@ -197,14 +196,14 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
               {errors.gradeId.message.toString()}
             </p>
           )}
-        </div>
+        </div> */}
 
 
         {/* batch */}
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Batch</label>
           <select
-            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-2xl text-sm w-full"
             {...register("batch")}
             defaultValue={data?.batch}
           > 
@@ -228,7 +227,7 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Class</label>
           <select
-            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-2xl text-sm w-full"
             {...register("classId")}
             defaultValue={data?.classId}
           >
@@ -257,7 +256,7 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
       {state?.message && (
         <span className="text-red-500"> {state?.message?.errors[0]?.message} </span>
       )}
-      <button type="submit" className="buttonbg text-white p-2 rounded-md">
+      <button type="submit" className="buttonbg text-white p-2 rounded-2xl">
         {type === "create" ? "Create" : "Update"}
       </button>
     </form>

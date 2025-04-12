@@ -1,4 +1,4 @@
- import AttendanceServer from "@/components/custom/AttendanceServer";
+import AttendanceServer from "@/components/custom/AttendanceServer";
 import Card from "@/components/custom/Card";
 import CountchatServer from "@/components/custom/CountchatServer";
 import EventCalenderServer from "@/components/custom/EventCalenderServer";
@@ -29,12 +29,9 @@ const AdminPage = ({searchParams}:{searchParams:{[key:string]:string | undefined
           <FinanceChart />
         </div>
       </div>
-
-       
       <div className="w-full lg:w-1/3 flex  flex-col gap-8">
-        
+      
         <EventCalenderServer searchParams={searchParams} /> 
-
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ const onSumbit = async(formData:FormData) => {
 }
   return (
     <div>
-          <h1 className=' text-center text-3xl font-semibold mb-10'>Add New Admin</h1>
+          <h1 className=' text-center text-3xl font-semibold max-md:text-xl mb-10'>Add New Admin</h1>
         <form className=' flex flex-col gap-4  mx-auto mt-10 w-1/2 max-md:w-[80%] rounded-2xl ' action={onSumbit}>
           <div className='flex flex-col'>
             <label htmlFor="email">Email</label>
@@ -67,7 +67,7 @@ const onSumbit = async(formData:FormData) => {
           </div>
 
       {error &&  <span className="text-red-500 text-lg "> {error} </span>}
-          <button disabled={loading} className=' disabled:bg-gray-500 buttonbg p-4 rounded-full ' type='submit'>
+          <button disabled={loading} className=' disabled:bg-gray-500 buttonbg max-md:p-3 p-4 rounded-full ' type='submit'>
             {loading ? 'Loading...' : '  Add Admin' }
           </button>
         </form>
