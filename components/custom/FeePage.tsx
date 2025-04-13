@@ -4,7 +4,7 @@ import { Capturepaymet, Createpaymet, getFinById, UPdatePayment, verifyPayment }
 import { Batch, Fee, Sem } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { fullname } from "@/lib/utils";
+import { fullname, setFeeAmount, setSEM } from "@/lib/utils";
 import { sendEmailNode } from "@/lib/email";
 
 const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch; phone?: string | null ,email:string }) => {
@@ -67,31 +67,31 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
     }
   };
 
-  const setFeeAmount = (batch: Batch): number => {
-    switch (batch) {
-      case "BCA": return 100000;
-      case "BTECH": return 180000;
-      case "MTECH": return 190000;
-      case "MCA": return 180000;
-      case "BBA": return 90000;
-      case "BSC": return 90000; 
-      case "MSC": return 170000;
-      default: return 0; 
-    }
-  };  
+  // const setFeeAmount = (batch: Batch): number => {
+  //   switch (batch) {
+  //     case "BCA": return 100000;
+  //     case "BTECH": return 180000;
+  //     case "MTECH": return 190000;
+  //     case "MCA": return 180000;
+  //     case "BBA": return 90000;
+  //     case "BSC": return 90000; 
+  //     case "MSC": return 170000;
+  //     default: return 0; 
+  //   }
+  // };  
   
-  const setSEM = (sem: Sem) => {
-    switch (sem) {
-      case "FIRST": return '1ST';
-      case "SECOND": return '2nd';
-      case "THIRD": return '3rd';
-      case "FOURTH": return '4th';
-      case "FIFTH": return '5th';
-      case "SIXTH": return '6th'; 
-      case "SEVENTH": return '7th';
-      default: return '8th'; 
-    }
-  };   
+  // const setSEM = (sem: Sem) => {
+  //   switch (sem) {
+  //     case "FIRST": return '1ST';
+  //     case "SECOND": return '2nd';
+  //     case "THIRD": return '3rd';
+  //     case "FOURTH": return '4th';
+  //     case "FIFTH": return '5th';
+  //     case "SIXTH": return '6th'; 
+  //     case "SEVENTH": return '7th';
+  //     default: return '8th'; 
+  //   }
+  // };   
 
   const createFee = async (studentId: string, semesterName: Sem , razorpay_order_id:string, razorpay_payment_id:string, razorpay_signature:string  ) => {
     const amount = setFeeAmount(batch);
@@ -148,12 +148,9 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
             </option>
           ))}
         </select>
-        <button
-          className="p-1 mt-5 px-5 buttonbg rounded-lg w-fit disabled:opacity-15 disabled:cursor-not-allowed"
+        <button className="p-1 mt-5 px-5 buttonbg rounded-lg w-fit disabled:opacity-15 disabled:cursor-not-allowed"
           onClick={() => handlePayment(setFeeAmount(batch))}
-          disabled={!selectedSemester || paidSemesters.includes(selectedSemester)}
-        >
-          Pay ₹{setFeeAmount(batch)}
+          disabled={!selectedSemester || paidSemesters.includes(selectedSemester)}>Pay ₹{setFeeAmount(batch)}
         </button>
       </div>
 

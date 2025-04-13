@@ -47,7 +47,7 @@ const EventForm = ({
 
   useEffect(() => {
     if (state.success) {
-      toast(`Event has been ${type === "create" ? "created" : "updated"}!`);
+      toast.success(`Event has been ${type === "create" ? "created" : "updated"}!`);
       setOpen(false);
       router.refresh();
     }

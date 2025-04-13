@@ -46,7 +46,7 @@ const ExamForm = ({
 
     useEffect(() => {
       if (state.success) {
-        toast(`Exam has been ${type === "create" ? "created" : "updated"}!`);
+        toast.success(`Exam has been ${type === "create" ? "created" : "updated"}!`);
         setOpen(false);
         router.refresh();
       }
@@ -55,21 +55,16 @@ const ExamForm = ({
   const [lessons, setLessons] = useState<any>([]);
 
   useEffect(() => {
-     
-
       const fetchLessons = async () => {
         const res = await allLessons(); 
-        
         setLessons(res);
-        console.log('fetchde')
       };
       fetchLessons();
 
   }, [relatedData]);
  
-console.log(lessons)
   return (
-    <form className="flex rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a]  p-2 flex-col gap-8" onSubmit={onSubmit}>
+    <form className="flex rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame p-2 flex-col gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new exam" : "Update the exam"}
       </h1>

@@ -12,12 +12,15 @@ import { studentSchema, StudentSchema } from "@/lib/FormValidation";
 import InputField from "../custom/InputField";
 import { createStudent, updateStudent } from "@/server/server.actions";
 import { allStudents } from "@/server/form.actions";
+import { LuLoader } from "react-icons/lu";
 
 const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update" | "delete";data?: any;setOpen: Dispatch<SetStateAction<boolean>>;relatedData?: any;}) => {
   
   const {register,  handleSubmit,formState: { errors },} = useForm<StudentSchema>({
     resolver: zodResolver(studentSchema),
   });
+
+  const [loading, setLoading] = useState(false);
   const [students, setStudents] = useState<any>([]);
   const [img, setImg] = useState<any>();
 
@@ -26,7 +29,9 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
     {success: false,error: false  , message: ""}
   );
 
-  const onSubmit = handleSubmit((data) => { 
+  const onSubmit = handleSubmit((data) => {
+    setLoading(true);
+
     if (!img) {
       setImg(data.img);
     }
@@ -48,11 +53,13 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
 
   useEffect(() => {
     if (state?.success) {
-      toast(`Student has been ${type === "create" ? "created" : "updated"}!`);
+      toast.success(`Student has been ${type === "create" ? "created" : "updated"}!`);
       setOpen(false);
       router.refresh();
     }
-   
+    if (state?.success || state?.error) {
+      setLoading(false); 
+    }
   }, [state, router, type, setOpen]);
 
   useEffect(() => {
@@ -62,12 +69,12 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
     };
     fetchteachers();
   }, [relatedData]);
- 
+
+   
   const classes = students?.classes; 
- 
-  console.dir(errors)
+
   return (
-    <form className="flex  flex-col p-3 px-4 pb-6  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a]  max-lg:gap-1 gap-8" onSubmit={onSubmit}>
+    <form className="flex  flex-col p-3 px-4 pb-6  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame max-lg:gap-1 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Create a new student" : "Update the student"}
       </h1>
@@ -178,27 +185,7 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
             </p>
           )}
         </div>
-        {/* <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500">Grade</label>
-          <select
-            className="ring-[1.5px] bg-transparent ring-gray-300 p-2 rounded-2xl text-sm w-full"
-            {...register("gradeId")}
-            defaultValue={data?.gradeId}
-          >
-            { grades && grades.map((grade: { id: number; level: number }) => (
-              <option className=" bg-[#000000a5] " value={grade.id} key={grade.id}>
-                {grade.level}
-              </option>
-            ))}
-          </select>
-          {errors.gradeId?.message && (
-            <p className="text-xs text-red-400">
-              {errors.gradeId.message.toString()}
-            </p>
-          )}
-        </div> */}
-
-
+       
         {/* batch */}
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Batch</label>
@@ -256,8 +243,12 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
       {state?.message && (
         <span className="text-red-500"> {state?.message?.errors[0]?.message} </span>
       )}
-      <button type="submit" className="buttonbg text-white p-2 rounded-2xl">
-        {type === "create" ? "Create" : "Update"}
+        {state.msg && (
+        <span className="text-red-500"> {state?.msg} </span>
+      )}
+     <button disabled={loading} className="buttonbg mt-2 text-white disabled:bg-gray-700 disabled:cursor-not-allowed p-2 flex items-center justify-center  !rounded-2xl">
+        { type === "create" ? "Create" : "Update"}
+        {loading  && (<LuLoader className="animate-spin ml-2 text-center text-lg  text-gray-500 " size={24}/>)}
       </button>
     </form>
   );

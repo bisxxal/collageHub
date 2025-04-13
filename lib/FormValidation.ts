@@ -41,26 +41,19 @@ export type TeacherSchema = z.infer<typeof teacherSchema>;
 
 export const studentSchema = z.object({
   id: z.string().optional(),
-  username: z
-    .string()
+  username: z.string()
     .min(3, { message: "Username must be at least 3 characters long!" })
     .max(20, { message: "Username must be at most 20 characters long!" }),
-  password: z
-    .string()
+  password: z.string()
     .min(8, { message: "Password must be at least 8 characters long!" })
     .optional()
     .or(z.literal("")),
   name: z.string().min(1, { message: "First name is required!" }),
   surname: z.string().min(1, { message: "Last name is required!" }),
-  email: z
-    .string()
-    .email({ message: "Invalid email address!" })
-    .optional()
-    .or(z.literal("")),
+  email: z.string().email({ message: "Invalid email address!" }).optional().or(z.literal("")),
   phone: z.string().optional(), 
   img: z.string().optional(), 
   gender: z.enum(["MALE", "FEMALE"], { message: "gender is required!" }),
-  // gradeId: z.coerce.number().min(1, { message: "Grade is required!" }),
   classId: z.coerce.number().min(1, { message: "Class is required!" }),
   batch: z.enum(["MCA", "BCA" ,"BBA" , 'BTECH' , "MTECH" , "BSC" , "MSC" ],{ message: "Batch is required!" }),
 });
@@ -104,3 +97,17 @@ export const resultSchema  =  z.object({
   studentId:z.string({message:"must be required"}), 
 });
 export type ResultSchema = z.infer<typeof resultSchema>;
+
+
+export const lessonSchema  =  z.object({
+  id: z.coerce.number().optional(),
+  name: z.string({message:"name must be grater then equal to 0!" }),
+  // studentId:z.string({message:"must be required"}),
+  startTime: z.coerce.date({ message: "Start date is required!" }), 
+  endTime: z.coerce.date({ message: "End date is required!" }), 
+  subjectId :z.string({message:"subject must be required"}),
+  teacherId:z.string({message:"must be required"}),
+  classId:z.string({message:"class must be required"}),
+  day : z.enum(["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", ], { message: "Day is required!" }),
+});
+export type LessonSchema = z.infer<typeof lessonSchema>;

@@ -49,7 +49,7 @@ const columns = [
 const renderRow = (item: LessonList) => (
   <tr
     key={item.id}
-    className=" rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm  "
+    className=" rounded-xl tr overflow-hidden hover:overflow-hidden inshadow text-sm  "
   >
     <td className="flex items-center gap-4 p-4">{item.subject.name}</td>
     <td>{item.class.name}</td>

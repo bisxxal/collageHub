@@ -39,7 +39,7 @@ const FinanceChart = () => {
 
         setFeeData(formattedData);
       } catch (error) {
-        console.error("Error fetching finance data:", error);
+
       }
     };
 

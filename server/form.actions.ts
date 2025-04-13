@@ -30,9 +30,7 @@ export const allteachers = async () => {
 
 export const allStudents = async () => {
   try {
-    // const studentGrades = await prisma.grade.findMany({
-    //   select: { id: true, level: true },
-    // });
+ 
     const studentClasses = await prisma.class.findMany({
       include: { _count: { select: { students: true } } },
     });
@@ -54,9 +52,6 @@ export const allSubjects = async () => {
 }
 
 export const allClasses = async () => {
-  // const classGrades = await prisma.grade.findMany({
-  //     select: { id: true, level: true },
-  //   });
     const classTeachers = await prisma.teacher.findMany({
       select: { id: true, name: true, surname: true },
     }); 
@@ -86,18 +81,64 @@ export const allassignment = async ()=>{
 export const allResults = async () => {
 
   try {
-    const classGrades = await prisma.exam.findMany({
+
+    const [classGrades, classTeachers] = await Promise.all([
+      prisma.exam.findMany({
         select: { id: true, title: true },
-      });
-      const classTeachers = await prisma.student.findMany({
+      }),
+      prisma.student.findMany({
         select: { id: true, name: true, surname: true },
-      }); 
+      }),
+    ])
       return JSON.parse(JSON.stringify( { teachers: classTeachers, exam: classGrades }));
   } catch (error) {
     
   }
 }
- 
+
+export const allSubjectssAndTeachers = async () => {
+  try{
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+
+
+    const [subjects, teachers, classes] = await Promise.all([
+      prisma.subject.findMany({
+        where: { CollageName: collage },
+        select: { id: true, name: true,
+          teachers: {
+            select: { id: true, name: true, surname: true },
+          },
+        },
+      }),
+      prisma.teacher.findMany({
+        where: { CollageName: collage },
+        select: { id: true, name: true, surname: true },
+      }),
+      prisma.class.findMany({
+        where: { CollageName: collage },
+        select: { id: true, name: true },
+      }),
+    ]);
+  
+    return JSON.parse(JSON.stringify({ subjects , teachers ,classes }));
+  
+  }
+  catch (error) {
+    
+  }
+}
+
+export const dataForLesson = async () => {
+  try {
+    const data = await prisma.lesson.findMany({
+      select: { id: true, name: true, teacherId: true },
+    });
+    return JSON.parse(JSON.stringify(data));    
+  } catch (error) {
+    
+  }
+}
 
 export const updateAttendance = async (attendanceData: {
   studentId: string;
@@ -135,22 +176,28 @@ export const updateAttendance = async (attendanceData: {
     }
 
     return JSON.parse(JSON.stringify({ success: true }));
-    // return { success: true };
+
   } catch (error) { 
     
   }
 };
 
-export const allStudentsAttendence = async (role : 'admin'| 'teacher' , id:string) => {
+export const allStudentsAttendence = async (role : 'admin'| 'teacher' , id:string , collage:string) => {
 
   try {
    
     if(role === "admin"){
       const [students, lesssons] = await Promise.all([
         prisma.student.findMany({
+          where: {
+            CollageName: collage,
+          },
           select: { id: true, name: true, surname: true },
         }),
         prisma.lesson.findMany({
+          where: {
+            CollageName: collage,
+          },
           select: { id: true, name: true },
         }),
       ]);
@@ -200,7 +247,7 @@ export const getAttendanceForLesson = async (lessonId: number, year: number, mon
 
   } catch (error) { 
     return JSON.parse(JSON.stringify({ success: false }));
-    // return { success: false  };
+
   }
 };
 
@@ -232,7 +279,6 @@ export const updateAllAttendance = async (data: AttendancePayload[]) => {
           lessonId: record.lessonId,
           date: new Date(record.date.toDateString()),
           present: record.present,
-          // collage: record.collage,
         },
       });
     });
@@ -241,7 +287,6 @@ export const updateAllAttendance = async (data: AttendancePayload[]) => {
 
     return { success: true };
   } catch (error) {
-    console.error("Failed to update attendance:", error);
     return { success: false, message: "Failed to update attendance." };
   }
 };

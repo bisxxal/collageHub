@@ -12,28 +12,21 @@ import { IoMdCloudUpload } from "react-icons/io";
 import InputField from "../custom/InputField"; 
 import { allteachers } from "@/server/form.actions"; 
 import { createTeacher, updateTeacher } from "@/server/server.actions";
+import { LuLoader } from "react-icons/lu";
 
-const TeacherForm = ({
-  type,
-  data,
-  setOpen,
-  relatedData,
-}: {
+const TeacherForm = ({type,data,setOpen,relatedData,}: {
   type: "create" | "update" |"delete";
   data?: any;
   setOpen: Dispatch<SetStateAction<boolean>>;
   relatedData?: any;
 }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
+  const {register,handleSubmit,  formState: { errors },
   } = useForm<TeacherSchema>({
     resolver: zodResolver(teacherSchema),
   });
 
   const [img, setImg] = useState<any>();
-
+  const [loading, setLoading] = useState(false);
   const [state, formAction] = useFormState(
     type === "create" ? createTeacher : updateTeacher,
     {
@@ -43,6 +36,7 @@ const TeacherForm = ({
   );
 
   const onSubmit = handleSubmit((data) => { 
+    setLoading(true);
     if (!img) {
       setImg(data.img);
     }
@@ -56,7 +50,7 @@ const TeacherForm = ({
     if(type === "create"){
       formAction({ ...data, img: img?.secure_url });
     }
- 
+
   });
   const router = useRouter();
 
@@ -66,7 +60,9 @@ const TeacherForm = ({
       setOpen(false);
       router.refresh();
     }
-     
+    if (state?.success || state?.error) {
+      setLoading(false); 
+    }
   }, [state, router, type, setOpen]);
 
   const [subjects, setTeachers] = useState<any>([]);
@@ -80,7 +76,7 @@ const TeacherForm = ({
   }, [relatedData]);
 
   return (
-    <form className="flex   p-4  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>
+    <form className="flex   p-4  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl text-center font-semibold">
         {type === "create" ? "Create a new teacher" : "Update the teacher"}
       </h1>
@@ -239,8 +235,12 @@ const TeacherForm = ({
       {state.message && (
         <span className="text-red-500"> {state?.message?.errors[0]?.message} </span>
       )}
-      <button className="buttonbg mt-2 text-white p-2   !rounded-2xl">
-        {type === "create" ? "Create" : "Update"}
+      {state.msg && (
+        <span className="text-red-500"> {state?.msg} </span>
+      )}
+      <button className="buttonbg mt-2 text-white p-2 flex items-center justify-center  !rounded-2xl">
+        { type === "create" ? "Create" : "Update"}
+        {loading  && (<LuLoader className="animate-spin text-center text-lg ml-3 text-gray-500 " size={24}/>)}
       </button>
     </form>
   );

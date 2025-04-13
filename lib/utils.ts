@@ -1,3 +1,5 @@
+import { Batch, Sem } from "@prisma/client";
+
 const getLatestMonday = (): Date => {
     const today = new Date();
     const dayOfWeek = today.getDay();
@@ -65,3 +67,40 @@ export   const fullname :fullNameProps[] =[
   {collage: 'silicon', fname:'Silicon Institute of Technology'  , link:'https://silicon.ac.in/' , gmap:'https://www.google.com/maps/place/Silicon+University/@20.3506823,85.8037611,17z/data=!3m1!4b1!4m6!3m5!1s0x3a1908e064769e73:0x9288172f3a98c7a4!8m2!3d20.3506773!4d85.806336!16s%2Fm%2F03qkxqw?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D' }, 
 ]
 
+export const subjects =[
+  {id:1, name:'CSE', code:'CSE101'},
+  {id:2, name:'CIVIL', code:'CIVIL101'},
+  {id:3, name:'MECH', code:'MECH101'},
+  {id:4, name:'MATH', code:'MATH101'},
+  {id:5, name:'CHEMISTRY', code:'CHEM101'},
+  {id:6, name:'PHYSICS', code:'PHYS101'},
+]
+
+
+
+
+  export const setFeeAmount = (batch: Batch): number => {
+    switch (batch) {
+      case "BCA": return 100000;
+      case "BTECH": return 180000;
+      case "MTECH": return 190000;
+      case "MCA": return 180000;
+      case "BBA": return 90000;
+      case "BSC": return 90000; 
+      case "MSC": return 170000;
+      default: return 0; 
+    }
+  };  
+  
+  export const setSEM = (sem: Sem) => {
+    switch (sem) {
+      case "FIRST": return '1ST';
+      case "SECOND": return '2nd';
+      case "THIRD": return '3rd';
+      case "FOURTH": return '4th';
+      case "FIFTH": return '5th';
+      case "SIXTH": return '6th'; 
+      case "SEVENTH": return '7th';
+      default: return '8th'; 
+    }
+  };   

@@ -20,7 +20,7 @@ const TeacherListPage = async({searchParams}:{searchParams:{[key:string]:string|
   const renderRow = (item: TeacherList) => (
     <tr
       key={item.id}
-      className=" rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm "
+      className=" rounded-xl tr overflow-hidden hover:overflow-hidden inshadow text-sm "
     >
       <td className="flex items-center gap-4 p-4">
         <Image src={item.img || "/avatar.jpg"} alt="" width={140} height={140} className="md:hidden xl:block w-10 h-10 rounded-full object-cover" />

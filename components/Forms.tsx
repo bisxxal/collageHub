@@ -1,5 +1,5 @@
 "use client"; 
-import { deleteAssingment, deleteClass, deleteEvent, deleteExam, deleteResults, deleteStudent, deleteSubject, deleteTeacher} from "@/server/server.actions";
+import { deleteAssingment, deleteClass, deleteEvent, deleteExam, deleteLesson, deleteResults, deleteStudent, deleteSubject, deleteTeacher} from "@/server/server.actions";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -16,6 +16,7 @@ const deleteActionMap: any = {
   assignment: deleteAssingment,
   result: deleteResults, 
   event: deleteEvent,
+  lesson: deleteLesson,
 };
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
@@ -42,6 +43,10 @@ const AssignmentForm = dynamic(() => import("./forms/Assignments"), {
 const ResultsForm = dynamic(() => import("./forms/ResultsForm"), {
   loading: () => <LoadingCom />,
 });
+
+const LessonForm = dynamic(() => import("./forms/lessonForms"), {
+  loading: () => <LoadingCom />,
+})
 
 const Form = ({type,data,setOpen,table,relatedData,id,}: {
   type: "create" | "update" | "delete";
@@ -123,6 +128,14 @@ const Form = ({type,data,setOpen,table,relatedData,id,}: {
         relatedData={relatedData}
       />
     ),
+    lesson: (setOpen, type, data, relatedData) => (
+      <LessonForm
+        type={type}
+        data={data}
+        setOpen={setOpen}
+        relatedData={relatedData}
+      />
+    ),
   }; 
   const [state, formAction] = useFormState(
     deleteActionMap[table as keyof typeof deleteActionMap],
@@ -134,7 +147,7 @@ const Form = ({type,data,setOpen,table,relatedData,id,}: {
   const router = useRouter();
   useEffect(() => {
     if (state.success) {
-      toast(`${table} has been deleted!`);
+      toast.success(`${table} has been deleted!`);
       setOpen(false);
       router.refresh();
     }

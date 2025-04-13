@@ -59,6 +59,7 @@ const colorData = [
   return (
     <div className=" w-full pb-5 frame2 rounded-2xl overflow-hidden">
 
+   { cgpa ? <>
       <div className=' h-[450px] w-full '>
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="80%" data={score}>
@@ -79,8 +80,12 @@ const colorData = [
           cornerRadius={3} 
           colors={['#5BE12C', '#F5CD19', '#EA4228']}
           arcWidth={0.3}
-        />
+          />
       </div>
+          </>
+          : <div className="flex justify-center items-center h-[450px] w-full"> 
+          <h1 className=" text-center mb-5 font-semibold">No result  available</h1>
+          </div>}
 
     </div>
   );

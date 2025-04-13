@@ -59,7 +59,10 @@ body::-webkit-scrollbar-thumb {
   background: #161621;
   background: linear-gradient(312deg, #9480ff2e 28%, #16162100 140%);
 }
-
+.tr:hover {
+  background: #161621;
+  background: linear-gradient(312deg, #9480ff2e 28%, #16162100 140%);
+}
 .frame2 {
   background: #161621;
   background: linear-gradient(180deg, #9480ff2e -2%, #16162100 166%);

@@ -72,10 +72,10 @@ const columns = [
 const renderRow = (item: ResultList) => (
   <tr
     key={item.id}
-    className="rounded-xl hover:bg-[#ffffff21] overflow-hidden hover:overflow-hidden inshadow text-sm"
+    className="rounded-xl tr overflow-hidden hover:overflow-hidden inshadow text-sm"
   >
     <td className="flex items-center gap-4 p-4">{item.title}</td>
-    <td>{item.studentName + " " + item.studentName}</td>
+    <td>{item.studentName + " " + item.studentSurname}</td>
     <td className="hidden md:table-cell">{item.score}</td>
     <td className="hidden md:table-cell">
       {item.teacherName + " " + item.teacherSurname}
@@ -102,7 +102,7 @@ const renderRow = (item: ResultList) => (
   const p = page ? parseInt(page) : 1;
  
 
-  const query: Prisma.ResultWhereInput = {  };
+  const query: Prisma.ResultWhereInput = { CollageName:collage };
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
@@ -145,6 +145,7 @@ const renderRow = (item: ResultList) => (
   const [dataRes, count] = await prisma.$transaction([
     prisma.result.findMany({
       where: query,
+      orderBy: { createdAt: "desc" },
       include: {
         student: { select: { name: true, surname: true } },
         exam: {

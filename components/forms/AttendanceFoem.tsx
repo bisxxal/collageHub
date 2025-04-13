@@ -104,7 +104,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons, collage }) => 
   };
 
   if (!lessons || lessons.length === 0) {
-    return <div className="text-center text-gray-500 p-5">No lessons available</div>;
+    return <div className="text-center text-gray-500 p-5">No subjects found</div>;
   }
 
   return (

@@ -11,7 +11,7 @@ async function Attendencepage() {
   const collage = (sessionClaims?.metadata as { collage?: string })?.collage  as string
   let students;
   if(role === "admin" || role === "teacher"){
-     students = await allStudentsAttendence(role, userId!);
+     students = await allStudentsAttendence(role, userId! , collage );
   }
   return (
     <div className='  flex items-center mt-24 justify-center  w-full  min-h-[90vh]'>

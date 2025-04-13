@@ -1,5 +1,5 @@
 'use server'
-import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
+import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, LessonSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
 import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
 
@@ -65,6 +65,35 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
     currentState: { success: boolean; error: boolean },
     data: TeacherSchema
   ) => {
+
+    const [teacherExists, studentExists] = await Promise.all([
+      prisma.teacher.findFirst({
+        where: {
+          OR: [
+            { username: data.username },
+            { email: data.email },
+          ],
+        },
+      }),
+      prisma.student.findFirst({
+        where: {
+          OR: [
+            { username: data.username },
+            { email: data.email },
+          ],
+        },
+      }),
+    ]);
+  
+    if (teacherExists || studentExists) {
+
+      return JSON.parse(JSON.stringify({
+        success: false,
+        error: true,
+        msg: "Email or username already exists",
+      }));
+    }
+ 
  
      const { sessionClaims } = auth();
      const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
@@ -100,7 +129,6 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
   
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (err) {  
-  
       return JSON.parse(JSON.stringify({success: false, error: true , message:err}));  
     }
   };
@@ -147,8 +175,6 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           },
         },
       });
-
-      
  
       return JSON.parse(JSON.stringify({success:true , error:false}));   
     } catch (error) { 
@@ -181,6 +207,33 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
     data: StudentSchema
   ) => { 
     try { 
+      const [teacherExists, studentExists] = await Promise.all([
+        prisma.teacher.findFirst({
+          where: {
+            OR: [
+              { username: data.username },
+              { email: data.email },
+            ],
+          },
+        }),
+        prisma.student.findFirst({
+          where: {
+            OR: [
+              { username: data.username },
+              { email: data.email },
+            ],
+          },
+        }),
+      ]);
+    
+      if (teacherExists || studentExists) {
+        return JSON.parse(JSON.stringify({
+          success: false,
+          error: true,
+          msg: "Email or username already exists",
+        }));
+      }
+      
       const { sessionClaims } = auth();
       const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
       
@@ -342,6 +395,24 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
    
     try {
       await prisma.exam.delete({
+        where: {
+          id: parseInt(id),
+          // ...(role === "teacher" ? { lesson: { teacherId: userId! } } : {}),
+        },
+      });
+   
+       return JSON.parse(JSON.stringify({success:true , error:false}));   
+    } catch (err) { 
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
+    }
+  };
+  export const deleteLesson = async (
+    currentState: CurrentState,
+    data: FormData
+  ) => {
+    const id = data.get("id") as string;
+    try {
+      await prisma.lesson.delete({
         where: {
           id: parseInt(id),
           // ...(role === "teacher" ? { lesson: { teacherId: userId! } } : {}),
@@ -553,16 +624,19 @@ export const createResults = async (currentState: CurrentState, data: ResultSche
     if (!data.score || !data.studentId) {
       return JSON.parse(JSON.stringify({success: false, error: true}));  
     }
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     const result = await prisma.result.create({
       data: {
         score: parseInt(data.score), 
         examId: data.studentId ? parseInt(data.studentId) : null, 
         studentId: data.examId,
+        CollageName:collage,
       },
     });
      return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (err) {
-    console.log(err)
+    // console.log(err)
     return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 };
@@ -671,5 +745,51 @@ export const resultPie = async (id:string) => {
       })
       return JSON.parse(JSON.stringify(res));
   } catch (error) {
+  }
+}
+
+export const createLesson = async (currentState: CurrentState, data: LessonSchema) => {
+
+  try {
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+    await prisma.lesson.create({
+      data:{
+        name:data.name,
+        startTime:data.startTime,
+        endTime:data.endTime,
+        subjectId:parseInt(data.subjectId),
+        classId:parseInt(data.classId), 
+        day:data.day,
+        teacherId:data.teacherId,
+        CollageName:collage
+      }
+    });
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
+  } catch (err) {
+    console.log(err)
+    return JSON.parse(JSON.stringify({success: false, error: true}));    
+  }
+}
+export const updateLesson = async (currentState: CurrentState, data: LessonSchema) => {
+
+  try {
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+    await prisma.lesson.create({
+      data:{
+        name:data.name,
+        startTime:data.startTime,
+        endTime:data.endTime,
+        subjectId:parseInt(data.subjectId),
+        classId:parseInt(data.classId),
+        day:data.day,
+        teacherId:data.teacherId,
+        CollageName:collage
+      }
+    });
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
+  } catch (err) {
+    return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 }
