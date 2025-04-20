@@ -42,12 +42,13 @@ const TeacherForm = ({type,data,setOpen,relatedData,}: {
     }
     else{
       setImg(img?.secure_url);
-    } 
+    }
     if(type === "update"){
-      formAction({ ...data , img: img?.secure_url }); 
-      
+      formAction({ ...data , img: img?.secure_url });
     }
     if(type === "create"){
+      console.log("create", data, img?.secure_url);
+      console.log(img, "img in create");
       formAction({ ...data, img: img?.secure_url });
     }
 
@@ -75,6 +76,10 @@ const TeacherForm = ({type,data,setOpen,relatedData,}: {
     fetchteachers();
   }, [relatedData]);
 
+
+
+  console.log(img?.secure_url, "img in log");
+  // console.log(data, "data");
   return (
     <form className="flex   p-4  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl text-center font-semibold">

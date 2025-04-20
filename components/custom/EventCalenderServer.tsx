@@ -9,7 +9,7 @@ import { getFince } from "@/server/payemt.actions";
 async function EventCalenderServer({searchParams}:{searchParams:{[key:string]:string | undefined}}) {
   const {date} = searchParams;
   const data = await getFince();
-
+  
   return (
     <>
     <div className=" w-full frame2 inshadow rounded-lg">

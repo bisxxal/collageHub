@@ -793,3 +793,37 @@ export const updateLesson = async (currentState: CurrentState, data: LessonSchem
     return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 }
+
+export const fetchAttendanceWeekly = async (start:string , end:string) => {
+  const { sessionClaims } = auth();
+  const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+
+  if (!start || !end || typeof start !== "string" || typeof end !== "string") {
+    return JSON.parse(JSON.stringify({success: false, error: true}));
+  }
+
+  try {
+    const data = await prisma.attendance.findMany({
+      where: {
+        CollageName: collage,
+        date: {
+          gte: new Date(start),
+          lte: new Date(end),
+        },
+      },
+      select: {
+        date: true,
+        present: true,
+      },
+      orderBy: {
+        date: "asc",
+      },
+    });
+    // console.log(data, "data")
+    return JSON.parse(JSON.stringify(data));
+  
+}
+  catch (error) {
+    return JSON.parse(JSON.stringify({success: false, error: true}));
+  }
+}

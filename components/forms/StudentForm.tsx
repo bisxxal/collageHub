@@ -13,6 +13,7 @@ import InputField from "../custom/InputField";
 import { createStudent, updateStudent } from "@/server/server.actions";
 import { allStudents } from "@/server/form.actions";
 import { LuLoader } from "react-icons/lu";
+import Image from "next/image";
 
 const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update" | "delete";data?: any;setOpen: Dispatch<SetStateAction<boolean>>;relatedData?: any;}) => {
   
@@ -135,7 +136,25 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
             </div>
           );
         }}
+         
       </CldUploadWidget>
+      {img ? (
+                  <Image
+                    className=" w-24 h-24 rounded-full"
+                    src={img}
+                    alt=""
+                    width={700}
+                    height={728}
+                  />
+                ) : ( data?.img &&
+                  <Image
+                    className=" w-20 h-20 rounded-full"
+                    src={data?.img}
+                    alt=""
+                    width={700}
+                    height={728}
+                  />
+                )}
       <div className="flex justify-between flex-wrap gap-4">
         <InputField
           label="First Name"
@@ -209,6 +228,8 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
             </p>
           )}
         </div>
+
+        
 
 
         <div className="flex flex-col gap-2 w-full md:w-1/4">

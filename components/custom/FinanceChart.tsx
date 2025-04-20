@@ -1,13 +1,13 @@
 'use client';
 import { getFin } from "@/server/payemt.actions";
 import { useEffect, useState } from "react";
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,} from "recharts";
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area,} from "recharts";
 
 interface FeeData {
   name: string;
   income: number;
 }
-
+ 
 const FinanceChart = () => {
   const currentYear = new Date().getFullYear();
   const [feeData, setFeeData] = useState<FeeData[]>([]);
@@ -16,12 +16,13 @@ const FinanceChart = () => {
   useEffect(() => {
     const fetchFeeData = async () => {
       try {
-        const fees = await getFin();  
+        const fees = await getFin();
         const formattedData: FeeData[] = Array.from({ length: 12 }, (_, i) => {
           const monthName = new Date(0, i).toLocaleString("default", {
             month: "short",
           });
 
+          console.log('monthName', monthName)
           const monthFees = fees.filter((fee: { createdAt: Date }) =>
             new Date(fee.createdAt).getFullYear() === selectedYear &&
             new Date(fee.createdAt).getMonth() === i
@@ -29,22 +30,19 @@ const FinanceChart = () => {
 
           const totalIncome = monthFees.reduce(
             (acc: number, curr: { amount: number }) => acc + curr.amount,
-            0
+            0   
           );
           return {
             name: monthName,
             income: totalIncome,
           };
         });
-
         setFeeData(formattedData);
       } catch (error) {
-
       }
     };
-
     fetchFeeData();
-  }, [selectedYear]);
+  }, [selectedYear ]);
 
   return (
     <div className="bg-[#080312] inshadow frame2 rounded-xl w-full h-full p-3 max-md:px-1">
@@ -62,39 +60,28 @@ const FinanceChart = () => {
           ))}
         </select>
       </div>
-
-      <ResponsiveContainer width="100%" height="90%">
-        <LineChart
-          data={feeData}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
-          <XAxis
-            dataKey="name"
-            axisLine={false}
-            tick={{ fill: "#d1d5db" }}
-            tickLine={false}
-            tickMargin={10}
-          />
-          <YAxis
-            axisLine={false}
-            tick={{ fill: "#d1d5db" }}
-            tickLine={false}
-            tickMargin={20}
-          />
+ 
+        <ResponsiveContainer width="100%" height="100%">
+        <AreaChart
+          data={feeData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          <defs>
+            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="name" />
+          <YAxis />
+          <CartesianGrid strokeDasharray="3 3"  />
           <Tooltip />
-          <Legend
-            align="center"
-            verticalAlign="top"
-            wrapperStyle={{ paddingTop: "10px", paddingBottom: "30px" }}
+          <Area
+            type="monotone"
+            dataKey="income"
+            stroke="#8884d8"
+            fillOpacity={1}
+            fill="url(#colorUv)"
           />
-          <Line type="monotone" dataKey="income" stroke="#3352cc" strokeWidth={5} />
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

@@ -9,11 +9,10 @@ const getLatestMonday = (): Date => {
     return latestMonday;
   };
   
-export const adjustScheduleToCurrentWeek = (
-    lessons: { title: string; start: Date; end: Date }[]
-  ): { title: string; start: Date; end: Date }[] => {
-    const latestMonday = getLatestMonday();
+export const adjustScheduleToCurrentWeek = ( lessons: { title: string; start: Date; end: Date }[]  ): { title: string; start: Date; end: Date }[] => {
   
+  const latestMonday = getLatestMonday();
+
     return lessons.map((lesson) => {
       const lessonDayOfWeek = lesson.start.getDay();
   
@@ -42,7 +41,7 @@ export const adjustScheduleToCurrentWeek = (
     });
   };
 
-  
+ 
 export const formatAmount = (amount: number) => {
   if (amount >= 1000000) {
     return `${(amount / 1000000).toFixed(1)}M`;
@@ -104,3 +103,30 @@ export const subjects =[
       default: return '8th'; 
     }
   };   
+
+
+  export const formatDate = (date: Date) =>
+    date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+  
+  
+  export function getMonday(offset = 0): Date {
+    const today = new Date();
+    const day = today.getDay(); 
+    const diff = day === 0 ? 6 : day - 1; 
+  
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - diff + offset * 7);
+    monday.setHours(0, 0, 0, 0);
+    return monday;
+  }
+  
+  export function getSaturday(monday: Date): Date {
+    const saturday = new Date(monday);
+    saturday.setDate(monday.getDate() + 5);
+    saturday.setHours(23, 59, 59, 999);
+    return saturday;
+  }
+  

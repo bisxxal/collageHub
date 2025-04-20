@@ -3,9 +3,9 @@ import React from 'react'
 
  async function EventList({dateParam}:{dateParam?:string | undefined}) {
  
-    const date =dateParam ? new Date(dateParam) : new Date();
+    const date = dateParam ? new Date(dateParam) : new Date();
     
-    const data =await prisma.event.findMany({
+    const data = await prisma.event.findMany({
         where:{
             startTime:{
                 gte :new Date(date.setHours(0,0,0,0)),

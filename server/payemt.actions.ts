@@ -100,6 +100,7 @@ export async function UPdatePayment(userId: string) {
 
 export async function getFin() {
   try {
+    console.log('first in payment actions');
     const { sessionClaims } = auth();
         const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     const fees = await prisma.fee.findMany({ where:{CollageName:collage} });

@@ -18,6 +18,7 @@ async function BigCalenderContainer({type,id}:{type:'teacherId'|'classId',id:str
         end:lesson.endTime
     }
   })
+
   const schedule = adjustScheduleToCurrentWeek(data);
 
     return (

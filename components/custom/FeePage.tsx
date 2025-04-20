@@ -66,33 +66,7 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
     } else { 
     }
   };
-
-  // const setFeeAmount = (batch: Batch): number => {
-  //   switch (batch) {
-  //     case "BCA": return 100000;
-  //     case "BTECH": return 180000;
-  //     case "MTECH": return 190000;
-  //     case "MCA": return 180000;
-  //     case "BBA": return 90000;
-  //     case "BSC": return 90000; 
-  //     case "MSC": return 170000;
-  //     default: return 0; 
-  //   }
-  // };  
-  
-  // const setSEM = (sem: Sem) => {
-  //   switch (sem) {
-  //     case "FIRST": return '1ST';
-  //     case "SECOND": return '2nd';
-  //     case "THIRD": return '3rd';
-  //     case "FOURTH": return '4th';
-  //     case "FIFTH": return '5th';
-  //     case "SIXTH": return '6th'; 
-  //     case "SEVENTH": return '7th';
-  //     default: return '8th'; 
-  //   }
-  // };   
-
+ 
   const createFee = async (studentId: string, semesterName: Sem , razorpay_order_id:string, razorpay_payment_id:string, razorpay_signature:string  ) => {
     const amount = setFeeAmount(batch);
     
@@ -101,11 +75,12 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
     if(res?.message =="success"){
       router.push("/list/fee?payment=success")
       await sendEmailNode({email:email ,message:` Fee for ${res.res.semesterName} sem has been paid Payment Id : ${res.res.razorpay_payment_id}  ` , subject:'Fee Payment Successfull'});  
+      router.refresh()
       }
       else{
         router.push("/list/fee?payment=unsuccess")
+        router.refresh()
       }
-      router.refresh()
   };
   
   const getSemestersForBatch = (batch: Batch): Sem[] => {
@@ -157,11 +132,10 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
 
 
       <div className='w-[97%] max-md:w-[95%] mx-auto inshadow frame rounded-xl min-h-[60vh] max-md:min-h-[70vh]'>
-                <div className=' grid max-md:grid-cols-4 grid-cols-6 mb-3 border-b-2 border-[#ffffff47]  p-2 py-3 font-semibold'>
+                <div className=' grid max-md:grid-cols-4 grid-cols-5 mb-3 border-b-2 border-[#ffffff47]  p-2 py-3 font-semibold'>
                     <h3>Amount</h3> 
                     <h3 >Semester</h3>
                     <h3 className=' max-md:hidden '>Payment Id</h3>
-                    <h3 className=' max-md:hidden '>Order Id</h3>
                     <h3 >Status</h3>
                     <h3 className=' max-md: ml-8'>Date</h3>
                 </div>
@@ -169,11 +143,11 @@ const FeePage = ({ userId, batch, phone  ,email}: { userId: string; batch: Batch
                 <div className=" px-4 max-md:px-2">
                     {fees && fees.map((f) => {
                         return (
-                            <div key={f.razorpay_order_id} className='  grid items-center  max-md:grid-cols-4 grid-cols-6 inshadow py-2 mb-2 rounded-lg border-2 border-[#ffffff14] max-md:text-sm px-2'>
+                            <div key={f.razorpay_order_id} className='  grid items-center  max-md:grid-cols-4 grid-cols-5 inshadow py-2 mb-2 rounded-lg border-2 border-[#ffffff14] max-md:text-sm px-2'>
                                 <p>₹ {f.amount}</p>
                                 <p> {setSEM(f.semesterName)} Sem</p>
                                 <p className=' max-md:hidden ' > {f.razorpay_payment_id ? <p>{f.razorpay_payment_id}</p>: '-----------------------' } </p>
-                                <p className=' max-md:hidden '>{f.razorpay_order_id ? <p className=' max-md:hidden'>{f.razorpay_order_id}</p> :'-----------------------'} </p>
+
                                 <p className=" bg-[#00ff003f] text-[#7cff7c] rounded-xl px-2 py-1 w-fit ">Successfull</p>
                                 <p>{new Date(f.createdAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
                             </div>

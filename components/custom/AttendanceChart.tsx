@@ -1,7 +1,7 @@
 "use client"; 
 import { BarChart, Bar,  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 const AttendanceChart = ({data}:{data:{name:string , present:number  , absent:number}[]}) => {
-  
+
   return ( 
      <div className=" w-full h-full"> 
      
