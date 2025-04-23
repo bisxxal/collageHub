@@ -101,7 +101,6 @@ export const allSubjectssAndTeachers = async () => {
     const { sessionClaims } = auth();
     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
-
     const [subjects, teachers, classes] = await Promise.all([
       prisma.subject.findMany({
         where: { CollageName: collage },
@@ -262,7 +261,11 @@ interface AttendancePayload {
 
 export const updateAllAttendance = async (data: AttendancePayload[]) => {
   try {
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     const writePromises = data.map(async (record) => {
+
+      console.log("in server",record.present, record.studentId , record.lessonId)
       return prisma.attendance.upsert({
         where: {
           studentId_lessonId_date: {
@@ -275,6 +278,7 @@ export const updateAllAttendance = async (data: AttendancePayload[]) => {
           present: record.present,
         },
         create: {
+          CollageName:collage,
           studentId: record.studentId,
           lessonId: record.lessonId,
           date: new Date(record.date.toDateString()),

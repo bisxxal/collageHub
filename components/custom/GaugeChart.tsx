@@ -39,6 +39,7 @@ const GaugeChart2 = () => {
   return (
     <div className=" w-full pb-5 overflow-hidden ">
 
+{ score.length !== 0  ? <>
       <div className=' h-[450px]  '>
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="80%" data={score}>
@@ -52,7 +53,6 @@ const GaugeChart2 = () => {
 
  
       <div>
-
       <h1 className=" text-center mb-5 font-semibold">Total percentage {cgpa} % </h1>
         <GaugeChart id="gauge-chart2" 
           nrOfLevels={30} 
@@ -60,8 +60,9 @@ const GaugeChart2 = () => {
           cornerRadius={3} 
           colors={['#5BE12C', '#F5CD19', '#EA4228']}
           arcWidth={0.3}
-        />
+          />
       </div>
+          </> : <p className=" text-center my-20"> No result announced </p> }
      
     </div>
   );

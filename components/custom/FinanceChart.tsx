@@ -22,7 +22,6 @@ const FinanceChart = () => {
             month: "short",
           });
 
-          console.log('monthName', monthName)
           const monthFees = fees.filter((fee: { createdAt: Date }) =>
             new Date(fee.createdAt).getFullYear() === selectedYear &&
             new Date(fee.createdAt).getMonth() === i
@@ -45,7 +44,7 @@ const FinanceChart = () => {
   }, [selectedYear ]);
 
   return (
-    <div className="bg-[#080312] inshadow frame2 rounded-xl w-full h-full p-3 max-md:px-1">
+    <div className="bg-[#080312] inshadow frame2 rounded-xl w-full h-full p-3 max-md:px-1 pb-6">
       <div className="flex justify-between items-center mb-3">
         <h1 className="text-lg font-semibold">Finance</h1>
         <select
@@ -61,7 +60,7 @@ const FinanceChart = () => {
         </select>
       </div>
  
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="96%">
         <AreaChart
           data={feeData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <defs>
@@ -72,7 +71,7 @@ const FinanceChart = () => {
           </defs>
           <XAxis dataKey="name" />
           <YAxis />
-          <CartesianGrid strokeDasharray="3 3"  />
+          <CartesianGrid strokeDasharray="1 1"  />
           <Tooltip />
           <Area
             type="monotone"

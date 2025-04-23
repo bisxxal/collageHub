@@ -5,6 +5,7 @@ import { adjustScheduleToCurrentWeek } from '@/lib/utils'
 
 async function BigCalenderContainer({type,id}:{type:'teacherId'|'classId',id:string|number}) {                  
  
+  console.log(`type: ${type}, id: ${id}`)
   const resData = await prisma.lesson.findMany({
     where:{
         ...(type === 'teacherId' ? {teacherId:id as string} : {classId:id as number})
@@ -13,14 +14,15 @@ async function BigCalenderContainer({type,id}:{type:'teacherId'|'classId',id:str
 
   const data = resData.map((lesson)=>{
     return{
-        title:lesson.name,
-        start:lesson.startTime,
-        end:lesson.endTime
+      title:lesson.name,
+      start:lesson.startTime,
+      end:lesson.endTime
     }
   })
-
+  
   const schedule = adjustScheduleToCurrentWeek(data);
-
+  
+  console.log(schedule)
     return (
     <div>
         <BigCalendar data={schedule} />

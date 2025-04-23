@@ -2,7 +2,7 @@
 'use client';
 import { formatAmount } from '@/lib/utils';
 import React, { useEffect, useState } from 'react';
-import {ResponsiveContainer,PieChart as RechartsPieChart,Pie,Legend, PieChart,} from 'recharts';
+import {ResponsiveContainer,PieChart as RechartsPieChart,Pie,Legend, PieChart, Tooltip,} from 'recharts';
  
 interface FeeDataProps {
   CollageName: string;
@@ -69,15 +69,17 @@ const PieChartComponent = ({ feeData }: { feeData: FeeDataProps[] }) => {
         </select>
       </div>
 
-     { chartData.length !== 0 ? <ResponsiveContainer>
+     { chartData.length !== 0 ? <ResponsiveContainer width="100%" height="96%">
         <PieChart>
           <Pie
             dataKey="amount"
+              nameKey="batch"
             data={chartData}
             fill="#3352CC"
             label={(entry) => `${entry.batch} (₹ ${formatAmount(entry.amount)})`}
           />
           {/* <Legend /> */}
+          <Tooltip />
         </PieChart>
       </ResponsiveContainer>
     : <p className='text-lg text-center text-gray-400 mt-20'>No data found </p>  

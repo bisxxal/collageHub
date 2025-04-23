@@ -35,7 +35,6 @@ async function AttendanceServer() {
     return <div>Error loading attendance data</div>;
   }
 
-  // console.dir(resData)
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const attendanceMap: { [key: string]: { present: number; absent: number } } =
@@ -84,9 +83,8 @@ export default AttendanceServer;
  
 // "use client";
 
-// import { IoIosMore } from "react-icons/io";
 // import AttendanceChart from "./AttendanceChart";
-// import { use, useEffect, useState } from "react";
+// import {   useEffect, useState } from "react";
 // import { fetchAttendanceWeekly } from "@/server/server.actions";
 // import { formatDate, getMonday, getSaturday } from "@/lib/utils";
  
@@ -141,6 +139,7 @@ export default AttendanceServer;
 //         Sat: { present: 0, absent: 0 },
 //       };
 
+//       console.log(resData ,"resData.length")
 //       resData.forEach((item) => {
 //         const itemDate = new Date(item.date);
 //         const day = itemDate.getDay(); 
@@ -189,6 +188,110 @@ export default AttendanceServer;
 //         <p className="text-center text-sm text-gray-300">Loading...</p>
 //       ) : (
 //         <AttendanceChart data={chartData} />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default AttendanceServer;
+
+
+// "use client";
+
+// import { useEffect, useState, useMemo, useCallback } from "react";
+// import AttendanceChart from "./AttendanceChart";
+// import { fetchAttendanceWeekly } from "@/server/server.actions";
+// import { formatDate, getMonday, getSaturday } from "@/lib/utils";
+
+// type AttendanceData = {
+//   date: string;
+//   present: boolean;
+// };
+
+// type ChartData = {
+//   name: string;
+//   present: number;
+//   absent: number;
+// };
+
+// const AttendanceServer = () => {
+//   const daysOfWeek = useMemo(() => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], []);
+
+//   const [weekOffset, setWeekOffset] = useState(0);
+//   const [weekRanges, setWeekRanges] = useState<string[]>([]);
+//   const [chartData, setChartData] = useState<ChartData[]>([]);
+//   const [loading, setLoading] = useState(true);
+
+//   // Set up week ranges once
+//   useEffect(() => {
+//     const ranges = Array.from({ length: 4 }, (_, idx) => {
+//       const offset = -idx;
+//       const monday = getMonday(offset);
+//       const saturday = getSaturday(monday);
+//       return `${formatDate(monday)} - ${formatDate(saturday)}`;
+//     });
+
+//     setWeekRanges(ranges);
+//   }, []);
+
+//   const fetchAttendanceData = useCallback(async (startDate: Date, endDate: Date) => {
+//     try {
+//       setLoading(true);
+//       const resData = await fetchAttendanceWeekly(startDate.toISOString(), endDate.toISOString());
+
+//       console.log(resData, "resData.length");
+//       const attendanceMap = daysOfWeek.reduce((acc, day) => {
+//         acc[day] = { present: 0, absent: 0 };
+//         return acc;
+//       }, {} as Record<string, { present: number; absent: number }>);
+
+//       resData.forEach(({ date, present } :{date:string , present:boolean}) => {
+//         const day = new Date(date).getDay();
+//         if (day >= 1 && day <= 6) {
+//           const dayName = daysOfWeek[day - 1];
+//           attendanceMap[dayName][present ? "present" : "absent"] += 1;
+//         }
+//       });
+
+//       const chart = daysOfWeek.map((day) => ({
+//         name: day,
+//         ...attendanceMap[day],
+//       }));
+
+//       setChartData(chart);
+//     } catch (error) {
+//       console.error("Failed to fetch attendance data:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   }, [daysOfWeek]);
+
+//   useEffect(() => {
+//     const monday = getMonday(weekOffset);
+//     const saturday = getSaturday(monday);
+//     fetchAttendanceData(monday, saturday);
+//   }, [weekOffset, fetchAttendanceData]);
+
+//   return (
+//     <div className="bg-[#090a15] inshadow frame2 rounded-lg p-4 h-full">
+//       <div className="flex justify-between items-center mb-4">
+//         <h1 className="text-lg font-semibold">Attendance</h1>
+//         <select
+//           className="bg-transparent border-2 border-[#ffffff27] px-2 py-1 rounded-xl text-lg"
+//           value={weekOffset}
+//           onChange={(e) => setWeekOffset(Number(e.target.value))}
+//         >
+//           {weekRanges.map((label, idx) => (
+//             <option key={idx} value={-idx}>
+//               {label}
+//             </option>
+//           ))}
+//         </select>
+//       </div>
+//       {loading ? (
+//         <p className="text-center text-sm text-gray-300">Loading...</p>
+//       ) : (
+//         <AttendanceChart data={chartData} key={weekOffset} />
 //       )}
 //     </div>
 //   );

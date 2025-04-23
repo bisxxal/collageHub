@@ -6,6 +6,7 @@ async function AttendanceServer() {
   const today = new Date();
   const startOfYear = new Date(today.getFullYear(), 0, 1);  
 
+  const year = today.getFullYear(); 
   let resData;
 
   const user = await currentUser();
@@ -38,6 +39,8 @@ async function AttendanceServer() {
       return <div>Error loading attendance data</div>;
     }
   }
+
+  console.log("Attendance data:", resData); // Log the attendance data
 
   const attendanceMap: { [key: string]: { present: number; absent: number } } = {
     Jan: { present: 0, absent: 0 },
@@ -75,7 +78,7 @@ async function AttendanceServer() {
  
   return (
     <>
-      <h1 className='w-[90%] mx-auto font-semibold text-xl max-md:text-base '>Attendance from january - December 2024</h1>
+      <h1 className='w-[90%] mx-auto font-semibold text-xl max-md:text-base '>Attendance from january - December ( {year.toString()} ) </h1>
     <div className="bg-[#090a15] inshadow frame2 mt-12 m-auto rounded-lg p-4  w-[90%] max-md:h-[50%] h-[70%]">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold">Attendance</h1>

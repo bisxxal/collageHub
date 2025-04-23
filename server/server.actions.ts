@@ -776,7 +776,10 @@ export const updateLesson = async (currentState: CurrentState, data: LessonSchem
   try {
     const { sessionClaims } = auth();
     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
-    await prisma.lesson.create({
+    await prisma.lesson.update({
+      where:{
+        id:data.id
+      },
       data:{
         name:data.name,
         startTime:data.startTime,
