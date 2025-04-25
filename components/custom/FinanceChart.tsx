@@ -1,7 +1,7 @@
 'use client';
 import { getFin } from "@/server/payemt.actions";
 import { useEffect, useState } from "react";
-import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area,} from "recharts";
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, Legend,} from "recharts";
 
 interface FeeData {
   name: string;
@@ -65,18 +65,35 @@ const FinanceChart = () => {
           data={feeData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+              <stop offset="5%" stopColor="#E11D47" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#D44D66" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="name" />
-          <YAxis />
-          <CartesianGrid strokeDasharray="1 1"  />
-          <Tooltip />
+          <XAxis dataKey="name"  stroke="#ffffff28"/>
+          <YAxis  />
+          <Legend
+              align="center"
+              verticalAlign="top"
+              wrapperStyle={{ paddingTop: "20px", paddingBottom: "40px" }}
+            />
+          <CartesianGrid strokeDasharray="1 1"   stroke="#ffffff28"/>
+          <Tooltip
+              contentStyle={{
+                backgroundColor: '#ffffff20', 
+                color: 'white', 
+                borderRadius: '5px', 
+                backdropFilter: 'blur(10px)',
+                border: '1px solid transparent',  
+              }}
+            itemStyle={{
+              color: '#E11D47',  
+              fontWeight: 'bold',
+              fontSize: '15px',
+            }}/>
           <Area
             type="monotone"
             dataKey="income"
-            stroke="#8884d8"
+            stroke="#E11D47"
             fillOpacity={1}
             fill="url(#colorUv)"
           />

@@ -11,7 +11,7 @@ const SupperAdmin = async() => {
     distinct: ['CollageName'],
     })
   return (
-    <div className=' w-full min-h-screen p-6 '>
+    <div className=' w-full min-h-screen p-6 overflow-hidden'>
        <div className="flex gap-4 max-md:gap-2 mt-2 justify-between flex-wrap">
           <SuperCard type="admin"  text='text-[#fcf2626]' bg='bg-[#ff00003e]' />
           <SuperCard type="student" text='text-[#f3fd29]' bg='bg-[#fff2003e]'/>

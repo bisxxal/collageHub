@@ -20,7 +20,7 @@ async function Card({ type  , bg , text }: { type: 'admin' | 'student' | 'teache
   })
 
   return (
-    <Link href={`/list/${type}sq`} className={`min-w-[130px] flex-1 ${text} max-w-full h-56 buttonhover max-md:wfull max-md:h-52 buttonhover inputbg relative rounded-3xl border-2 border-[#ffffff2c] flex flex-col items-center justify-center "`}>
+    <Link href={`/list/${type}s`} className={`min-w-[130px] flex-1 ${text} max-w-full h-56 buttonhover max-md:wfull max-md:h-52 buttonhover inputbg relative rounded-3xl border-2 border-[#ffffff28] flex flex-col items-center justify-center "`}>
           <div className={` h-[85%] w-[75%] ${bg } blur-[25px] rounded-full absolute `}></div>
 
             <div className="flex justify-between items-center absolute left-4 top-4">

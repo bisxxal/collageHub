@@ -264,8 +264,6 @@ export const updateAllAttendance = async (data: AttendancePayload[]) => {
     const { sessionClaims } = auth();
     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     const writePromises = data.map(async (record) => {
-
-      console.log("in server",record.present, record.studentId , record.lessonId)
       return prisma.attendance.upsert({
         where: {
           studentId_lessonId_date: {

@@ -1,9 +1,8 @@
-// @ts-nocheck
+
 "use client";
 import { resultPie } from "@/server/server.actions";
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Cell ,Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
-import { PieSectorDataItem } from "recharts/types/polar/Pie";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
 import GaugeChart from 'react-gauge-chart'
 
 const GaugeChart2 = () => {
@@ -41,14 +40,27 @@ const GaugeChart2 = () => {
 
 { score.length !== 0  ? <>
       <div className=' h-[450px]  '>
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart cx="50%" cy="50%" outerRadius="80%" data={score}>
-              <PolarGrid />
-              <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis />
-              <Radar name="Student" dataKey="A" stroke="#009966" fill="#99FE01" fillOpacity={0.6} />
-            </RadarChart>
-          </ResponsiveContainer>     
+           <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={score}>
+              <Tooltip
+              contentStyle={{
+                backgroundColor: '#ffffff20', 
+                color: 'white', 
+                borderRadius: '5px', 
+                backdropFilter: 'blur(10px)',
+                border: '1px solid transparent',  
+              }}
+            itemStyle={{
+              color: '#E11D47',  
+              fontWeight: 'bold',
+              fontSize: '15px',
+            }}/>
+                <PolarGrid />
+                <PolarAngleAxis dataKey="subject" />
+                <PolarRadiusAxis angle={30}  />
+                <Radar name="Score" dataKey="A" stroke="#E11D47" fill="#E11D47" fillOpacity={0.6}/>
+              </RadarChart>
+            </ResponsiveContainer>        
         </div>
 
  

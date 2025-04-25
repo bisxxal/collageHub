@@ -52,7 +52,7 @@ const PieChartComponent = ({ feeData }: { feeData: FeeDataProps[] }) => {
   }, [feeData, selectedYear]);
 
   return (
-    <div className="!text-xs mx-auto mt-3 w-[90%] h-[400px]">
+    <div className="!text-xs mx-auto mt-3 w-[90%] h-[450px]">
       <div className="mb-2 flex items-center justify-between">
       <h1 className=' pt-2 pl-4 font-semibold text-lg'>Revenue pie</h1>
         <select
@@ -69,7 +69,7 @@ const PieChartComponent = ({ feeData }: { feeData: FeeDataProps[] }) => {
         </select>
       </div>
 
-     { chartData.length !== 0 ? <ResponsiveContainer width="100%" height="96%">
+     { chartData.length !== 0 ? <ResponsiveContainer width="100%" height="91%">
         <PieChart>
           <Pie
             dataKey="amount"
@@ -78,8 +78,19 @@ const PieChartComponent = ({ feeData }: { feeData: FeeDataProps[] }) => {
             fill="#3352CC"
             label={(entry) => `${entry.batch} (₹ ${formatAmount(entry.amount)})`}
           />
-          {/* <Legend /> */}
-          <Tooltip />
+          
+          <Tooltip
+              contentStyle={{
+                backgroundColor: '#ffffff20', 
+                color: 'white', 
+                borderRadius: '5px', 
+                backdropFilter: 'blur(10px)',
+                border: '1px solid transparent',  
+              }}
+            itemStyle={{
+              color: 'white',  
+              fontWeight: 'bold',
+            }}/>
         </PieChart>
       </ResponsiveContainer>
     : <p className='text-lg text-center text-gray-400 mt-20'>No data found </p>  

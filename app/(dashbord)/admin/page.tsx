@@ -3,11 +3,17 @@ import Card from "@/components/custom/Card";
 import CountchatServer from "@/components/custom/CountchatServer";
 import EventCalenderServer from "@/components/custom/EventCalenderServer";
 import FinanceChart from "@/components/custom/FinanceChart";
-
+import PinProcted from "@/components/pinprocted";
 
 const AdminPage = ({searchParams}:{searchParams:{[key:string]:string | undefined}}) => {
+  const pin = process.env.PIN as string;
+  let pinValue = [] as string[]
   return (
-    <div className="p-4 bg-[#090a15f2] flex gap-4 flex-col min-h-[100vh] md:flex-row ">
+    <>
+     <PinProcted pin={pin} rpin={pinValue} />
+    <div className="p-4 flex gap-4 flex-col min-h-[100vh] md:flex-row ">
+     
+     
       <div className="w-full lg:w-2/3 flex flex-col gap-8">
 
         <div className="flex gap-4 max-md:gap-2 mt-2 justify-between flex-wrap">
@@ -34,6 +40,7 @@ const AdminPage = ({searchParams}:{searchParams:{[key:string]:string | undefined
         <EventCalenderServer searchParams={searchParams} /> 
       </div>
     </div>
+    </>
   );
 };
 

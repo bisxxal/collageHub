@@ -40,8 +40,6 @@ async function AttendanceServer() {
     }
   }
 
-  console.log("Attendance data:", resData); // Log the attendance data
-
   const attendanceMap: { [key: string]: { present: number; absent: number } } = {
     Jan: { present: 0, absent: 0 },
     Feb: { present: 0, absent: 0 },

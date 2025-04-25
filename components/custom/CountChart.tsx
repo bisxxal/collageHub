@@ -1,6 +1,6 @@
 "use client"; 
 import { BiMaleFemale } from "react-icons/bi";
-import { RadialBarChart, RadialBar,  ResponsiveContainer,} from "recharts";
+import { RadialBarChart, RadialBar,  ResponsiveContainer, Tooltip,} from "recharts";
 
 const CountChart = ({boys , girls}:{boys:number , girls:number}) => {
 
@@ -13,7 +13,7 @@ const CountChart = ({boys , girls}:{boys:number , girls:number}) => {
     {
       name: "Girls",
       count: girls,
-      fill: "#fc2626",
+      fill: "#E11D47",
     },
     {
       name: "Boys",
@@ -37,6 +37,7 @@ const CountChart = ({boys , girls}:{boys:number , girls:number}) => {
           >
             <RadialBar
              background
+             name="name"
             dataKey="count" />
           </RadialBarChart>
         </ResponsiveContainer>

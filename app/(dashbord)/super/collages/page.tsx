@@ -17,6 +17,9 @@ interface StudentProps{
 interface AdminProps{
     id:string;
     userName:string;
+    firstName:string;
+    lastName:string;
+    email:string
 }
 interface TeacherProps{
     id:string;
@@ -109,7 +112,10 @@ const CollageSuperPage = () => {
             <h3 className=' text-center text-xl font-semibold'>{admin.length} Admins</h3>
             { admin.map((item , index)=>{
             return (<div key={index} className='rounded-2xl p-3 text-clip  inshadow border-2 border-[#ffffff14] my-2 w- min-w-[340px] max-md:min-w-[130px] h-44 flex-1  frame'>
-            <h1 className=' text-2xl mb-4 font-semibold text-center '>UserName{item?.userName}  </h1>
+            <h1 className=' text-2xl font-semibold text-center mb-4 '>{item?.firstName} {item?.lastName} </h1>
+            <h1 className=' text-2xl mb-4 font-semibold text-center '>UserName : {item?.userName}  </h1>
+            <p>Email : {item?.email}</p>
+            <p></p>
             <p className=' text-'>Id:{item.id}</p>
             </div>)
             })}

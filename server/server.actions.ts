@@ -636,7 +636,6 @@ export const createResults = async (currentState: CurrentState, data: ResultSche
     });
      return JSON.parse(JSON.stringify({success:true , error:false}));    
   } catch (err) {
-    // console.log(err)
     return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 };
@@ -719,7 +718,7 @@ export async function getStudentsForLesson(lessonId: number) {
   }
 }
 
-export const resultPie = async (id:string) => {
+export const resultPie = async (id?:string) => {
   try {
     const user = await currentUser()
 
@@ -767,7 +766,6 @@ export const createLesson = async (currentState: CurrentState, data: LessonSchem
     });
      return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    console.log(err)
     return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 }
@@ -822,7 +820,6 @@ export const fetchAttendanceWeekly = async (start:string , end:string) => {
         date: "asc",
       },
     });
-    // console.log(data, "data")
     return JSON.parse(JSON.stringify(data));
   
 }

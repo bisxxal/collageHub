@@ -6,6 +6,13 @@ body{
   @apply bg-[#090a15] text-zinc-200 ;
 }
 
+/* .dark {
+  @apply bg-[#090a15] text-zinc-200 ;
+}
+
+.light {
+  @apply bg-[#ffffff] text-zinc-800 ;
+} */
 body {
   --sb-track-color: #15141b;
   --sb-thumb-color: #322e46;
@@ -48,12 +55,7 @@ body::-webkit-scrollbar-thumb {
 
 .inshadow{
   box-shadow: inset 0 0 10px #ffffff1c;
-}  
-
-/* .frame{
-  background: #161621;
-  background: linear-gradient(179deg, #ffffff14 11%, #161621 99%)
-} */
+}   
 
 .frame {
   background: #161621;
@@ -248,5 +250,5 @@ input#navch:checked ~ .aside{
 } 
 
 .buttonhover{
-  @apply hover:scale-[1.1] !transition-all hover:-translate-y-0.5;
+  @apply hover:scale-[1.02] !transition-all hover:-translate-y-0.5;
 }

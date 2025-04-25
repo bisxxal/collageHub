@@ -128,6 +128,9 @@ export const AllStudAdminsAndTeacher = async (collage:string) => {
         select:{
           id:true,
           userName:true,
+          firstName:true,
+          lastName:true,
+          email:true,
         }
       }),
       prisma.teacher.findMany({

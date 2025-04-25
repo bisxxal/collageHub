@@ -65,7 +65,7 @@ const AssignmentForm = ({
   return (
     <form className="flex  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a]  p-4 frame flex-col gap-8" onSubmit={onSubmit} >
       <h1 className="text-xl font-semibold">
-        {type === "create" ? "Create a new Assignment" : "Update the Assignment"}
+        {type === "create" ? "Add a new Assignment" : "Update the Assignment"}
       </h1>
 
       <div className="flex justify-between flex-wrap gap-4">

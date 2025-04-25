@@ -92,7 +92,6 @@ export async function UPdatePayment(userId: string) {
       where: { studentId: userId },
     });
     return JSON.parse(JSON.stringify(updatedFees)); 
-    // return updatedFees;
   } catch (error) { 
     
   }
@@ -100,7 +99,6 @@ export async function UPdatePayment(userId: string) {
 
 export async function getFin() {
   try {
-    console.log('first in payment actions');
     const { sessionClaims } = auth();
         const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
     const fees = await prisma.fee.findMany({ where:{CollageName:collage} });
