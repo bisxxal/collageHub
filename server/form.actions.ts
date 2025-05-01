@@ -287,6 +287,8 @@ export const updateAllAttendance = async (data: AttendancePayload[]) => {
 
     await Promise.all(writePromises);
 
+    console.log(writePromises, "writePromises")
+
     return { success: true };
   } catch (error) {
     return { success: false, message: "Failed to update attendance." };

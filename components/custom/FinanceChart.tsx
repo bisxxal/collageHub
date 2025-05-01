@@ -44,7 +44,7 @@ const FinanceChart = () => {
   }, [selectedYear ]);
 
   return (
-    <div className="bg-[#080312] inshadow frame2 rounded-xl w-full h-full p-3 max-md:px-1 pb-6">
+    <div className="bg-[#080312]   frame2 rounded-xl w-full h-full p-3 max-md:px-1 pb-6">
       <div className="flex justify-between items-center mb-3">
         <h1 className="text-lg font-semibold">Finance</h1>
         <select

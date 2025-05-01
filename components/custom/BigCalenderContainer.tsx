@@ -15,12 +15,10 @@ async function BigCalenderContainer({type,id}:{type:'teacherId'|'classId',id:str
     return{
       title:lesson.name,
       start:lesson.startTime,
-      end:lesson.endTime
+      end:lesson.endTime,
     }
   })
-  
   const schedule = adjustScheduleToCurrentWeek(data);
-
     return (
     <div>
         <BigCalendar data={schedule} />

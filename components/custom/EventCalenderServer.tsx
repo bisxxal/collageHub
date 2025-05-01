@@ -12,7 +12,7 @@ async function EventCalenderServer({searchParams}:{searchParams:{[key:string]:st
   
   return (
     <>
-    <div className=" w-full frame2 inshadow rounded-lg">
+    <div className=" w-full frame2 insha dow rounded-lg">
 
      <PieChartComponent feeData={data}/>
     </div>

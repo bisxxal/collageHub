@@ -69,7 +69,7 @@ async function AttendanceServer() {
   }));
 
   return (
-    <div className="bg-[#090a15] inshadow frame2 rounded-lg p-4 h-full">
+    <div className="bg-[#090a15]   frame2 rounded-lg p-4 h-full">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold">Attendance</h1>
         <IoIosMore className="text-2xl cursor-pointer" />

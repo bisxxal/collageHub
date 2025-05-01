@@ -3,15 +3,15 @@ import EventCalendar from "@/components/custom/EventCalendar";
 import EventList from "@/components/custom/EventList";
 import GaugeChart2 from "@/components/custom/GaugeChart";
 import prisma from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 
  
 const StudentPage = async( {searchParams}:{searchParams:{[key:string]:string | undefined}}) => {
-  const { userId } = auth();
+  const user = await currentUser()
   const {date} = searchParams;
   const classItem = await prisma.class.findMany({
     where: {
-      students: { some: { id: userId! } },
+      students: { some: { id: user?.id! } },
     },
   });
 

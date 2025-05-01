@@ -88,9 +88,9 @@ const PinProcted = ({ pin, rpin }: { pin: string, rpin: string[] }) => {
     if (storedPin === pin) return null
 
     return (
-        <div className='absolute -top-[100px] left-0 w-full h-[110%] bg-[#00000033] backdrop-blur-lg z-[200] flex justify-center items-center'>
-            <div className='flex flex-col items-center gap-6'>
-                <h1 className='font-mono text-4xl font-bold'>Admin Panel is PIN Protected</h1>
+        <div className='absolute -top-[100px] left-0 w-full h-[110%] bg-[#00000033] backdrop-blur-lg z-[200] flex  justify-center max-md:items-start items-'>
+            <div className='flex flex-col items-center mt-[400px]  gap-6'>
+                <h1 className='font-mono max-md:text-lg text-4xl font-bold'>Admin Panel is PIN Protected</h1>
                 {lockoutTime ? (
                     <p className="text-red-500 font-semibold">Too many attempts. Try again in {countdown}s</p>
                 ) : (
@@ -103,7 +103,7 @@ const PinProcted = ({ pin, rpin }: { pin: string, rpin: string[] }) => {
                                 inputMode='numeric'
                                 maxLength={1}
                                 disabled={!!lockoutTime}
-                                className='w-24 h-24 bg-transparent text-center text-3xl border-2 border-[#ffffff28] rounded-2xl focus:outline-none focus:border-[#ffffff] transition duration-200'
+                                className='w-24 h-24 max-md:w-12 max-md:h-12 bg-transparent text-center max-md:text-base text-3xl border-2 border-[#ffffff28] rounded-2xl focus:outline-none focus:border-[#ffffff] transition duration-200'
                                 value={digit}
                                 onChange={(e) => handleChange(idx, e.target.value)}
                             />

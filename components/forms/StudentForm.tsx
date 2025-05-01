@@ -40,14 +40,13 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
       setImg(img?.secure_url);
     } 
     if(type === "update"){
-      formAction({ ...data , img: img?.secure_url }); 
+      formAction({ ...data , img: data.img }); 
       
     }
     if(type === "create"){
       formAction({ ...data, img: img?.secure_url });
     }
 
-    // formAction({ ...data, img: img?.secure_url });
   });
 
   const router = useRouter();

@@ -26,9 +26,11 @@ import { MdOutlineLightMode } from "react-icons/md";
   return (
     <div className={` ${darkMode ? ' bg-[#15141b93] ' :' bg-[#ffffff95] '}  flex items-center  w-full fixed  backdrop-blur-md  top-0 left-0 z-30 bg-[#15141b93] justify-between p-4 `}>
  
-       <Link href="/" className=" flex   logo max-md:text-2xl text-3xl items-center justify-center gap-2">
-          <span className="  font-bold">Collage Hub </span>
-        </Link>
+      { user.isSignedIn ?  <Link href={`/${role}`} className=" flex   logo max-md:text-2xl text-3xl items-center justify-center gap-2">
+          <span className="  font-bold">College Hub </span>
+        </Link> : <Link href="/" className=" flex   logo max-md:text-2xl text-3xl items-center justify-center gap-2">
+          <span className="  font-bold">College Hub </span>
+        </Link>}
 
        
         <div className='max-md:gap-2 flex gap-4 mr-10 max-md:mr-6 '>

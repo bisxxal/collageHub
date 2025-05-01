@@ -22,6 +22,7 @@ export const sendEmailNode = async ({email,message , subject}:{email:string,mess
         toast.error('Failed to send email');
       }
     } catch (error) {
+      console.log(error)
       toast.error('Error sending email');
     }
   };

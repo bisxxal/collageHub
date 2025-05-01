@@ -1,10 +1,10 @@
 #                                                      CollageHub  🏫
 
-CollageHub is a Next.js application that allows users to create and manage collages with ease. It leverages modern web technologies to provide a sleek and responsive user interface.
+CollegeHub is a Next.js application that allows users to create and manage College with ease. It leverages modern web technologies to provide a sleek and responsive user interface.
 
 ## Features
 
-- **Create Collages**: Users can upload and manage images for collage creation.
+- **Create College**: Users can upload and manage images for collage creation.
 - **Dynamic Layouts**: Multiple layout options for your collage.
 - **Responsive Design**: Works seamlessly on both desktop and mobile devices.
 - **Optimized Performance**: Built with Next.js for fast performance.
@@ -26,16 +26,16 @@ Make sure you have the following installed:
 The application has different user roles, each with distinct permissions and panels:
 
 1. Admin Panel
-Admin users have access to manage user accounts, monitor activity, and oversee the creation of collages.
+Admin users have access to manage user accounts, monitor activity, and oversee the creation of College.
 Admins can add or remove users and moderate content.
 2. Student Panel
-Students can create and manage their own collages, as well as view and edit their previous works.
+Students can create and manage their own College, as well as view and edit their previous works.
 Students do not have access to admin-specific features like user management.
 3. SuperAdmin Panel
 SuperAdmins have the highest level of control over the application.
 They can manage all users, review activity logs, and perform system-wide settings.
 4. Teacher Panel
-Teachers can review student-created collages, offer feedback, and access specific tools for educational purposes.
+Teachers can review student-created College, offer feedback, and access specific tools for educational purposes.
 Teachers have a view-only access to some parts of the Admin panel.
 
 

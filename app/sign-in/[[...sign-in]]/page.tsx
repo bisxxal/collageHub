@@ -23,7 +23,7 @@ const LoginPage = () => {
       { !user && 
       <SignIn.Root>
      <div className=" w-full h-full flex items-center relative justify-around">
-      <h1 className=" w-full text-[200px] max-lg:text-[100px] max-md:text-[50px] max-md:top-[20%] slogo max-md:left-[10%] font-bold left-[17%] top-7  absolute">Collage Hub</h1>
+      <h1 className=" w-full text-[200px] max-lg:text-[100px] max-md:text-[50px] max-md:top-[20%] slogo max-md:left-[10%] font-bold left-[17%] top-7  absolute">College Hub</h1>
       <div className=" max-md:hidden block w-[30%] h-1/2 ">
         <Image width={500} height={500}  src="/bg3.svg" alt="logo" className="w-full h-full mb-5" />
       </div>
