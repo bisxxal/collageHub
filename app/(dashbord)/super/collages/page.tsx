@@ -71,19 +71,19 @@ const CollageSuperPage = () => {
   }
  
   return (
-    <div className='w-full min-h-screen mt-10'>
-      <h1 className='text-center text-4xl my-10'>All Collages</h1>
+    <div className='w-full min-h-screen mt-20'>
+      <h1 className='text-center text-4xl my-10'>Select Colleges</h1>
 
       <form className=' w-full flex items-center gap-5 justify-center' onSubmit={handleSubmit} >
-        <select className=" inshadow bg-transparent border border-[#ffffff3c] p-3 px-5 rounded-2xl" name="collage" id="collage-select">
+        <select className=" inshadow bg-transparent w-32 h-10 flex items-center justify-center pl-6 capitalize border border-[#ffffff3c] rounded-2xl" name="collage" id="collage-select">
           {collages.map((collage) => (
-            <option className=' capitalize' key={collage.CollageName} value={collage.CollageName}>
+            <option className=' capitalize ' key={collage.CollageName} value={collage.CollageName}>
               {collage.CollageName}
             </option>
           ))}
           {collages.length === 0 && <option value="loading">Loading...</option>}        
         </select>
-        <button disabled={ collages.length === 0 } type="submit" className=" flex items-center justify-center disabled:bg-gray-600 buttonbg h-10 w-24 max-md:text-base text-lg rounded-full ">
+        <button disabled={ collages.length === 0 } type="submit" className="w-32 h-12 flex items-center justify-center disabled:bg-gray-600 buttonbg  max-md:text-base text-lg rounded-full ">
            {loading ?  <LoaderIcon />  : 'search'}
          
         </button>
@@ -91,14 +91,20 @@ const CollageSuperPage = () => {
       {selectedCollage && (
         <div className="mt-6">
             {loading && <p className=' text-center text-gray-400 mb-6'>Looking for {selectedCollage} collage...</p> }
-          {loading && <Skeleton boxes={10} width={'w-[90%]'} /> }
+          {
+            loading && <div className='w-full flex items-center overflow-hidden justify-center gap-1'> 
+              <Skeleton boxes={5} width={'min-w-[360px] max-md:min-w-[290px] mx-auto h-[140px] '} />
+              <Skeleton boxes={5} width={'min-w-[360px]  h-[140px] max-md:hidden block'} />
+              <Skeleton boxes={5} width={'min-w-[360px]  h-[140px] max-md:hidden block'} />
+            </div>
+          }
           { !loading &&student &&teacher &&admin && 
-          <div className='gap-3 px-2 flex justify-center  flex-wrap overflow-hidden  w-full  '>
+          <div className='gap-3 px-2 flex justify-center flex-wrap overflow-hidden  w-full  '>
             
             <div >
             <h3 className=' text-center text-xl font-semibold'> {student.length} Students</h3>
             {student.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3  inshadow border-2 border-[#ffffff14] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 frame'> 
+            return (<div key={index} className='rounded-2xl p-3  border border-[#ffffff1a] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
             <h1 className=' text-2xl font-semibold text-center mb-4 '>{item?.name} {item?.surname} </h1>
             <p>UserName : {item.username}</p>
             <p>Email : {item?.email}</p>
@@ -111,7 +117,7 @@ const CollageSuperPage = () => {
             <div>
             <h3 className=' text-center text-xl font-semibold'>{admin.length} Admins</h3>
             { admin.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3 text-clip  inshadow border-2 border-[#ffffff14] my-2 w- min-w-[340px] max-md:min-w-[130px] h-44 flex-1  frame'>
+            return (<div key={index} className='rounded-2xl p-3  border border-[#ffffff1a] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
             <h1 className=' text-2xl font-semibold text-center mb-4 '>{item?.firstName} {item?.lastName} </h1>
             <h1 className=' text-2xl mb-4 font-semibold text-center '>UserName : {item?.userName}  </h1>
             <p>Email : {item?.email}</p>
@@ -119,7 +125,7 @@ const CollageSuperPage = () => {
             <p className=' text-'>Id:{item.id}</p>
             </div>)
             })}
-                <Link href={'/super/admins'} className='rounded-2xl p-3  flex flex-col items-center justify-center h-44 inshadow border-2 border-green-500 text-green-500 my-2 w-full  '>
+                <Link href={'/super/admins'} className='rounded-2xl p-3 flex flex-col items-center justify-center h-44 inshadow border-2 border-green-500 text-green-500 my-2 w-full  '>
                     <IoMdAdd />
                     <p>Add Admins</p>
                 </Link>
@@ -132,7 +138,7 @@ const CollageSuperPage = () => {
             <h3 className=' text-center text-xl font-semibold'>{teacher.length} Teachers</h3>
 
           { teacher.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3  inshadow border-2 border-[#ffffff14] my-2 min-w-[340px] max-md:min-w-[130px] flex-1  frame'>
+            return (<div key={index} className='rounded-2xl p-3  border border-[#ffffff1a] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
             <h1 className=' text-2xl  font-semibold text-center mb-4'>{item?.name} {item?.surname} </h1>
             <p>UserName : {item.username}</p>
             <p>Email : {item?.email}</p>

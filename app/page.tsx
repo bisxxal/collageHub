@@ -25,7 +25,7 @@ const MainHeroPage = () => {
 
   return (
     <div className=" w-full relative overflow-hidden">
-      <nav className=" fixed top-0 z-30 bg-[#a09fa515] h-[60px] flex items-center  w-full  backdrop-blur-[4px] justify-between p-4 ">
+      <nav className=" navbaranimation fixed top-0 z-30 bg-[#a09fa515] h-[60px] flex items-center  w-full  backdrop-blur-[10px] justify-between p-4 ">
       {user.isSignedIn ?  <Link href={`/${role}`} className=" flex   logo max-md:text-2xl text-3xl items-center justify-center gap-2">
           <span className="  font-bold"> College Hub </span>
         </Link> : <Link href="/" className=" flex   logo max-md:text-2xl text-3xl items-center justify-center gap-2">
@@ -52,21 +52,22 @@ const MainHeroPage = () => {
         )}
       </nav>
 
-      <div className=" mt-[62px]  min-h-screen inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(277%_81%_at_77%_-3%,#000_70%,transparent_110%)]">
+      <div className=" mt-[62px]  min-h-screen inset-0 bg-[linear-gradient(to_right,#0f172a61_1px,transparent_1px),linear-gradient(to_bottom,#0f172a61_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(277%_81%_at_77%_-3%,#000_70%,transparent_110%)]">
         <div className=" flex flex-col items-center justify-center gap-0 max-md:gap-20 mt-20">
           <p className="text-center text-lg max-md:text-sm text-gray-400 mt-20 max-md:mt-[180px] hover -mb-14">
             Your one-stop solution for all collage-related information.
           </p>
-          <h1 className="text-[150px] cursor-default max-md:text-[60px] footertext appear font-bold text-center logo2 max-md:-mb-28 -mb-16">
+          <h1 className="text-[150px] appear cursor-default max-md:text-[60px] footertext  font-bold text-center logo2 max-md:-mb-28 -mb-16">
           College Hub
           </h1>
-          <Image
-            className="heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-xl border-x borde border-[#ffffff29] max-md:w-[90%] max-md:h-[160px] w-[1200px] h-[650px] saturate-150 "
+          {/* <Image
+            className="heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-xl border-x   border-[#ffffff29] max-md:w-[90%] max-md:h-[160px] w-[1200px] h-[650px] saturate-150 "
             src={"/hero.png"}
             width={120200}
             height={21000}
             alt=""
-          />
+          /> */}
+          <video autoPlay muted loop controls={false} className="heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-xl border-x  border-[#ffffff29] max-md:w-[90%] max-md:h-[160px] !w-[1200px] object-cover h-[650px] saturate-150 " src="/video.mov"></video>
         </div>
       </div>
 

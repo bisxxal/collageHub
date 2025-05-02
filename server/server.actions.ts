@@ -106,6 +106,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         firstName: data.name,
         lastName: data.surname,
         publicMetadata: { role: "teacher" ,collage:collage},  
+        skipPasswordChecks: true,
       });
    
       await prisma.teacher.create({
@@ -253,6 +254,7 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
         firstName: data.name,
         lastName: data.surname,
         publicMetadata:{role:"student" ,collage:collage},
+        skipPasswordChecks: true,
       }); 
   
       await prisma.student.create({
@@ -265,7 +267,6 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           phone: data.phone || null, 
           img: data.img || null, 
           gender: data.gender, 
-          // gradeId: data.gradeId,
           classId: data.classId,
           batch: data.batch,
           CollageName:collage

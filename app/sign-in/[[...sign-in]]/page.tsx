@@ -3,6 +3,7 @@ import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
 import { useUser } from "@clerk/nextjs";    
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { LuLoader } from "react-icons/lu";
@@ -22,16 +23,14 @@ const LoginPage = () => {
  
       { !user && 
       <SignIn.Root>
-     <div className=" w-full h-full flex items-center relative justify-around">
-      <h1 className=" w-full text-[200px] max-lg:text-[100px] max-md:text-[50px] max-md:top-[20%] slogo max-md:left-[10%] font-bold left-[17%] top-7  absolute">College Hub</h1>
-      <div className=" max-md:hidden block w-[30%] h-1/2 ">
-        <Image width={500} height={500}  src="/bg3.svg" alt="logo" className="w-full h-full mb-5" />
-      </div>
-      <div className="w-[30%] h-[360px] max-md:h-[300px] max-lg:w-[60%] space-y-6 rounded-2xl sging !text-white px-4 py-10 shadow-md ring-1 ring-black/5 max-md:w-[90%]  sm:px-8 ">
+     <div className=" w-full h-full  flex flex-col items-center  justify-center">
+      <Link href={'/'} className="footertext cursor-pointer text-center   boxanimation buttonhover w-full text-[200px] max-lg:text-[100px] max-md:text-[60px]  slogo  font-bold ">College Hub</Link>
+
+      <div className="w-[35%] h-[390px]  -mt-44 max-md:-mt-10  appear backdrop-blur-md  max-md:h-[270px] max-lg:w-[60%] space-y-6 rounded-2xl sging !text-white px-4 py-10 shadow-md ring-1 ring-black/5 max-md:w-[90%]  sm:px-8 ">
         <SignIn.Step name="start">
           <header className="text-center">
        
-            <h1 className="mt-4 max-md:text-2xl text-5xl logo font-medium tracking-tight ">
+            <h1 className="mt-4 max-md:text-2xl   text-5xl logo font-medium tracking-tight ">
               Sign in to your account
             </h1>
           </header>

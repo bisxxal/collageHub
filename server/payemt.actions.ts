@@ -5,8 +5,6 @@ import { Sem } from "@prisma/client";
 import Razorpay from "razorpay"; 
 import crypto from "crypto"; 
 import { auth } from "@clerk/nextjs/server";
-import { fa } from "@faker-js/faker";
-
 
 export async function Createpaymet({ amount, currency }:any) { 
     try {

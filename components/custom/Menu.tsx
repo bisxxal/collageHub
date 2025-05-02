@@ -33,7 +33,7 @@ import { RiAdminFill } from "react-icons/ri";
       },
       {
         icon:<FaSchool />,
-        label: "Collages",
+        label: "Colleges",
         href: "/super/collages",
         visible: [ 'super'],
       },
@@ -116,17 +116,17 @@ const Menu = () => {
   const role = user?.publicMetadata?.role as string;
   const pathname = usePathname()
   const trimmedPathname = pathname.startsWith('/list/') ? pathname.slice(6) : pathname; 
-  
+    
   return (
     <>
       <MobileMenu role={role}/>
-    <div className="mt-4 fixed sidebarbg top-20  backdrop-blur-lg left-3.5 rounded-2xl  h-[90%] border border-[#ffffff17] w-[190px]   max-lg:hidden block text-sm">
+    <div className="mt-4 fixed menuanimation sidebarbg top-20  backdrop-blur-lg left-3.5 rounded-2xl  h-[90%] border border-[#ffffff17] w-[190px]   max-lg:hidden block text-sm">
       {menuItems.map((i) => (
         <div className="flex flex-col gap-2 mt-6 pl-3 " key={i.title} >
           {i.items.map((item) => {
             if (item.visible.includes(role)) {
               return (
-                <Link href={item.href === '/' ? `/${role}` : item.href} key={item.label}    className={` ${trimmedPathname == (item.label.toLowerCase()) ? '  !text-[#3352cc] !font-semibold  ': '  '} flex text-xl w-full pl-3 items-center hover:translate-x-4  transition-all justify-start lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-2xl `}>
+                <Link href={item.href === '/' ? `/${role}` : item.href} key={item.label}    className={` ${trimmedPathname == (item.label.toLowerCase()) ? '  !text-[#3352cc] !font-semibold  ': ' text-gray-500 '} flex text-xl w-full pl-3 items-center hover:translate-x-4  transition-all justify-start lg:justify-start gap-4  py-2 md:px-2 rounded-2xl `}>
                   {item.icon}
                   <span className={` text-sm`}>{item.label}</span>
                 </Link>

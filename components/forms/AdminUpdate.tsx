@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 interface adminDataProps{
   id:string;
   userName:string;
-  collage:string;
+  CollageName:string;
   clerkId:string;
   firstName:string;
   lastName:string;
@@ -45,7 +45,7 @@ const ADupdatePages = ( ) => {
 
   const handleCollageChange = (index: number, value: string) => {
     const updatedAdmins = [...adminData];
-    updatedAdmins[index].collage = value;
+    updatedAdmins[index].CollageName = value;
     setAdminData(updatedAdmins); 
   };
 
@@ -61,6 +61,7 @@ const ADupdatePages = ( ) => {
     }
   };
 
+  console.log("admin",adminData)
  
   return (
     <div className=' w-full min-h-screen relative overflow-hidden'>
@@ -68,7 +69,7 @@ const ADupdatePages = ( ) => {
       {
         loader && <Skeleton boxes={5} width={'w-[90%] max-md:h-40 h-32'} />  
       }
-    { adminData && !loader && <div className="w-[90%] mx-auto border-2 border-[#ffffff29] rounded-2xl">
+    { adminData && !loader && <div className="w-[90%] mx-auto rounded-2xl">
 
       {adminData?.map((admin:adminDataProps, index:number) => (
           <form key={admin.id} onSubmit={(e) => {
@@ -76,7 +77,7 @@ const ADupdatePages = ( ) => {
               const formData = new FormData(e.target as HTMLFormElement);
               onSubmit(formData);
             }}
-            className="flex justify-between max-md:flex-col gap-4 items-center overflow-hidden py-7 border-b-2 border-[#ffffff16] p-5 max-md:p-4">
+            className="flex bg-[#6d6d6d19] mb-3 justify-between max-md:flex-col gap-4 items-center overflow-hidden py-7 border rounded-3xl border-[#ffffff34] p-5 max-md:p-4">
 
               <div  className=' flex items-center flex-col gap-4 justify-center capitalize'>
               <input readOnly name="username" className="  capitalize bg-transparent" value={admin.userName} />
@@ -85,7 +86,7 @@ const ADupdatePages = ( ) => {
               </div>
  
             <select className=" capitalize bg-transparent border border-[#ffffff3c] max-md:text-xs max-md:px-1 max-md:rounded-lg p-2 px-5 rounded-2xl" name="collage"
-            defaultValue={ fullname.find((college) => college.collage === admin.collage)?.collage || '' } onChange={(e) => handleCollageChange(index, e.target.value)} >
+            defaultValue={ fullname.find((college) => college.collage === admin.CollageName)?.collage || '' } onChange={(e) => handleCollageChange(index, e.target.value)} >
             {
               fullname.map((college:{collage:string , fname:string}) => (
                 <option key={college.collage} value={college.collage}>{college.fname}</option>
@@ -94,8 +95,8 @@ const ADupdatePages = ( ) => {
             </select>
 
           <div className=' flex items-center justify-center  gap-4'>
-          <button type="submit" className=" buttongreen text-white rounded-xl p-3    px-10">Update</button>
-          <button onClick={() => setShow(admin.clerkId)} className="buttonred text-white rounded-xl p-3   px-10"> Delete </button>
+          <button type="submit" className=" buttongreen text-white rounded-xl p-3  hover:scale-110 transition-all   px-10">Update</button>
+          <button onClick={() => setShow(admin.clerkId)} className="buttonred text-white rounded-xl p-3  hover:scale-110 transition-all   px-10"> Delete </button>
           </div>
           </form>
         ))}      
@@ -104,8 +105,8 @@ const ADupdatePages = ( ) => {
      { show && <div className=' absolute  left-[20%] max-md:w-[80%]  max-md:left-[10%] max-md:h-[20%] p-4 w-[60%] top-[10%] flex items-center justify-center flex-col rounded-3xl text-xl backdrop-blur-xl bg-[#ffffff18] h-[40%] '>
         <h1 className=' max-md:text-center max-md:text-base text-xl '>All data will be lost. Are you sure you want to delete Admin ? </h1>
         <div className=' flex gap-6 mt-4'>
-            <button onClick={() => onDelete(show)}   className="buttonred text-white rounded-lg p-3  px-10"> Delete </button>
-            <button onClick={() => setShow('')}   className="bg-gray-500 text-white rounded-lg p-3  px-10"> Cancel </button>
+            <button onClick={() => onDelete(show)}   className="buttonred text-white  hover:scale-110 transition-all  rounded-lg p-3  px-10"> Delete </button>
+            <button onClick={() => setShow('')}   className="bg-gray-500 text-white  hover:scale-110 transition-all  rounded-lg p-3  px-10"> Cancel </button>
         </div>
       </div>}
     </div>

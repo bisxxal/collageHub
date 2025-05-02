@@ -11,6 +11,7 @@ export const AddAdmin = async ( username:string ,firstName:string , lastName:str
         firstName: firstName,
         lastName: lastName,
         publicMetadata:{role:"admin" ,collage:collage},
+        skipPasswordChecks: true,
       }); 
   
       const usrid = user.id;
@@ -69,8 +70,9 @@ export const DeleteAdmin = async (id:string ) => {
 export const UpdateAdmin = async (username:string, clerkId:string , collage:string) => {
   try {
 
+    console.log('going to update admin')    
     const clerk = clerkClient();  
-    const user = await clerk.users.updateUserMetadata(clerkId, {
+   await clerk.users.updateUserMetadata(clerkId, {
       publicMetadata: {
        collage:collage,
       },

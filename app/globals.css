@@ -177,7 +177,7 @@ body::-webkit-scrollbar-thumb {
 
 .logo2 {
   background: #111111;
-  background: linear-gradient(90deg, #1C2D70 16%, #ffffff 106%);
+  background: linear-gradient(90deg, #3050d2 16%, #ffffff 106%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -277,7 +277,7 @@ input#navch:checked ~ .aside{
 }
 
 .appear {
-  animation: appear 0.8s ease-in-out forwards;
+  animation: appear 0.9s ease-in-out forwards;
 }
 @keyframes appear {
   0% {
@@ -295,9 +295,56 @@ input#navch:checked ~ .aside{
 }
 
 .footertext:hover{
-  @apply -translate-y-16 transition-all duration-500 ease-in-out text-white ;
+  @apply -translate-y-16 transition-all duration-500 ease-in-out text-white  ;
+  text-shadow: -2px 1px 20px #ffffffa6;
 }
 
 .buttonbg2{
   @apply bg-gradient-to-br  from-[#090A15] to-[#d8ddf121];
+}
+.navbaranimation{
+  animation: navbaranimation 0.8s ease-in-out forwards;
+}
+
+@keyframes navbaranimation {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+.boxanimation{
+  animation: boxanimation 0.8s ease-in-out forwards;
+}
+@keyframes boxanimation {
+  0% {
+    transform: translateY(-100px);
+    scale: 0.1;
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    scale: 1;
+    opacity: 1;
+  }
+}
+.menuanimation {
+  animation: menuanimation 0.8s ease-in-out forwards;
+}
+@keyframes menuanimation {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+      transform: translateX(30px);
+      opacity: 0.5;
+    }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
 }

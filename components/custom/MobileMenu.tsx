@@ -98,7 +98,7 @@ const menuItems = [
         },
         {
                icon:<FaSchool />,
-               label: "Collages",
+               label: "Colleges",
                href: "/super/collages",
                visible: [ 'super'],
              },
