@@ -13,7 +13,8 @@ import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { RiAdminFill } from "react-icons/ri";
-<RiAdminFill />
+import { GiPayMoney } from "react-icons/gi";
+ 
 
   const menuItems = [
   {
@@ -103,6 +104,12 @@ import { RiAdminFill } from "react-icons/ri";
         label: "fee",
         href: "/list/fee",
         visible: ["admin", "student"],
+      },
+      {
+        icon:<GiPayMoney />,
+        label: "expense",
+        href: "/list/expense",
+        visible: ["admin"],
       },
      
     ],

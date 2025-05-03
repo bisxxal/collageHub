@@ -2,7 +2,6 @@
 import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
 import { useUser } from "@clerk/nextjs";    
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -39,18 +38,18 @@ const LoginPage = () => {
             <Clerk.Field name="identifier" className="space-y-2">
               <Clerk.Label className="text-sm font-medium ">Username</Clerk.Label>
               <Clerk.Input type="text" required
-                className="w-full rounded-2xl bg-transparent px-3.5 inputbg py-2 h-12  outline-none ring-1 ring-inset ring-zinc-600 hover:ring-zinc-500 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
+                className="w-full rounded-2xl bg-transparent px-3.5 inputbg py-2 max-md:py-1 max-md:h-10  h-12  outline-none ring-1 ring-inset ring-zinc-600 hover:ring-zinc-500 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
               <Clerk.FieldError className="block text-sm text-red-400" />
             </Clerk.Field>
             <Clerk.Field name="password" className="space-y-2">
               <Clerk.Label className="text-sm  font-medium ">Password</Clerk.Label>
               <Clerk.Input type="password" required
-                className="w-full rounded-2xl bg-transparent px-3.5 inputbg py-2 h-12 outline-none ring-1 ring-inset ring-zinc-600 hover:ring-zinc-500 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
+                className="w-full rounded-2xl bg-transparent px-3.5 inputbg py-2  max-md:py-1 max-md:h-10   h-12 outline-none ring-1 ring-inset ring-zinc-600 hover:ring-zinc-500 focus:ring-[1.5px] focus:ring-zinc-500 data-[invalid]:ring-red-400"/>
               <Clerk.FieldError className="block text-sm text-red-400" />
             </Clerk.Field>
           </div>
           <SignIn.Action
-            submit className="w-full !border-none rounded-2xl bg-zinc-9 buttonbg hover:scale-105 transition-all mt-5 h-12 text-xl px-3.5 py-2 text-center font-medium text-white shadow !outline-none  hover:bg-zinc-800 focus-visible:outline-[1.5px] focus-visible:outline-offset-2 focus-visible:outline-zinc-500 active:text-white/70">
+            submit className="w-full !border-none rounded-2xl bg-zinc-9 buttonbg hover:scale-105 transition-all mt-5 h-12  max-md:py-1 max-md:h-10  text-xl px-3.5 py-2 text-center font-medium text-white shadow !outline-none  hover:bg-zinc-800 focus-visible:outline-[1.5px] focus-visible:outline-offset-2 focus-visible:outline-zinc-500 active:text-white/70">
             Sign In
           </SignIn.Action>
         

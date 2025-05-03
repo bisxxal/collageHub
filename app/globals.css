@@ -61,6 +61,7 @@ body::-webkit-scrollbar-thumb {
 .frame2 {
   background: #161621;
   background: linear-gradient(180deg, #9480ff2e -2%, #16162100 166%);
+  background: linear-gradient(180deg, #5e607b24 -2%, #16162100 166%);
 }
 .react-calendar__tile--active {
   background: #3352cc !important;
@@ -295,12 +296,13 @@ input#navch:checked ~ .aside{
 }
 
 .footertext:hover{
-  @apply -translate-y-16 transition-all duration-500 ease-in-out text-white  ;
-  text-shadow: -2px 1px 20px #ffffffa6;
+  @apply -translate-y-16 transition-all duration-500 ease-in-out text-[#ffffff]  ;
+  text-shadow: -2px 1px 20px #ffffff;
 }
 
 .buttonbg2{
-  @apply bg-gradient-to-br  from-[#090A15] to-[#d8ddf121];
+  @apply bg-gradient-to-tl  from-[#0c0d1b] to-[#d0d9ff3f];
+  /* @apply bg-gradient-to-tl  from-[#de262600] to-[#bcbcbc2d] ; */
 }
 .navbaranimation{
   animation: navbaranimation 0.8s ease-in-out forwards;

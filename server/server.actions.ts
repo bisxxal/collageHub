@@ -1,5 +1,5 @@
 'use server'
-import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, LessonSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
+import { AssignmentSchema, ClassSchema, EventSchema, ExamSchema, ExpenseSchema, LessonSchema, ResultSchema, StudentSchema, SubjectSchema, TeacherSchema } from "@/lib/FormValidation"
 import prisma from "@/lib/prisma";
 import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
 
@@ -826,5 +826,67 @@ export const fetchAttendanceWeekly = async (start:string , end:string) => {
 }
   catch (error) {
     return JSON.parse(JSON.stringify({success: false, error: true}));
+  }
+}
+
+export const createExpense = async (currentState: CurrentState, data: ExpenseSchema) => {
+  try {
+    const { userId , sessionClaims } =  auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+    console.log('userId',userId)  
+
+    const user = await prisma.admin.findUnique({
+      where: { clerkId: userId! } })
+
+    await prisma.expense.create({
+      data:{
+        name:data.name,
+        amount:data.amount,
+        description:data.description,
+        date:data.date,
+        // date:new Date(),
+        CollageName:collage,
+        adminId:user?.id!,
+      }
+    });
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
+  } catch (err) {
+    console.log(err)
+    return JSON.parse(JSON.stringify({success: false, error: true}));    
+  }
+}
+export const updateExpense = async (currentState: CurrentState, data: any) => {
+  try {
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+    await prisma.expense.update({
+      where:{
+        id:data.id
+      },
+      data:{
+        name:data.name,
+        amount:data.amount,
+        description:data.description,
+        date:data.date,
+        CollageName:collage
+      }
+    });
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
+  } catch (err) {
+    return JSON.parse(JSON.stringify({success: false, error: true}));    
+  }
+}
+export const deleteExpense = async (currentState: CurrentState, data: any) => {
+  try {
+    const { sessionClaims } = auth();
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+    await prisma.expense.delete({
+      where:{
+        id:data.id
+      }
+    });
+     return JSON.parse(JSON.stringify({success:true , error:false}));   
+  } catch (err) {
+    return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 }

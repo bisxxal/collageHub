@@ -7,7 +7,7 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlinePlayLesson ,MdOutlineAssignment } from "react-icons/md";  
 import { FaRegNewspaper  ,FaRegCalendar } from "react-icons/fa";  
 import { IoIosPeople } from "react-icons/io"; 
-import { GiNotebook } from "react-icons/gi";
+import { GiNotebook, GiPayMoney } from "react-icons/gi";
 import { GoSidebarCollapse } from "react-icons/go";
 import { useState } from "react";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
@@ -102,6 +102,12 @@ const menuItems = [
                href: "/super/collages",
                visible: [ 'super'],
              },
+             {
+            icon:<GiPayMoney />,
+              label: "expense",
+              href: "/list/expense",
+              visible: ["admin"],
+            },
       ],
     },
     

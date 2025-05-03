@@ -104,7 +104,7 @@ const CollageSuperPage = () => {
             <div >
             <h3 className=' text-center text-xl font-semibold'> {student.length} Students</h3>
             {student.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3  border border-[#ffffff1a] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
+            return (<div key={index} className='rounded-2xl p-3   my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
             <h1 className=' text-2xl font-semibold text-center mb-4 '>{item?.name} {item?.surname} </h1>
             <p>UserName : {item.username}</p>
             <p>Email : {item?.email}</p>
@@ -117,7 +117,7 @@ const CollageSuperPage = () => {
             <div>
             <h3 className=' text-center text-xl font-semibold'>{admin.length} Admins</h3>
             { admin.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3  border border-[#ffffff1a] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
+            return (<div key={index} className='rounded-2xl p-3   my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
             <h1 className=' text-2xl font-semibold text-center mb-4 '>{item?.firstName} {item?.lastName} </h1>
             <h1 className=' text-2xl mb-4 font-semibold text-center '>UserName : {item?.userName}  </h1>
             <p>Email : {item?.email}</p>
@@ -138,7 +138,7 @@ const CollageSuperPage = () => {
             <h3 className=' text-center text-xl font-semibold'>{teacher.length} Teachers</h3>
 
           { teacher.map((item , index)=>{
-            return (<div key={index} className='rounded-2xl p-3  border border-[#ffffff1a] my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
+            return (<div key={index} className='rounded-2xl p-3   my-2 min-w-[340px] max-md:min-w-[130px] flex-1 buttonbg2 '> 
             <h1 className=' text-2xl  font-semibold text-center mb-4'>{item?.name} {item?.surname} </h1>
             <p>UserName : {item.username}</p>
             <p>Email : {item?.email}</p>

@@ -7,7 +7,7 @@ import Form from "./Forms";
  
 
 export type FormServerProps = {
-  table: | "teacher" | "student" | "subject" | "class" | "lesson" | "exam" | "assignment" | "result" | "attendance" | "event" | "announcement";
+  table: | "teacher" | "student" | "subject" | "class" | "lesson" | "exam" | "expense" | "assignment" | "result" | "attendance" | "event" | "announcement";
   type: "create" | "update" | "delete";
   data?: any;
   id?: number | string;

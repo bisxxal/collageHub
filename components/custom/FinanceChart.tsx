@@ -6,6 +6,7 @@ import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, A
 interface FeeData {
   name: string;
   income: number;
+  expense: number;
 }
  
 const FinanceChart = () => {
@@ -22,9 +23,18 @@ const FinanceChart = () => {
             month: "short",
           });
 
-          const monthFees = fees.filter((fee: { createdAt: Date }) =>
+          const monthFees = fees.fee.filter((fee: { createdAt: Date }) =>
             new Date(fee.createdAt).getFullYear() === selectedYear &&
             new Date(fee.createdAt).getMonth() === i
+          );
+          const monthExpenses = fees.expense.filter((fee: { createdAt: Date }) =>
+            new Date(fee.createdAt).getFullYear() === selectedYear &&
+            new Date(fee.createdAt).getMonth() === i
+          );
+
+          const totalExpense = monthExpenses.reduce(
+            (acc: number, curr: { amount: number }) => acc + curr.amount,
+            0
           );
 
           const totalIncome = monthFees.reduce(
@@ -34,6 +44,7 @@ const FinanceChart = () => {
           return {
             name: monthName,
             income: totalIncome,
+            expense: totalExpense,
           };
         });
         setFeeData(formattedData);
@@ -42,6 +53,8 @@ const FinanceChart = () => {
     };
     fetchFeeData();
   }, [selectedYear ]);
+
+  console.log(feeData);
 
   return (
     <div className="bg-[#080312]   frame2 rounded-xl w-full h-full p-3 max-md:px-1 pb-6">
@@ -68,14 +81,15 @@ const FinanceChart = () => {
               <stop offset="5%" stopColor="#E11D47" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#D44D66" stopOpacity={0} />
             </linearGradient>
+
+            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#23D824" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#23D824" stopOpacity={0} />
+            </linearGradient>
           </defs>
           <XAxis dataKey="name"  stroke="#ffffff28"/>
           <YAxis  />
-          <Legend
-              align="center"
-              verticalAlign="top"
-              wrapperStyle={{ paddingTop: "20px", paddingBottom: "40px" }}
-            />
+          <Legend align="center"verticalAlign="top"wrapperStyle={{ paddingTop: "20px", paddingBottom: "40px" }}/>
           <CartesianGrid strokeDasharray="1 1"   stroke="#ffffff28"/>
           <Tooltip
               contentStyle={{
@@ -89,13 +103,23 @@ const FinanceChart = () => {
               color: '#E11D47',  
               fontWeight: 'bold',
               fontSize: '15px',
-            }}/>
+            }}  />
+
           <Area
             type="monotone"
             dataKey="income"
+            stroke="#23D824"
+fillOpacity={0.2}
+fill="url(#colorPv)"
+             stackId="2"
+          />
+          <Area
+            type="monotone"
+            dataKey="expense"
             stroke="#E11D47"
-            fillOpacity={1}
+            fillOpacity={0.5}
             fill="url(#colorUv)"
+            stackId="1"
           />
         </AreaChart>
       </ResponsiveContainer>
@@ -104,3 +128,7 @@ const FinanceChart = () => {
 };
 
 export default FinanceChart;
+
+// stroke="#23D824"
+// fillOpacity={0.1}
+// fill="#23D824"

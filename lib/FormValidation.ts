@@ -111,3 +111,14 @@ export const lessonSchema  =  z.object({
   day : z.enum(["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", ], { message: "Day is required!" }),
 });
 export type LessonSchema = z.infer<typeof lessonSchema>;
+
+
+export const expenseSchema  =  z.object({
+  id: z.coerce.number().optional(),
+  name: z.string().min(1 ,{message:"subjectname must be 3 characters long!" }),
+  description: z.string().optional(),
+  amount: z.coerce.number().min(1 ,{message:"amount must be grater then equal to 0!" }),
+  date: z.coerce.date({ message: " date is required!" }), 
+})
+
+export type ExpenseSchema = z.infer<typeof expenseSchema>;

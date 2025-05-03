@@ -7,6 +7,7 @@ import { useFormState } from "react-dom";
 import LoadingCom from "./custom/LoadingCom";
 import toast from 'react-hot-toast';
 
+
 const deleteActionMap: any = {
   subject: deleteSubject,
   class: deleteClass,
@@ -41,6 +42,9 @@ const AssignmentForm = dynamic(() => import("./forms/Assignments"), {
   loading: () => <LoadingCom />,
 });
 const ResultsForm = dynamic(() => import("./forms/ResultsForm"), {
+  loading: () => <LoadingCom />,
+});
+const ExpenseForm = dynamic(() => import("./forms/expenseForm"), {
   loading: () => <LoadingCom />,
 });
 
@@ -130,6 +134,14 @@ const Form = ({type,data,setOpen,table,relatedData,id,}: {
     ),
     lesson: (setOpen, type, data, relatedData) => (
       <LessonForm
+        type={type}
+        data={data}
+        setOpen={setOpen}
+        relatedData={relatedData}
+      />
+    ),
+    expense: (setOpen, type, data, relatedData) => (
+      <ExpenseForm
         type={type}
         data={data}
         setOpen={setOpen}

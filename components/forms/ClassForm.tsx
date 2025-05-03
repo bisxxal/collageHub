@@ -62,9 +62,7 @@ const ClassForm = ({
   }, [relatedData]);
 
   const teachers = classs?.teachers;
-  // const grades = classs?.grades;
- 
-
+  
   return (
     <form
       className="flex p-4 rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame  flex-col gap-8"

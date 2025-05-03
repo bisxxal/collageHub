@@ -54,7 +54,7 @@ const MainHeroPage = () => {
 
       <div className=" mt-[62px]  min-h-screen inset-0 bg-[linear-gradient(to_right,#0f172a61_1px,transparent_1px),linear-gradient(to_bottom,#0f172a61_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(277%_81%_at_77%_-3%,#000_70%,transparent_110%)]">
         <div className=" flex flex-col items-center justify-center gap-0 max-md:gap-20 mt-20">
-          <p className="text-center text-lg max-md:text-sm text-gray-400 mt-20 max-md:mt-[180px] hover -mb-14">
+          <p className="text-center text-lg max-md:text-xs text-gray-400 mt-20 max-md:mt-[180px] hover -mb-14">
             Your one-stop solution for all collage-related information.
           </p>
           <h1 className="text-[150px] appear cursor-default max-md:text-[60px] footertext  font-bold text-center logo2 max-md:-mb-28 -mb-16">
@@ -67,11 +67,11 @@ const MainHeroPage = () => {
             height={21000}
             alt=""
           /> */}
-          <video autoPlay muted loop controls={false} className="heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-xl border-x  border-[#ffffff29] max-md:w-[90%] max-md:h-[160px] !w-[1200px] object-cover h-[650px] saturate-150 " src="/video.mov"></video>
+          <video autoPlay muted loop controls={false} className="heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-xl border-x  border-[#ffffff29] max-md:w-[90%] max-md:h-[160px] !w-[1200px] object-cover h-[650px] saturate-150 " src="/video.mp4"></video>
         </div>
       </div>
 
-      <p className=" text-center -mt-32 text-zinc-400 text-lg max-md:text-sm">
+      <p className=" text-center -mt-32 max-md:-mt-60 text-zinc-400 text-lg max-md:text-xs">
         A comprehensive college management platform
       </p>
 
@@ -80,18 +80,18 @@ const MainHeroPage = () => {
 
         <div className="relative  flex w-[80%] mx-auto flex-col gap-4"> 
           <div className=" absolute top-0 left-0 w-full h-full bg-[#090a1500] bg-[radial-gradient(circle,_rgba(9,_10,_21,_0)_0%,_#090A15_100%)] "></div>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-xl  text-3xl"><FaUniversity />Manage multiple collages </p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-xl  text-3xl"><MdOutlineAdminPanelSettings  className=" text-green-500"/>            Secure & Role-Based Access</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-xl  text-3xl"><LuDatabase className=" text-yellow-600" />Centralized Data Management</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-xl  text-3xl"><TbBrandCashapp className=" text-red-500" />Online Fee Payment</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-xl  text-3xl"><FcSalesPerformance /> Real-time Attendance & Performance Tracking</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-xl  text-3xl"><MdManageHistory className=" text-indigo-500" />Examination Management & Finance magement</p>
+            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><FaUniversity />Manage multiple collages </p>
+            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdOutlineAdminPanelSettings  className=" text-green-500"/>            Secure & Role-Based Access</p>
+            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><LuDatabase className=" text-yellow-600" />Centralized Data Management</p>
+            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><TbBrandCashapp className=" text-red-500" />Online Fee Payment</p>
+            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><FcSalesPerformance /> Real-time Attendance & Performance Tracking</p>
+            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdManageHistory className=" text-indigo-500" />Examination Management & Finance magement</p>
         </div>
 
   </div>
         <footer className="w-full relative overflow-hidden ">
         <p className=" absolute font-mono block max-md:left-5 max-md:bottom-5 left-10 bottom-10">copyright @2025</p>
-        <h1 className="flex max-md:text-[50px] max-md:-mb-10 text-[200px] -mb-28 font-semibold  w-full justify-center cursor-default text-center slogo ">
+        <h1 className="flex max-md:text-[50px] max-md:-mb-6 text-[200px] -mb-28 font-semibold  w-full justify-center cursor-default text-center slogo ">
           <span className="  footertext ">C</span>
           <span className="  footertext ">o</span>
           <span className="  footertext ">l</span>

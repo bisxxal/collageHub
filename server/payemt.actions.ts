@@ -98,9 +98,14 @@ export async function UPdatePayment(userId: string) {
 export async function getFin() {
   try {
     const { sessionClaims } = auth();
-        const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
-    const fees = await prisma.fee.findMany({ where:{CollageName:collage} });
-    return JSON.parse(JSON.stringify(fees));
+    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+
+const [fee , expense ] = await prisma.$transaction([
+  prisma.fee.findMany({ where:{CollageName:collage} }),
+  prisma.expense.findMany({ where:{CollageName:collage} })
+])
+
+    return JSON.parse(JSON.stringify({fee, expense}));
   } catch (error) { 
     return JSON.parse(JSON.stringify([]));
 
@@ -143,7 +148,20 @@ export async function getFince() {
       razorpay_payment_id:false,
      }
     });
-    return JSON.parse(JSON.stringify(fees));
+
+    const expenses = await prisma.expense.findMany({
+      where:{
+        CollageName:collage
+      },
+      select:{
+        amount:true,
+        name:true,
+        date:true,
+      }
+    })
+
+
+    return JSON.parse(JSON.stringify({fees , expenses}));
 
   } catch (error) { 
     return JSON.parse(JSON.stringify([]));
