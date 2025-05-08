@@ -44,7 +44,7 @@ const TeacherForm = ({type,data,setOpen,relatedData,}: {
       setImg(img?.secure_url);
     }
     if(type === "update"){
-      console.log(data.img ,"in sumbit")
+
       formAction({ ...data , img: data.img });
     }
     if(type === "create"){
@@ -75,8 +75,6 @@ const TeacherForm = ({type,data,setOpen,relatedData,}: {
     fetchteachers();
   }, [relatedData]);
 
-
-  console.log(data.img)
 
   return (
     <form className="flex   p-4  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>

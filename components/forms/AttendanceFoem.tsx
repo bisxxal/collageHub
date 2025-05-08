@@ -153,7 +153,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons, collage }) => 
         ) : (
           <div>
             {!loading &&students.map((student) => (
-              <div key={student.id} className="mb-5 w-[1270px] inshadow px-3 rounded-xl py-2 flex items-center">
+              <div key={student.id} className="mb-5 w-[1270px] h-12 sidebarbg border border-[#ffffff0b]  px-3 rounded-xl py-2 flex items-center">
                 <div className="text-sm w-[153px] flex items-center ">
                   {student.name} {student.surname}
                 </div>

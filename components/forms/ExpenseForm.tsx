@@ -60,7 +60,6 @@ const ExpenseForm = ({
     fetchteachers();
   }, [relatedData]);
  
-  console.log('clicking')
 
   return (
     <form

@@ -58,7 +58,7 @@ async function FeeAdmin() {
                 <div>
                     {fee && fee.map((f) => {
                         return (
-                            <div key={f.id} className='  grid tr  max-md:grid-cols-4 grid-cols-5 inshadow py-2 mb-2 rounded-xl border-2 border-[#ffffff14] max-md:text-sm px-2'>
+                            <div key={f.id} className=' h-12 grid tr  max-md:grid-cols-4 grid-cols-5  py-2 mb-2 rounded-xl sidebarbg border border-[#ffffff0b] max-md:text-sm px-2'>
                                 <p className=' capitalize'>{f.student.name} {f.student.surname}</p>
                                 <p>₹ {f.amount}</p>
                                 <p> {f.student.batch}/{setSEM(f.semesterName)} Sem</p>

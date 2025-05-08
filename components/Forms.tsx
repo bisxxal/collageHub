@@ -1,5 +1,5 @@
 "use client"; 
-import { deleteAssingment, deleteClass, deleteEvent, deleteExam, deleteLesson, deleteResults, deleteStudent, deleteSubject, deleteTeacher} from "@/server/server.actions";
+import { deleteAssingment, deleteClass, deleteEvent, deleteExam, deleteExpense, deleteLesson, deleteResults, deleteStudent, deleteSubject, deleteTeacher} from "@/server/server.actions";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -18,6 +18,7 @@ const deleteActionMap: any = {
   result: deleteResults, 
   event: deleteEvent,
   lesson: deleteLesson,
+  expense: deleteExpense,
 };
 
 const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
@@ -44,7 +45,7 @@ const AssignmentForm = dynamic(() => import("./forms/Assignments"), {
 const ResultsForm = dynamic(() => import("./forms/ResultsForm"), {
   loading: () => <LoadingCom />,
 });
-const ExpenseForm = dynamic(() => import("./forms/expenseForm"), {
+const ExpenseForm = dynamic(() => import("./forms/ExpenseForm"), {
   loading: () => <LoadingCom />,
 });
 
@@ -168,12 +169,12 @@ const Form = ({type,data,setOpen,table,relatedData,id,}: {
   return type === "delete" && id ? (
     <form
       action={formAction}
-      className="p-4 flex inshadow frame rounded-xl flex-col gap-4">
+      className="p-4 flex h-40  justify-center items-center   frame rounded-xl flex-col gap-4">
       <input type="text | number" name="id" value={id} hidden />
       <span className="text-center font-medium">
         All data will be lost. Are you sure you want to delete this {table}?
       </span>
-      <button className="buttonred  text- py-2 px-4 rounded-2xl border-none w-max self-center">
+      <button className="buttonred py-3 w-32 rounded-2xl border-none  self-center">
         Delete
       </button>
     </form>

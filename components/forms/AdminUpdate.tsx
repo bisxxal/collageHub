@@ -60,8 +60,6 @@ const ADupdatePages = ( ) => {
       toast.error('Admin Update failed');
     }
   };
-
-  console.log("admin",adminData)
  
   return (
     <div className=' w-full min-h-screen relative overflow-hidden'>

@@ -101,9 +101,23 @@ export async function getFin() {
     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
 
 const [fee , expense ] = await prisma.$transaction([
-  prisma.fee.findMany({ where:{CollageName:collage} }),
-  prisma.expense.findMany({ where:{CollageName:collage} })
-])
+  prisma.fee.findMany({ where:{CollageName:collage},
+  select:{
+   
+    amount: true, 
+    createdAt: true,
+    id: true,  
+  }
+  }),
+  prisma.expense.findMany({ where:{CollageName:collage ,
+  } ,
+select:{
+  amount: true,
+    name: true,
+    date: true,
+}
+})
+]) 
 
     return JSON.parse(JSON.stringify({fee, expense}));
   } catch (error) { 

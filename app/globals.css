@@ -60,7 +60,7 @@ body::-webkit-scrollbar-thumb {
 }
 .frame2 {
   background: #161621;
-  background: linear-gradient(180deg, #9480ff2e -2%, #16162100 166%);
+
   background: linear-gradient(180deg, #5e607b24 -2%, #16162100 166%);
 }
 .react-calendar__tile--active {

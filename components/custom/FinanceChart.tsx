@@ -27,9 +27,9 @@ const FinanceChart = () => {
             new Date(fee.createdAt).getFullYear() === selectedYear &&
             new Date(fee.createdAt).getMonth() === i
           );
-          const monthExpenses = fees.expense.filter((fee: { createdAt: Date }) =>
-            new Date(fee.createdAt).getFullYear() === selectedYear &&
-            new Date(fee.createdAt).getMonth() === i
+          const monthExpenses = fees.expense.filter((fee: { date: Date }) =>
+            new Date(fee.date).getFullYear() === selectedYear &&
+            new Date(fee.date).getMonth() === i
           );
 
           const totalExpense = monthExpenses.reduce(
@@ -53,8 +53,6 @@ const FinanceChart = () => {
     };
     fetchFeeData();
   }, [selectedYear ]);
-
-  console.log(feeData);
 
   return (
     <div className="bg-[#080312]   frame2 rounded-xl w-full h-full p-3 max-md:px-1 pb-6">
@@ -128,7 +126,4 @@ fill="url(#colorPv)"
 };
 
 export default FinanceChart;
-
-// stroke="#23D824"
-// fillOpacity={0.1}
-// fill="#23D824"
+ 

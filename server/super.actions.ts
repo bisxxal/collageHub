@@ -70,7 +70,6 @@ export const DeleteAdmin = async (id:string ) => {
 export const UpdateAdmin = async (username:string, clerkId:string , collage:string) => {
   try {
 
-    console.log('going to update admin')    
     const clerk = clerkClient();  
    await clerk.users.updateUserMetadata(clerkId, {
       publicMetadata: {

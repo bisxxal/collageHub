@@ -309,7 +309,6 @@ export const deleteSubject = async ( currentState:CurrentState , data:FormData) 
           phone: data.phone || null, 
           img: data.img || null, 
           gender: data.gender, 
-          // gradeId: data.gradeId,
           classId: data.classId, 
         },
       });  
@@ -438,7 +437,6 @@ export const createClass = async (
       data:{
         id:(data.id),
         name:data.name,
-        // gradeId:(data.gradeId),
         CollageName:collage,
         supervisorId:(data.supervisorId),
         capacity:(data.capacity)
@@ -833,7 +831,6 @@ export const createExpense = async (currentState: CurrentState, data: ExpenseSch
   try {
     const { userId , sessionClaims } =  auth();
     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
-    console.log('userId',userId)  
 
     const user = await prisma.admin.findUnique({
       where: { clerkId: userId! } })
@@ -851,11 +848,10 @@ export const createExpense = async (currentState: CurrentState, data: ExpenseSch
     });
      return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
-    console.log(err)
     return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 }
-export const updateExpense = async (currentState: CurrentState, data: any) => {
+export const updateExpense = async (currentState: CurrentState, data: ExpenseSchema) => {
   try {
     const { sessionClaims } = auth();
     const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
@@ -876,15 +872,25 @@ export const updateExpense = async (currentState: CurrentState, data: any) => {
     return JSON.parse(JSON.stringify({success: false, error: true}));    
   }
 }
-export const deleteExpense = async (currentState: CurrentState, data: any) => {
-  try {
-    const { sessionClaims } = auth();
-    const collage = (sessionClaims?.metadata as { collage?: string })?.collage;
+export const deleteExpense = async (currentState: CurrentState, data: ExpenseSchema) => {
+  try { let id;
+    if (data instanceof FormData) {
+      id = data.get("id");
+    }  
+    if (!id) {
+      return JSON.parse(JSON.stringify({success: false, error: true}));  
+    }
+    const parsedId = parseInt(id as string, 10);
+    if (isNaN(parsedId)) {
+      return { success: false, error: true};
+    } 
+
     await prisma.expense.delete({
       where:{
-        id:data.id
+        id:parsedId
       }
     });
+
      return JSON.parse(JSON.stringify({success:true , error:false}));   
   } catch (err) {
     return JSON.parse(JSON.stringify({success: false, error: true}));    
