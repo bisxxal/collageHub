@@ -5,7 +5,8 @@ import Pagination from "@/components/custom/Pagination";
 import Table from "@/components/custom/Table"; 
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { Class, Prisma, Teacher } from "@prisma/client"; 
+import { Class, Prisma, Teacher } from "@prisma/client";
+
 type ClassList = Class & { supervisor: Teacher };
 
 const ClassListPage =async ({searchParams,}: {searchParams: { [key: string]: string | undefined };}) => {
@@ -71,7 +72,7 @@ const renderRow = (item: ClassList) => (
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
         switch (key) {
-          case "supervisorId":
+          case "supervisorid":
             query.supervisorId = value;
             break;
           case "search":

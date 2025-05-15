@@ -77,7 +77,7 @@ const TeacherForm = ({type,data,setOpen,relatedData,}: {
 
 
   return (
-    <form className="flex   p-4  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>
+    <form className="flex   p-4  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc08] frame border-[#ffffff3b] border flex-col max-lg:gap-0 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl text-center font-semibold">
         {type === "create" ? "Add a new teacher" : "Update the teacher"}
       </h1>
@@ -217,7 +217,7 @@ const TeacherForm = ({type,data,setOpen,relatedData,}: {
 
         {img ? (
           <Image
-            className=" w-24 h-24 rounded-full"
+            className=" w-24 h-24 rounded-full object-cover"
             src={img}
             alt=""
             width={700}
@@ -225,7 +225,7 @@ const TeacherForm = ({type,data,setOpen,relatedData,}: {
           />
         ) : ( data?.img &&
           <Image
-            className=" w-20 h-20 rounded-full"
+            className=" w-20 h-20 rounded-full object-cover"
             src={data?.img}
             alt=""
             width={700}

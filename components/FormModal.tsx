@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { IoAdd } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import Form from "./Forms";
+ import { AiTwotoneEdit } from "react-icons/ai";
  
 
 export type FormServerProps = {
@@ -23,7 +24,7 @@ const FormModal = ({ table, type, data, id,  }: FormServerProps  ) => {
     <> 
       <button className={`${size} flex !justify-center !items-center text-2xl h-10 w-10 rounded-full ${bgColor}`} onClick={() => setOpen(true)} >
         <h1>
-          {type === "create" ? (<div className=" flex items-center text-sm  transition-all gap-2"> Add {table} <IoAdd className=" text-2xl" /></div>) : type === "update" ? (<MdEdit className=" text-lg" />) : (<><MdDeleteOutline /></> )}
+          {type === "create" ? (<div className=" flex items-center text-sm  transition-all gap-2"> Add {table} <IoAdd className=" text-2xl" /></div>) : type === "update" ? (<AiTwotoneEdit className=" text-lg" />) : (<><MdDeleteOutline /></> )}
         </h1>
       </button>
       {open && (

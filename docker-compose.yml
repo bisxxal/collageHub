@@ -3,15 +3,15 @@ name : collage-hub
 version: '3.1'
 services:
   app:
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    #   args:
-    #     - DATABASE_URL=postgresql://postgres:postgres@db:5432/cms?schema=public
-    image: visxxal/collagehub:1745602501
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - DATABASE_URL=postgresql://postgres:postgres@db:5432/clone?schema=public
+    # image: visxxal/collagehub:1745602501          //not to build locally pull  and run from docker Hub
     container_name: nextjs_app
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/cms?schema=public
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/clone?schema=public
       - NEXT_WEBPACK_USEPOLLING=1
     ports:
       - '3000:3000'
@@ -21,7 +21,7 @@ services:
       - /app/node_modules
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_h ealthy
 
   db:
     image: postgres:alpine
@@ -30,7 +30,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: cms
+      POSTGRES_DB: clone
     ports:
       - 5432:5432
     volumes:

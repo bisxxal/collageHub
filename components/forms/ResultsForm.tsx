@@ -69,7 +69,7 @@ const ResultForm = ({
 
   return (
     <form
-      className="flex p-4 rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame flex-col gap-8"
+      className="flex p-4 rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame border-[#ffffff3b] border flex-col gap-8"
       onSubmit={onSubmit}
     >
       <h1 className="text-xl font-semibold">

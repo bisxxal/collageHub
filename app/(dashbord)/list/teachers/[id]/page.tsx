@@ -8,7 +8,6 @@ import { Teacher } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
 const SingleTeacherPage = async ({ params: { id },}: {params: { id: string };}) => {
 
   const { sessionClaims } = auth();
@@ -22,6 +21,7 @@ const SingleTeacherPage = async ({ params: { id },}: {params: { id: string };}) 
         subjects: true,
         lessons: true,
         classes: true,
+        
       },
     },
   },
@@ -111,31 +111,31 @@ if (!teacher) {
         <div className="mt-4 flex gap-4 flex-wrap text-xs text- gray-500">
          <Link
             className="p-3 rounded-2xl  border border-[#ffffff1c] frame2"
-            href={`/list/classes?supervisorId=${teacher.id}`}
+            href={`/list/classes?supervisorid=${teacher.id}`}
           >
             Teacher&apos;s Classes
           </Link>
           <Link
             className="p-3 rounded-2xl border border-[#ffffff1c] frame2 "
-            href={`/list/students?teacherId=${teacher.id}`}
+            href={`/list/students?classid=${teacher.id}`}
           >
             Teacher&apos;s Students
           </Link>
           <Link
             className="p-3 rounded-2xl border border-[#ffffff1c] frame2 "
-            href={`/list/lessons?teacherId=${teacher.id}`}
+            href={`/list/lessons?teacherid=${teacher.id}`}
           >
             Teacher&apos;s Lessons
           </Link>
           <Link
             className="p-3 rounded-2xl bg-pink-50 border border-[#ffffff1c] frame2"
-            href={`/list/exams?teacherId=${teacher.id}`}
+            href={`/list/exams?teacherid=${teacher.id}`}
           >
             Teacher&apos;s Exams
           </Link>
           <Link
             className="p-3 rounded-2xl border border-[#ffffff1c] frame2 "
-            href={`/list/assignments?teacherId=${teacher.id}`}
+            href={`/list/assignments?teacherid=${teacher.id}`}
           >
             Teacher&apos;s Assignments
           </Link>

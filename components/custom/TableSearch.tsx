@@ -13,9 +13,9 @@ const TableSearch = () => {
     router.push(`${window.location.pathname}?${params}`);
   }
   return (
-    <form onSubmit={handelSumbit} className="w-full md:w-auto flex items-center gap-2 text-xs inshadow frame rounded-full  px-2">
+    <form onSubmit={handelSumbit} className=" !w-[600px] h-10 pl-3 mb-5 md:w-auto flex items-center gap-2 text-xs  frame rounded-full  px-2">
       <IoSearchOutline className=" text-xl"/>
-      <input type="text" placeholder="Search..." className="w-[200px] p-2 bg-transparent outline-none"/>
+      <input type="text" placeholder="Search..." className="w-[580px] p-2 bg-transparent outline-none"/>
     </form>
   );
 };

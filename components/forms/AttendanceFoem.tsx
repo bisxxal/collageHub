@@ -136,7 +136,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons, collage }) => 
           {daysInMonth.map((date) => (
             <div
               key={date.toDateString()}
-              className={`$${date.toDateString() === today ? 'buttonbg' : 'bg-[#6f16ff2c]'} w-4 h-4 flex items-center justify-center rounded day-block`}
+              className={`$${date.toDateString() === today ? ' buttonbg  cursor-default ' : 'bg-[#6f16ff2c] opacity-45 cursor-not-allowed '} w-5 h-5 flex items-center justify-center rounded day-block`}
             >
               <span>{date.getDate()}</span>
             </div>
@@ -157,12 +157,12 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons, collage }) => 
                 <div className="text-sm w-[153px] flex items-center ">
                   {student.name} {student.surname}
                 </div>
-                <div className=" grid grid-cols-[repeat(31,_minmax(20px,_1fr))] mx-5 text-sm w-full ">
+                <div className=" grid grid-cols-[repeat(31,_minmax(20px,_1fr))] ml-[16px] mr-[10px] text-sm w-full ">
                   {daysInMonth.map((date) => (
                     <div key={`${student.id}-${date.toDateString()}`} className="w-8 h-8 flex items-center justify-center">
                       <input
                         type="checkbox"
-                        className="disabled:accent-red-600  accent-[#335cff] disabled:cursor-not-allowed disabled:opacity-90"
+                        className="disabled:accent-red-600  accent-[#335cff] disabled:cursor-not-allowed disabled:opacity-25"
                         checked={attendance[`${student.id}-${date.toDateString()}`] || false}
                         onChange={(e) => handleCheckboxChange(student.id, date, e.target.checked)}
                         disabled={date.toDateString() !== today}

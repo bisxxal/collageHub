@@ -52,23 +52,26 @@ const MainHeroPage = () => {
         )}
       </nav>
 
-      <div className=" mt-[62px]  min-h-screen inset-0 bg-[linear-gradient(to_right,#0f172a61_1px,transparent_1px),linear-gradient(to_bottom,#0f172a61_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(277%_81%_at_77%_-3%,#000_70%,transparent_110%)]">
+      <div className="w-full relative mt-[62px]  min-h-screen inset-0 bg-[linear-gradient(to_right,#0f172a61_1px,transparent_1px),linear-gradient(to_bottom,#0f172a61_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(277%_81%_at_77%_-3%,#000_70%,transparent_110%)]">
         <div className=" flex flex-col items-center justify-center gap-0 max-md:gap-20 mt-20">
           <p className="text-center text-lg max-md:text-xs text-gray-400 mt-20 max-md:mt-[180px] hover -mb-14">
             Your one-stop solution for all collage-related information.
           </p>
-          <h1 className="text-[150px] appear cursor-default max-md:text-[60px] footertext  font-bold text-center logo2 max-md:-mb-28 -mb-16">
+          <h1 className="text-[150px] appear cursor-default max-md:text-[60px] hover:text-[155px] footertext max-md:hover:text-[62px]  transition-all font-bold text-center logo2 max-md:-mb-28 -mb-16">
           College Hub
           </h1>
-          {/* <Image
-            className="heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-xl border-x   border-[#ffffff29] max-md:w-[90%] max-md:h-[160px] w-[1200px] h-[650px] saturate-150 "
-            src={"/hero.png"}
-            width={120200}
-            height={21000}
-            alt=""
-          /> */}
-          <video autoPlay muted loop controls={false} className="heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-xl border-x  border-[#ffffff29] max-md:w-[90%] max-md:h-[160px] !w-[1200px] object-cover h-[650px] saturate-150 " src="/video.mp4"></video>
+         
+
+          <video autoPlay muted loop controls={false} className=" z-[30] heroimgshadow hover:scale-[1.02] duration-500 transition-all rounded-2xl border-x  border-[#ffffff29] max-md:w-[85%] max-md:h-[185px] w-[1200px] object-cover object-bottom h-[670px] saturate-150 " src="https://res.cloudinary.com/ddexkiaja/video/upload/v1747245246/video_ceqh98.mp4"></video>
+
         </div>
+
+        
+      </div>
+
+         {/* <div className=" - top-20 -right-40 blur-[50px] h-[500px] w-[500px] opacity-[.8]  rounded-full   fixed"> </div> */}
+      <div className="  relative ">
+         <div className=" max-md:bottom-32 bottom-20 -left-40 max-md:-left-10 blur-[200px] max-md:blur-[100px] max-md:h-[300px] max-md:w-[300px] h-[500px] w-[500px] opacity-[.8] rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-5   max-md:absolute fixed"></div>
       </div>
 
       <p className=" text-center -mt-32 max-md:-mt-60 text-zinc-400 text-lg max-md:text-xs">
@@ -79,7 +82,7 @@ const MainHeroPage = () => {
         <h1 className="text-center text-7xl max-md:text-5xl font-extrabold">Why us ? </h1>
 
         <div className="relative  flex w-[80%] mx-auto flex-col gap-4"> 
-          <div className=" absolute top-0 left-0 w-full h-full bg-[#090a1500] bg-[radial-gradient(circle,_rgba(9,_10,_21,_0)_0%,_#090A15_100%)] "></div>
+          <div className=" absolute rounded-3xl top-0 left-0 w-full h-full bg-[#090a1500] bg-[radial-gradient(circle,_rgba(9,_10,_21,_0)_0%,_#090A15_100%)] "></div>
             <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><FaUniversity />Manage multiple collages </p>
             <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdOutlineAdminPanelSettings  className=" text-green-500"/>            Secure & Role-Based Access</p>
             <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><LuDatabase className=" text-yellow-600" />Centralized Data Management</p>
@@ -99,7 +102,7 @@ const MainHeroPage = () => {
           <span className="  footertext ">e</span>
           <span className="  footertext ">g</span>
           <span className="  footertext ">e</span>
-          <span className="  footertext ">-</span>
+          <span className="  footertext ">{"  - "}</span>
           <span className="  footertext ">H</span>
           <span className="  footertext ">u</span>
           <span className="  footertext ">b</span>

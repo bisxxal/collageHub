@@ -13,7 +13,6 @@ import FormModal from "@/components/FormModal";
 
 type StudentList = Student & {class:Class}
 
- 
 const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|undefined};}) => {
 
   const { sessionClaims } = auth();
@@ -58,7 +57,7 @@ const StudentListPage =async({searchParams}:{searchParams:{[key:string]:string|u
     const renderRow = (item: StudentList) => (
       <tr
         key={item.id}
-        className="rounded-xl tr overflow-hidden hover:overflow-hidden inshadow text-sm "
+        className=" !rounded-xl overflow-hidden hover:overflow-hidden inshadow  text-sm "
       >
         <td className="flex items-center gap-4 p-4">
           <Image

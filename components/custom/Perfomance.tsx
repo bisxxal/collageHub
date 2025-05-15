@@ -1,18 +1,19 @@
- 
-
 "use client";
 import { resultPie } from "@/server/server.actions";
 import React, { useEffect, useState } from "react";
 import GaugeChart from "react-gauge-chart";
 import {Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
- 
- 
+import { LuLoader } from "react-icons/lu";
+import Skeleton from "../Skeleton";
+
 const Performance = ({id}:{id:string}) => {
   const [cgpa, setCgpa] = useState(0);
   const [score, setScore] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const res = await resultPie(id);
       const transformedData2 = res.map((item:{score:string ,exam:any}) => ({
         subject: item.exam?.lesson?.name, 
@@ -31,6 +32,7 @@ const Performance = ({id}:{id:string}) => {
 
       const calculatedCgpa = Number(((totalScore / totalFullMark) * 100).toFixed(2));
       setCgpa(calculatedCgpa);
+      setLoading(false);
     };
 
     if(id){
@@ -38,12 +40,15 @@ const Performance = ({id}:{id:string}) => {
     }
   }, [id]);
  
- 
-  
-  return (
-    <div className=" w-full pb-5 frame2 rounded-2xl overflow-hidden">
 
-   { cgpa ? <>
+   if(loading){
+    return <Skeleton boxes={1} width="h-[450px] w-full" />
+   }
+ 
+  return (
+  <div className=" w-full pb-5 frame2 rounded-2xl overflow-hidden">
+    {/* {loading &&   <div className=' text-center  h-[450px] mt-10 w-full flex items-center justify-center text-xl  text-gray-500' > <LuLoader className=" animate-spin" size={24}/></div>} */}
+   {  score.length !== 0  && !loading && <>
       <div className=' h-[450px] w-full '>
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="80%" data={score}>
@@ -62,7 +67,7 @@ const Performance = ({id}:{id:string}) => {
                 }}/>
               <PolarGrid />
               <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis angle={30}  />
+              <PolarRadiusAxis    />
               <Radar name="Score" dataKey="A" stroke="#E11D47" fill="#E11D47" fillOpacity={0.6}/>
             </RadarChart>
           </ResponsiveContainer>     
@@ -79,9 +84,13 @@ const Performance = ({id}:{id:string}) => {
           />
       </div>
           </>
-          : <div className="flex justify-center items-center h-[450px] w-full"> 
+          }
+
+          {
+          score.length === 0  && !loading && <div className="flex justify-center items-center h-[450px] w-full"> 
           <h1 className=" text-center mb-5 font-semibold">No result  available</h1>
-          </div>}
+          </div>
+          }
 
     </div>
   );

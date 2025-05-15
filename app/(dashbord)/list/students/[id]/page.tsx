@@ -37,7 +37,7 @@ const SingleStudentPage = async({
     <div className="flex-1 p-4 flex flex-col gap-4 xl:flex-row">
       <div className="w-full xl:w-2/3">
         <div className="flex flex-col lg:flex-row gap-4">
-          <div className=" inshadow  frame h-[250px] py-6 px-4 rounded-2xl flex-1 flex max-md:justify-between gap-4">
+          <div className="   frame h-[250px] py-6 px-4 rounded-2xl flex-1 flex max-md:justify-between gap-4">
             <div className=" w-[120px] h-[120px] rounded-full  overflow-hidden ">
               <Image src={student.img || "/avatar.jpg"} alt="" width={144} height={144} className="w-full h-full object-cover" />
             </div>
@@ -83,14 +83,14 @@ const SingleStudentPage = async({
           {/*  */}
           <div className="flex-1 flex  h-[250px] gap-3 justify-between flex-wrap">
 
-            <div className="inshadow frame p-4 rounded-2xl flex gap-4 w-[45%]">
+            <div className=" frame p-4 rounded-2xl flex gap-4 w-[45%]">
               
               <Suspense fallback="loading...">
                 <StudentAttendanceCard id={student.id} />
               </Suspense>
             </div>
 
-            <div className="inshadow frame p-4 rounded-2xl flex gap-4 w-[45%]">
+            <div className=" frame p-4 rounded-2xl flex gap-4 w-[45%]">
             
               <div className="">
                 <h1 className="text-xl max-md:text-base font-semibold">
@@ -99,7 +99,7 @@ const SingleStudentPage = async({
                 <span className="text-sm text-gray-400">Batch</span>
               </div>
             </div>
-            <div className="inshadow frame p-4 rounded-2xl flex gap-4 w-[45%]">
+            <div className=" frame p-4 rounded-2xl flex gap-4 w-[45%]">
               
               <div className="">
                 <h1 className="text-xl max-md:text-base font-semibold">
@@ -108,7 +108,7 @@ const SingleStudentPage = async({
                 <span className="text-sm text-gray-400">Subjects</span>
               </div>
             </div> 
-            <div className="inshadow frame p-4 rounded-2xl flex gap-4 w-[45%]">
+            <div className=" frame p-4 rounded-2xl flex gap-4 w-[45%]">
           
               <div className="">
                 <h1 className="text-xl max-md:text-base font-semibold">{student.class.name}</h1>
@@ -117,33 +117,33 @@ const SingleStudentPage = async({
             </div>
           </div>
         </div>
-        <div className="mt-4 inshadow frame rounded-2xl p-4 h-[]">
+        <div className="mt-4  frame rounded-2xl p-4 h-[]">
           <h1>Student&apos;s Schedule</h1>
           <BigCalenderContainer type="classId" id={student.class.id} />
         </div>
       </div> 
       <div className="w-full xl:w-1/3 flex flex-col gap-4">
-        <div className="inshadow frame p-4 rounded-2xl">
+        <div className=" frame p-4 rounded-2xl">
           <h1 className="text-xl max-md:text-base font-semibold">Shortcuts</h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
             <Link
               className="p-3 rounded-2xl border border-[#ffffff1c] frame2  "
-              href={`/list/lessons?search=${student.id}`} >
+              href={`/list/lessons?classid=${student.classId}`} >
               Student&apos;s Lessons
             </Link>
             <Link
               className="p-3 rounded-2xl border border-[#ffffff1c] frame2  "
-              href={`/list/teachers?classId=${student.class.id}`}>
+              href={`/list/teachers?classid=${student.class.id}`}>
               Student&apos;s Teachers
             </Link>
             <Link
               className="p-3 rounded-2xl border border-[#ffffff1c] frame2"
-              href={`/list/exams?search=${student.id}`}>
+              href={`/list/exams?classid=${student.classId}`}>
               Student&apos;s Exams
             </Link>
             <Link
               className="p-3 rounded-2xl border border-[#ffffff1c] frame2  "
-              href={`/list/assignments?search=${student.id}`}
+              href={`/list/assignments?classid=${student.classId}`}
             >
               Student&apos;s Assignments
             </Link>

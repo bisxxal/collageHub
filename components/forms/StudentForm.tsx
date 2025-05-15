@@ -74,7 +74,7 @@ const StudentForm = ({type,data,setOpen,relatedData,}: {type: "create" | "update
   const classes = students?.classes; 
 
   return (
-    <form className="flex  flex-col p-3 px-4 pb-6  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame max-lg:gap-1 gap-8" onSubmit={onSubmit}>
+    <form className="flex  flex-col p-3 px-4 pb-6  rounded-3xl text-xl backdrop-blur-xl bg-[#cccccc1a] frame border-[#ffffff3b] border max-lg:gap-1 gap-8" onSubmit={onSubmit}>
       <h1 className="text-xl font-semibold">
         {type === "create" ? "Add a new student" : "Update the student"}
       </h1>
