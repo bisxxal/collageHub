@@ -174,7 +174,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({ lessons, collage }) => 
             ))}
 
             {!loading  && <button
-              className="buttonbg w-full flex items-center justify-center mt-5 py-3 rounded font-semibold text-white" onClick={handleSubmit} disabled={saving}>
+              className="buttonbg w-full flex items-center justify-center mt-5 py-3 rounded-xl font-semibold text-white" onClick={handleSubmit} disabled={saving}>
               {saving ? <h1 className=' animate-spin text-xl text-gray-200' >
                           <LuLoader/>
                       </h1> : "Submit"}

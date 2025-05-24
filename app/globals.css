@@ -265,6 +265,10 @@ input#navch:checked ~ .aside{
 
   animation: heroimgshadow 1.8s ease-in-out ;   
 }
+.whyshadow {
+  box-shadow: 0px -10px 20px 4px #ffffff;
+  animation: heroimgshadow 1.8s ease-in-out ;   
+}
 
 @keyframes heroimgshadow {
   0% {
@@ -302,8 +306,8 @@ input#navch:checked ~ .aside{
 }
 
 .buttonbg2{
-  @apply bg-gradient-to-tl  from-[#0c0d1b] to-[#d0d9ff3f];
-  /* @apply bg-gradient-to-tl  from-[#de262600] to-[#bcbcbc2d] ; */
+  @apply bg-gradient-to-tl  from-[#0c0d1b] to-[#190E2D];
+
 }
 .navbaranimation{
   animation: navbaranimation 0.8s ease-in-out forwards;
@@ -359,4 +363,27 @@ background-image: repeating-linear-gradient(315deg, #00FFFF2E 92%, #073AFF00 100
 }
 
 
+.siedepng{
+  animation: slide 1s ease-in-out forwards;
+}
+.siedepng2{
+  animation: slide2 1s ease-in-out forwards;
+}
+@keyframes slide {
+  0% {
+    transform: translateX(-200px);
+  }
  
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes slide2 {
+  0% {
+    transform: translateX(200px);
+  }
+ 
+  100% {
+    transform: translateX(0px);
+  }
+}

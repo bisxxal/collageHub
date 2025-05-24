@@ -34,7 +34,7 @@ import { LiaUniversitySolid } from "react-icons/lia";
        
         <div className='max-md:gap-2 flex gap-4 mr-10 max-md:mr-6 '>
 
-        { collage  && <div className={` flex relative group transition-all cursor-pointer  ${darkMode ? ' text-zinc-300 ' :' text-zinc-500 '}  max-md:text-xs  txt-ellipsis items-center gap-3 max-md:gap-1 text-lg mr-10 max-md:mr-5 `}>
+        { collage  && <div className={` flex relative group transition-all cursor-pointer  ${darkMode ? ' text-zinc-300 ' :' text-zinc-500 '}  max-md:text-xs  txt-ellipsis items-center gap-3 max-md:gap-1 text-lg mr-10 max-md:mr-3 `}>
                 <LiaUniversitySolid className="text-2xl max-md:text-lg  " />
             <p className=' text-base max-md:hidden block truncate  border-b border-[#ffffff22] caption-bottom'> {clg?.fname} </p>
             <p className=' text-sm max-md:block  font-semibold font-mono hidden truncate underline capitalize'> {clg?.collage} </p>
@@ -45,12 +45,10 @@ import { LiaUniversitySolid } from "react-icons/lia";
           </div>
         </div>}
         <button onClick={changeMode} className="flex items-center text-xl gap-2 px-3 py-2 rounded-full bg-[#ffffff22] hover:bg-[#ffffff33] transition-all duration-200 ease-in-out">
-          {darkMode ? <MdOutlineDarkMode /> : <MdOutlineLightMode />}
+          {darkMode ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
         </button>
- 
-
-        <div className="flex flex-col  ">
-          <span className="text-sm max-md:text-[10px] leading-3 font-medium">{firstName} {lastName}</span>
+        <div className="flex flex-col  w-[70px]  ">
+          <span className="text-sm max-md:text-[10px] text-clip leading-3 font-medium">{firstName} <span className=' max-md:text-wrap'>  {lastName}</span></span>
           <span className="text-[12px] max-md:text-[10px] text-gray-500 text-right">
             {role}
           </span>

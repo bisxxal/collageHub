@@ -10,7 +10,8 @@ import { LuDatabase } from "react-icons/lu";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdManageHistory } from "react-icons/md";
 import { FcSalesPerformance } from "react-icons/fc";
- 
+ import { MdOutlineWebStories } from "react-icons/md";
+
 const MainHeroPage = () => {
   const user = useUser();
   const role = user.user?.publicMetadata?.role as string;
@@ -52,9 +53,14 @@ const MainHeroPage = () => {
         )}
       </nav>
 
-      <div className="w-full relative mt-[62px]  min-h-screen inset-0 bg-[linear-gradient(to_right,#0f172a61_1px,transparent_1px),linear-gradient(to_bottom,#0f172a61_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(277%_81%_at_77%_-3%,#000_70%,transparent_110%)]">
-        <div className=" flex flex-col items-center justify-center gap-0 max-md:gap-20 mt-20">
-          <p className="text-center text-lg max-md:text-xs text-gray-400 mt-20 max-md:mt-[180px] hover -mb-14">
+      <div className="w-full relative mt-[62px]  min-h-screen inset-0  ">
+        <div className=" relative flex flex-col items-center justify-center gap-0 max-md:gap-20 mt-20">
+
+        <div>
+          <Image src="/bgl.svg" alt="logo" width={400} height={400} className="siedepng absolute left-0 top-0 h-full w-[500px] max-md:w-[190px] " />
+          <Image src="/bgr.svg" alt="logo" width={400} height={400} className="siedepng2 absolute right-0 top-0 h-full w-[500px] max-md:w-[190px] max-md:-top-20 " />
+        </div>
+          <p className="text-center text-lg max-md:text-xs text-gray-400 mt-20 max-md:mt-[180px] z-30 hover -mb-14">
             Your one-stop solution for all collage-related information.
           </p>
           <h1 className="text-[150px] appear cursor-default max-md:text-[60px] hover:text-[155px] footertext max-md:hover:text-[62px]  transition-all font-bold text-center logo2 max-md:-mb-28 -mb-16">
@@ -69,31 +75,32 @@ const MainHeroPage = () => {
         
       </div>
 
-         {/* <div className=" - top-20 -right-40 blur-[50px] h-[500px] w-[500px] opacity-[.8]  rounded-full   fixed"> </div> */}
+         <div className=" -top-20 -right-40 blur-[150px] h-[500px] w-[500px] opacity-[.3] max-md:h-[300px] max-md:w-[300px]  rounded-full  bg-[#bd3ee09c] absolute"> </div>
       <div className="  relative ">
-         <div className=" max-md:bottom-32 bottom-20 -left-40 max-md:-left-10 blur-[200px] max-md:blur-[100px] max-md:h-[300px] max-md:w-[300px] h-[500px] w-[500px] opacity-[.8] rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-5   max-md:absolute fixed"></div>
+         <div className=" absolute max-md:bottom-32 bottom-20 -left-40 max-md:-left-10 blur-[150px] max-md:blur-[100px] max-md:h-[300px] max-md:w-[300px] h-[500px] w-[500px] opacity-[.4] rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-5   max-md:absolute "></div>
       </div>
 
-      <p className=" text-center -mt-32 max-md:-mt-60 text-zinc-400 text-lg max-md:text-xs">
+      <p className=" text-center  z-40 -mt-10 max-md:-mt-60 text-zinc-200 text-xl max-md:text-xs">
         A comprehensive college management platform
       </p>
 
       <div className="min-h-screen mt-10 flex flex-col items-center justify-evenly">
-        <h1 className="text-center text-7xl max-md:text-5xl font-extrabold">Why us ? </h1>
+        <h1 className="text-center text-7xl max-md:text-5xl font-extrabold my-16">Why College Hub ? </h1>
 
-        <div className="relative  flex w-[80%] mx-auto flex-col gap-4"> 
-          <div className=" absolute rounded-3xl top-0 left-0 w-full h-full bg-[#090a1500] bg-[radial-gradient(circle,_rgba(9,_10,_21,_0)_0%,_#090A15_100%)] "></div>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><FaUniversity />Manage multiple collages </p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdOutlineAdminPanelSettings  className=" text-green-500"/>            Secure & Role-Based Access</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><LuDatabase className=" text-yellow-600" />Centralized Data Management</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><TbBrandCashapp className=" text-red-500" />Online Fee Payment</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><FcSalesPerformance /> Real-time Attendance & Performance Tracking</p>
-            <p className="flex items-center justify-center gap-3 text-center border border-[#ffffff0f] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdManageHistory className=" text-indigo-500" />Examination Management & Finance magement</p>
+        <div className="relative  flex w-[90%] mx-auto flex-col gap-4"> 
+
+            <p className="flex h-[120px] max-md:h-[80px] max-md:hover:h-[100px] footertext heroimgshadow hover:scale-105 hover:h-[150px] hover:font-bold items-center justify-center gap-3 text-center border border-[#5c38c9cd] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><FaUniversity />Manage multiple collages </p>
+            <p className="flex h-[120px] max-md:h-[80px] max-md:hover:h-[100px] footertext heroimgshadow hover:scale-105 hover:h-[150px] hover:font-bold items-center justify-center gap-3 text-center border border-[#5c38c9cd] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdOutlineAdminPanelSettings  className=" text-green-500"/>            Secure & Role-Based Access</p>
+            <p className="flex h-[120px] max-md:h-[80px] max-md:hover:h-[100px] footertext heroimgshadow hover:scale-105 hover:h-[150px] hover:font-bold items-center justify-center gap-3 text-center border border-[#5c38c9cd] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><LuDatabase className=" text-yellow-600" />Centralized Data Management</p>
+            <p className="flex h-[120px] max-md:h-[80px] max-md:hover:h-[100px] footertext heroimgshadow hover:scale-105 hover:h-[150px] hover:font-bold items-center justify-center gap-3 text-center border border-[#5c38c9cd] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><TbBrandCashapp className=" text-red-500" />Online Fee Payment</p>
+            <p className="flex h-[120px] max-md:h-[80px] max-md:hover:h-[100px] footertext heroimgshadow hover:scale-105 hover:h-[150px] hover:font-bold items-center justify-center gap-3 text-center border border-[#5c38c9cd] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><FcSalesPerformance /> Real-time Attendance & Performance Tracking</p>
+            <p className="flex h-[120px] max-md:h-[80px] max-md:hover:h-[100px] footertext heroimgshadow hover:scale-105 hover:h-[150px] hover:font-bold items-center justify-center gap-3 text-center border border-[#5c38c9cd] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdManageHistory className=" text-indigo-500" />Examination Management & Finance magement</p>
+            <p className="flex h-[120px] max-md:h-[80px] max-md:hover:h-[100px] footertext heroimgshadow hover:scale-105 hover:h-[150px] hover:font-bold items-center justify-center gap-3 text-center border border-[#5c38c9cd] buttonbg2  transition-all p-7 rounded-3xl w-full max-md:text-base  text-3xl"><MdOutlineWebStories className=" text-cyan-500"/>Modern & interactive ui</p>
         </div>
 
   </div>
         <footer className="w-full relative overflow-hidden ">
-        <p className=" absolute font-mono block max-md:left-5 max-md:bottom-5 left-10 bottom-10">copyright @2025</p>
+        <p className=" absolute text-gray-400 font-mono block max-md:left-5 max-md:bottom-5 left-10 bottom-10">copyright @2025</p>
         <h1 className="flex max-md:text-[50px] max-md:-mb-6 text-[200px] -mb-28 font-semibold  w-full justify-center cursor-default text-center slogo ">
           <span className="  footertext ">C</span>
           <span className="  footertext ">o</span>

@@ -18,14 +18,20 @@ const LoginPage = () => {
   }, [user, router]);
 
   return (
-    <div className="h-screen flex items-center justify-center  overflow-hidden">
+    <div className="h-screen relative flex items-center justify-center  !overflow-hidden">
  
       { !user && 
       <SignIn.Root>
-     <div className=" w-full h-full  flex flex-col items-center  justify-center">
-      <Link href={'/'} className="footertext cursor-pointer text-center   boxanimation buttonhover w-full text-[200px] max-lg:text-[100px] max-md:text-[60px]  slogo  font-bold ">College Hub</Link>
+     <div className=" w-full h-full group flex flex-col items-center   justify-center">
+       <div className=" -top-20 -right-40 blur-[150px] h-[500px] w-[500px] opacity-[.3] max-md:h-[300px] max-md:w-[300px]  rounded-full  bg-[#bd3ee09c] absolute"> </div>
+        <div className=" absolute max-md:bottom-32 bottom-20 -left-40 max-md:-left-10 blur-[150px] max-md:blur-[100px] max-md:h-[300px] max-md:w-[300px] h-[500px] w-[500px] opacity-[.4] rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-5   max-md:absolute "></div>
+  
+       <p className=" text-center  z-40 -mt-10 max-md:-mt-60 text-zinc-400 text-xl max-md:text-xs">
+        A comprehensive college management platform
+      </p>
+      <Link href={'/'} className=" footertext cursor-pointer text-center   boxanimation  w-full text-[200px] max-lg:text-[100px] max-md:text-[60px]  slogo  font-bold ">College Hub</Link>
 
-      <div className="w-[35%] h-[390px]  -mt-44 max-md:-mt-10  appear backdrop-blur-md  max-md:h-[270px] max-lg:w-[60%] space-y-6 rounded-2xl sging !text-white px-4 py-10 shadow-md ring-1 ring-black/5 max-md:w-[90%]  sm:px-8 ">
+      <div className="w-[35%] h-[390px]  -mt-44 max-md:-mt-10  appear backdrop-blur-lg  max-md:h-[270px] max-lg:w-[60%] space-y-6 rounded-2xl sging !text-white px-4 py-10 shadow-md ring-1 ring-black/5 max-md:w-[90%]  sm:px-8 ">
         <SignIn.Step name="start">
           <header className="text-center">
        
@@ -54,6 +60,7 @@ const LoginPage = () => {
           </SignIn.Action>
         
         </SignIn.Step>
+        
       </div>
      </div>
       </SignIn.Root>
